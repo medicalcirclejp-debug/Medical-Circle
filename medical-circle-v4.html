@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Medical Circle | 医療職求人</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ee;--sf:#faf9f6;--sf2:#fff;
+  --bd:rgba(30,25,15,.09);--dv:rgba(30,25,15,.07);
+  --tx:#1a1814;--mt:#6b6760;--ft:#a09c96;
+  --pr:#1a6b6f;--pl:#e8f3f3;--ph:#145558;
+  --ac:#c8773a;--al:#fdf0e6;
+  --ok:#2d6e2d;--okb:#e8f2e8;
+  --wn:#7a5c00;--wnb:#fef9ec;
+  --sh:0 1px 3px rgba(15,10,5,.06);
+  --shm:0 8px 28px rgba(15,10,5,.1);
+  --shl:0 24px 64px rgba(15,10,5,.15);
+  --rsm:.5rem;--rmd:.875rem;--rlg:1.25rem;--rxl:1.75rem;--rf:9999px;
+  --fd:'DM Serif Display',Georgia,serif;
+  --fb:'DM Sans','Hiragino Sans',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+[data-theme=dark]{
+  --bg:#131210;--sf:#1a1916;--sf2:#201e1b;
+  --bd:rgba(255,248,235,.08);--dv:rgba(255,248,235,.05);
+  --tx:#f0ece4;--mt:#a09c96;--ft:#6b6760;
+  --pr:#5ba8ac;--pl:#1e3233;--ph:#74bbbf;
+  --ac:#d9915a;--al:#2a1e12;
+  --ok:#6db56d;--okb:#1a2e1a;
+  --wn:#c9a84c;--wnb:#2a2210;
+  --sh:0 1px 3px rgba(0,0,0,.2);
+  --shm:0 8px 28px rgba(0,0,0,.32);
+  --shl:0 24px 64px rgba(0,0,0,.44);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--tx);min-height:100dvh;line-height:1.6}
+a{text-decoration:none;color:inherit}
+button,input,select,textarea{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
+img,svg{display:block;max-width:100%}
+.pg{display:none!important;background:var(--bg);min-height:100dvh}
+.pg.on{display:block!important}
+.topbar{position:fixed;inset:0 0 auto;z-index:100;backdrop-filter:blur(20px);background:color-mix(in srgb,var(--bg) 85%,transparent);border-bottom:1px solid var(--bd)}
+.topbar-in{max-width:1280px;margin:0 auto;padding:0 1.25rem;height:60px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:.55rem}
+.brand-ic{width:32px;height:32px;color:var(--pr)}
+.brand-nm{font-family:var(--fd);font-size:1.2rem}
+.tbr{display:flex;gap:.5rem}
+.ic-btn{width:40px;height:40px;border-radius:var(--rf);border:1px solid var(--bd);background:var(--sf);display:grid;place-items:center;font-size:.9rem;transition:background 150ms}
+.ic-btn:hover{background:var(--sf2)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 1.25rem}
+.shell{padding-top:60px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;min-height:42px;padding:.65rem 1.2rem;border-radius:var(--rf);font-size:.875rem;font-weight:600;transition:all 150ms var(--ease);white-space:nowrap;flex-shrink:0}
+.bp{background:var(--pr);color:#fff}.bp:hover{background:var(--ph)}
+.bs{background:var(--sf2);border:1px solid var(--bd)}.bs:hover{background:var(--sf)}
+.bg{border:1px dashed color-mix(in srgb,var(--tx) 20%,transparent)}.bg:hover{background:var(--sf)}
+.bsm{min-height:34px;padding:.38rem .85rem;font-size:.8rem}
+.tag{display:inline-flex;align-items:center;padding:.28rem .7rem;border-radius:var(--rf);background:var(--sf2);border:1px solid var(--bd);font-size:.75rem;font-weight:500;white-space:nowrap}
+.tp{background:var(--pl);color:var(--pr);border-color:transparent}
+.chip{padding:.32rem .8rem;border-radius:var(--rf);background:var(--sf2);border:1px solid var(--bd);font-size:.78rem;font-weight:500;cursor:pointer;transition:all 130ms}
+.chip:hover{border-color:var(--pr);color:var(--pr)}
+.chip.on{background:var(--pr);color:#fff;border-color:transparent}
+.fi{display:grid;gap:.35rem}
+.fi label{font-size:.8rem;font-weight:600;color:var(--mt)}
+.fi input,.fi select,.fi textarea{width:100%;min-height:44px;padding:.75rem 1rem;border-radius:var(--rmd);border:1.5px solid var(--bd);background:var(--sf2);font-size:.9rem;transition:border-color 140ms}
+.fi input:focus,.fi select:focus,.fi textarea:focus{outline:none;border-color:var(--pr)}
+.fi textarea{min-height:96px;resize:vertical}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.fg .full{grid-column:1/-1}
+.nt{padding:.75rem 1rem;border-radius:var(--rmd);font-size:.82rem;font-weight:500}
+.np{background:var(--pl);color:var(--pr)}
+.nok{background:var(--okb);color:var(--ok)}
+.nwn{background:var(--wnb);color:var(--wn)}
+.fav{width:42px;height:42px;border-radius:var(--rf);border:1.5px solid var(--bd);background:var(--sf2);display:grid;place-items:center;transition:all 150ms;flex-shrink:0}
+.fav svg{width:18px;height:18px;transition:all 150ms;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fav:hover{border-color:#e05050}
+.fav.on{background:#fff0f0;border-color:#e87070;color:#e05050}
+.fav.on svg{fill:currentColor}
+.mbg{position:fixed;inset:0;background:rgba(8,6,3,.52);backdrop-filter:blur(8px);display:none;z-index:200}
+.mbg.open{display:block}
+.msh{position:fixed;inset:0;z-index:201;overflow-y:auto;display:none;padding:1rem}
+.msh.open{display:block}
+.min{width:min(960px,100%);margin:0 auto;background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);box-shadow:var(--shl)}
+.mhd{display:flex;justify-content:space-between;align-items:flex-start;padding:1.5rem 1.5rem 0;gap:1rem}
+.mey{display:inline-flex;padding:.3rem .7rem;border-radius:var(--rf);background:var(--pl);color:var(--pr);font-size:.75rem;font-weight:700;margin-bottom:.5rem}
+.mtt{font-family:var(--fd);font-size:1.35rem}
+.mbd{padding:1.25rem 1.5rem 1.5rem}
+.mcb{display:flex;justify-content:flex-end;padding:.6rem .6rem 0;position:sticky;top:0;background:var(--sf);z-index:10;border-radius:var(--rxl) var(--rxl) 0 0}
+.si{display:flex;align-items:center;gap:.5rem;margin-bottom:1.4rem}
+.sd{display:flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:700}
+.sd .dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:.73rem;background:var(--sf2);border:1.5px solid var(--bd);color:var(--mt);transition:all 180ms}
+.sd.on .dot{background:var(--pr);border-color:transparent;color:#fff}
+.sd.on .lbl{color:var(--pr)}
+.sl{flex:1;height:1.5px;background:var(--dv)}
+.lbl{color:var(--mt)}
+.pb{border-radius:var(--rlg);overflow:hidden;margin-bottom:1rem}
+.pt{background:var(--pr);color:#fff;padding:1rem 1.2rem}
+.pt .camp{font-size:.73rem;font-weight:700;opacity:.8;margin-bottom:.25rem}
+.pt .hl{font-weight:700;font-size:.88rem}
+.pr-rows{background:var(--pl);padding:.9rem 1.2rem;display:grid;gap:.45rem}
+.pr-row{display:flex;justify-content:space-between;align-items:center;font-size:.855rem}
+.pr-row dt{color:var(--mt)}
+.pr-row strong{color:var(--pr)}
+.pdv{height:1px;background:var(--dv)}
+.gal{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem;margin-bottom:1.2rem}
+.gs{border-radius:var(--rlg);background:linear-gradient(140deg,var(--pl),var(--sf2));border:1px solid var(--bd);display:flex;align-items:flex-end;padding:.65rem;cursor:pointer}
+.gs:first-child{min-height:150px}
+.gs:not(:first-child){min-height:96px}
+.glb{font-size:.7rem;background:rgba(255,255,255,.88);color:#333;border-radius:var(--rf);padding:.18rem .5rem}
+.dr{display:grid;grid-template-columns:130px 1fr;gap:.5rem;font-size:.855rem;padding:.35rem 0}
+.dr dt{color:var(--mt)}
+.rv{background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.8rem;margin-bottom:.55rem;font-size:.855rem}
+.rv-s{color:var(--ac);margin-bottom:.25rem;font-size:.82rem}
+.usl{border-radius:var(--rlg);border:2px dashed var(--bd);background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;cursor:pointer;color:var(--ft);font-size:.75rem;text-align:center;padding:1rem}
+.hero{padding:.5rem 0 1.5rem}
+.hev{display:inline-flex;padding:.38rem .85rem;border-radius:var(--rf);background:var(--pl);color:var(--pr);font-size:.75rem;font-weight:700;margin-bottom:.9rem}
+.hero h1{font-family:var(--fd);font-size:clamp(1.9rem,5vw,3rem);line-height:1.15;letter-spacing:-.02em;max-width:20ch;margin-bottom:.9rem}
+.hero-ld{color:var(--mt);max-width:52ch;margin-bottom:1.1rem;font-size:.93rem}
+.hero-tg{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.3rem}
+.hero-ac{display:flex;flex-wrap:wrap;gap:.65rem;margin-bottom:1.75rem}
+.hero-st{display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem}
+.hst{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rlg);padding:.9rem}
+.hst strong{display:block;font-size:1rem;font-weight:700;margin-bottom:.15rem}
+.hst span{font-size:.73rem;color:var(--mt)}
+.sl-grid{display:grid;grid-template-columns:290px 1fr;gap:1.4rem;padding:1.5rem 0 3rem;align-items:start}
+.filters{position:sticky;top:72px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);padding:1.1rem;display:grid;gap:.9rem}
+.flt{display:flex;justify-content:space-between;align-items:center}
+.ftl{font-weight:700;font-size:.9rem}
+.cg{display:flex;flex-wrap:wrap;gap:.35rem}
+.rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:.9rem;flex-wrap:wrap;gap:.65rem}
+.rc{font-size:.78rem;color:var(--mt)}
+.jl{display:grid;gap:.65rem}
+.jc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);padding:1rem;display:grid;grid-template-columns:84px 1fr;gap:.9rem;transition:box-shadow 180ms,border-color 180ms}
+.jc:hover{box-shadow:var(--shm);border-color:color-mix(in srgb,var(--pr) 28%,transparent)}
+.jth{aspect-ratio:1;border-radius:var(--rlg);background:linear-gradient(135deg,var(--pl),var(--sf2));display:grid;place-items:center;text-align:center;font-size:.68rem;font-weight:700;color:var(--pr);padding:.4rem;line-height:1.3}
+.jnm{font-weight:700;font-size:.97rem;margin-bottom:.15rem}
+.jmt{font-size:.75rem;color:var(--mt);margin-bottom:.25rem}
+.jhl{font-size:.78rem;color:var(--mt);margin-bottom:.3rem}
+.jul a{font-size:.75rem;color:var(--pr);font-weight:600}
+.jtg{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.5rem}
+.jac{display:flex;gap:.4rem;flex-wrap:wrap}
+.lp{min-height:calc(100dvh - 60px);padding:2rem 1rem 3rem}
+.lc{width:min(440px,100%);margin:0 auto;background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);box-shadow:var(--shl);padding:2rem}
+.ley{display:inline-flex;padding:.32rem .78rem;border-radius:var(--rf);background:var(--pl);color:var(--pr);font-size:.75rem;font-weight:700;margin-bottom:.7rem}
+.ltt{font-family:var(--fd);font-size:1.45rem;margin-bottom:.35rem}
+.lld{font-size:.855rem;color:var(--mt);margin-bottom:1.4rem}
+.lfi{display:grid;gap:.8rem;margin-bottom:1rem}
+.lft{text-align:center;font-size:.78rem;color:var(--mt);margin-top:1rem}
+.lft a{color:var(--pr);font-weight:700;text-decoration:none}
+.bkw{text-align:center;margin-top:1.1rem;max-width:440px;margin-left:auto;margin-right:auto}
+.dh{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.4rem;padding-top:1.5rem}
+.dt{font-family:var(--fd);font-size:1.5rem;margin-top:.4rem}
+.plb{background:linear-gradient(135deg,var(--pr),var(--ph));border-radius:var(--rxl);padding:1.2rem 1.4rem;color:#fff;margin-bottom:1.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.pli p:first-child{font-size:.73rem;opacity:.75;margin-bottom:.2rem}
+.pli strong{font-size:1.05rem;font-weight:700;display:block}
+.pli small{font-size:.7rem;opacity:.7}
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:.9rem}
+.stl{font-weight:700;font-size:.95rem}
+.cc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);padding:1.2rem;margin-bottom:.8rem}
+.apc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rlg);padding:.95rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.65rem;margin-bottom:.55rem}
+.sb{padding:.22rem .6rem;border-radius:var(--rf);font-size:.7rem;font-weight:700}
+.sok{background:var(--okb);color:var(--ok)}
+.swn{background:var(--wnb);color:var(--wn)}
+.cs{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;padding-top:.8rem;border-top:1px solid var(--dv);text-align:center;margin-top:.8rem}
+.cs strong{display:block;font-size:1.05rem;font-weight:700}
+.cs span{font-size:.7rem;color:var(--mt)}
+.tc{display:flex;align-items:flex-start;gap:.6rem;padding:.82rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.8rem;margin-bottom:.7rem}
+.tc input{margin-top:.12rem;accent-color:var(--pr);width:15px;height:15px;flex-shrink:0}
+.tc a{color:var(--pr);font-weight:700}
+.cip{max-width:600px;margin:0 auto;padding:1.5rem 0 3rem}
+.cip .card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);padding:1.25rem;margin-bottom:1rem}
+.cip .card-title{font-weight:700;font-size:.95rem;margin-bottom:1rem}
+.hg-row{display:grid;grid-template-columns:2.5rem 1fr;gap:.5rem;align-items:center;padding:.3rem 0}
+.hg-day{font-size:.85rem;font-weight:700}
+.hg-inputs{display:grid;grid-template-columns:1fr auto 1fr auto;gap:.35rem;align-items:center}
+.hg-time{min-height:38px;padding:.4rem .6rem;border-radius:var(--rmd);border:1.5px solid var(--bd);background:var(--sf2);font-size:.82rem;transition:opacity 150ms}
+.hg-sep{font-size:.75rem;color:var(--mt)}
+.hg-cl{display:flex;align-items:center;justify-content:center;width:4rem;gap:.2rem;font-size:.72rem;color:var(--mt)}
+.mp-hd{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.4rem;padding-top:1.5rem}
+@media(max-width:1024px){.sl-grid{grid-template-columns:1fr}.filters{position:static}.gal{grid-template-columns:1fr 1fr}.plb{grid-template-columns:1fr}}
+@media(max-width:680px){.hero-st{grid-template-columns:1fr}.jc{grid-template-columns:1fr}.jth{aspect-ratio:16/9}.fg{grid-template-columns:1fr}.fg .full{grid-column:1}}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand" style="cursor:pointer" id="brandBtn">
+      <svg class="brand-ic" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="22" stroke="currentColor" stroke-width="5"/>
+        <path d="M20 34c4-9 8-13 12-13s8 4 12 13" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+        <path d="M25 43h14" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-nm">Medical Circle</span>
+    </div>
+    <div class="tbr">
+      <span id="loginBadge" style="display:none;padding:.25rem .65rem;border-radius:var(--rf);background:var(--pl);color:var(--pr);font-size:.72rem;font-weight:700">ログイン中</span>
+      <button class="ic-btn" id="themeBtn" title="テーマ">☾</button>
+      <button class="ic-btn" id="menuBtn">≡</button>
+    </div>
+  </div>
+</header>
+
+<!-- DRAWER -->
+<div class="mbg" id="drawerBg"></div>
+<div class="msh" id="drawerSh">
+  <div class="min" style="max-width:320px;margin:0 0 0 auto;border-radius:var(--rxl) 0 0 var(--rxl);min-height:100dvh;">
+    <div class="mhd">
+      <div><div class="mey">Menu</div><div class="mtt" style="font-size:1.1rem;">メニュー</div></div>
+      <button class="ic-btn bsm" id="drawerClose">✕</button>
+    </div>
+    <div class="mbd" style="display:grid;gap:.55rem;">
+      <button class="btn bs" style="justify-content:flex-start;width:100%" data-nav="main">求人を探す</button>
+      <button class="btn bs" style="justify-content:flex-start;width:100%" data-nav="clinic-login">医院ログイン</button>
+      <button class="btn bs" style="justify-content:flex-start;width:100%" id="drawerApplicantBtn" data-nav="applicant-login">求職者ログイン</button>
+      <button class="btn bs" style="justify-content:flex-start;width:100%" data-nav="about">About Medical Circle</button>
+      <button class="btn bs" style="justify-content:flex-start;width:100%" data-nav="contact">お問い合わせ</button>
+      <button class="btn bg" style="justify-content:flex-start;width:100%;margin-top:.5rem" data-nav="main">← トップに戻る</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<div id="pg-main" class="pg on">
+  <div class="shell">
+    <section class="hero wrap">
+      <div class="hev">直接採用型の医療求人サイト</div>
+      <h1>医療職求人の<br>新しい形</h1>
+      <p class="hero-ld">求職者の登録・利用は完全無料。医院と求職者が直接つながる医療職専門の求人サービスです。</p>
+      <div class="hero-tg">
+        <span class="tag tp">仲介手数料なし</span>
+        <span class="tag tp">検索・閲覧は登録不要</span>
+        <span class="tag tp">求職者は完全無料</span>
+      </div>
+      <div class="hero-ac">
+        <button class="btn bp" id="heroSearchBtn">求人を探す</button>
+        <button class="btn bs" data-nav="clinic-login">医院ログイン</button>
+        <button class="btn bs" id="heroApplicantBtn" data-nav="applicant-login">求職者ログイン</button>
+      </div>
+      <div class="hero-st">
+        <div class="hst"><strong>10職種対応</strong><span>看護師・薬剤師・理学療法士・作業療法士・歯科衛生士・管理栄養士・言語聴覚士・診療放射線技師・臨床検査技師・助産師</span></div>
+        <div class="hst"><strong>月給・時給</strong><span>月給・時給・要相談すべてに対応</span></div>
+        <div class="hst"><strong>登録不要検索</strong><span>検索と閲覧はそのまま利用可能</span></div>
+      </div>
+      <div class="hst" style="margin-top:.65rem"><strong>見やすい設計</strong><span>曜日・時間帯での絞り込みに対応。必要な求人にすぐたどり着けるシンプルな設計です</span></div>
+    </section>
+
+    <div class="wrap" id="search">
+      <div class="sl-grid">
+        <aside class="filters">
+          <div class="flt"><span class="ftl">絞り込む</span><button class="btn bg bsm" id="resetBtn">リセット</button></div>
+          <div class="fi"><label>キーワード</label><input type="text" id="keyword" placeholder="医院名、住所、職種など"></div>
+          <div><div style="font-size:.78rem;font-weight:600;color:var(--mt);margin-bottom:.4rem">エリア</div><div class="cg" id="regionChips"></div></div>
+          <div><div style="font-size:.78rem;font-weight:600;color:var(--mt);margin-bottom:.4rem">職種</div><div class="cg" id="roleChips"></div></div>
+          <div class="fi"><label>給与種別</label>
+            <select id="payType">
+              <option value="">指定なし</option><option value="monthly">月給</option>
+              <option value="hourly">時給</option><option value="negotiable">要相談</option>
+            </select>
+          </div>
+          <div class="fi"><label>給与条件</label><select id="salaryRange"><option value="">指定なし</option></select></div>
+          <div class="fi"><label>勤務条件</label>
+            <select id="workCond">
+              <option value="">指定なし</option><option value="full">フルタイム</option>
+              <option value="twodays">週2回以上</option><option value="threedays">週3回以上</option>
+              <option value="morning">午前のみ可</option><option value="weekend">土曜勤務歓迎</option>
+              <option value="night">夜勤あり</option>
+            </select>
+          </div>
+          <div class="fi">
+            <label>曜日・時間帯</label>
+            <button id="dayTimeToggleBtn" style="width:100%;display:flex;justify-content:space-between;align-items:center;min-height:44px;padding:.75rem 1rem;border-radius:var(--rmd);border:1.5px solid var(--bd);background:var(--sf2);font-size:.9rem;color:var(--mt)">
+              <span>指定なし</span><span id="dayTimeArrow" style="font-size:.75rem">▼</span>
+            </button>
+            <div id="dayTimePanel" style="display:none;margin-top:.4rem;padding:.75rem;background:var(--bg);border:1.5px solid var(--bd);border-radius:var(--rmd)">
+              <div style="font-size:.72rem;color:var(--mt);margin-bottom:.6rem">募集している曜日・時間帯が一致するクリニックが表示されます</div>
+              <div id="dayTimeGrid" style="display:grid;gap:.35rem">
+                <div style="display:grid;grid-template-columns:2rem 1fr;gap:.3rem;align-items:center"><span style="font-size:.8rem;font-weight:700;text-align:center">月</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.25rem"><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="月" data-time="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="月" data-time="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="月" data-time="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="月" data-time="夜勤">夜勤</button></div></div>
+                <div style="display:grid;grid-template-columns:2rem 1fr;gap:.3rem;align-items:center"><span style="font-size:.8rem;font-weight:700;text-align:center">火</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.25rem"><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="火" data-time="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="火" data-time="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="火" data-time="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="火" data-time="夜勤">夜勤</button></div></div>
+                <div style="display:grid;grid-template-columns:2rem 1fr;gap:.3rem;align-items:center"><span style="font-size:.8rem;font-weight:700;text-align:center">水</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.25rem"><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="水" data-time="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="水" data-time="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="水" data-time="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="水" data-time="夜勤">夜勤</button></div></div>
+                <div style="display:grid;grid-template-columns:2rem 1fr;gap:.3rem;align-items:center"><span style="font-size:.8rem;font-weight:700;text-align:center">木</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.25rem"><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="木" data-time="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="木" data-time="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="木" data-time="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="木" data-time="夜勤">夜勤</button></div></div>
+                <div style="display:grid;grid-template-columns:2rem 1fr;gap:.3rem;align-items:center"><span style="font-size:.8rem;font-weight:700;text-align:center">金</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.25rem"><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="金" data-time="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="金" data-time="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="金" data-time="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="金" data-time="夜勤">夜勤</button></div></div>
+                <div style="display:grid;grid-template-columns:2rem 1fr;gap:.3rem;align-items:center"><span style="font-size:.8rem;font-weight:700;text-align:center;color:var(--pr)">土</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.25rem"><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="土" data-time="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="土" data-time="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="土" data-time="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="土" data-time="夜勤">夜勤</button></div></div>
+                <div style="display:grid;grid-template-columns:2rem 1fr;gap:.3rem;align-items:center"><span style="font-size:.8rem;font-weight:700;text-align:center;color:#e05050">日</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.25rem"><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="日" data-time="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="日" data-time="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="日" data-time="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.32rem .1rem" data-day="日" data-time="夜勤">夜勤</button></div></div>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <div>
+          <div class="rh">
+            <div><div style="font-weight:700;font-size:.95rem">検索結果</div><div class="rc" id="resultCount"></div></div>
+            <button class="btn bs bsm" id="searchApplicantBtn" data-nav="applicant-login">求職者ログイン・登録</button>
+          </div>
+          <div class="jl" id="jobList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CLINIC LOGIN ===== -->
+<div id="pg-clinic-login" class="pg">
+  <div class="shell lp">
+    <div class="lc">
+      <div class="ley">医院専用</div>
+      <div class="ltt">医院ログイン</div>
+      <div class="lld">Medical Circle に登録済みの医院担当者様はこちらからログインしてください。</div>
+      <div class="lfi">
+        <div class="fi"><label>メールアドレス</label><input type="email" placeholder="clinic@example.com"></div>
+        <div class="fi"><label>パスワード</label><input type="password" placeholder="パスワードを入力"></div>
+      </div>
+      <button class="btn bp" style="width:100%" data-nav="dashboard">ログイン</button>
+      <div class="lft">
+        パスワードをお忘れの方は <a href="#" onclick="alert('準備中です');return false">こちら</a><br><br>
+        まだアカウントをお持ちでないですか？ <a href="#" id="clinicRegisterLink">新規登録</a>
+      </div>
+    </div>
+    <div style="width:min(440px,100%);margin:1rem auto 0;background:var(--pl);border:1px solid color-mix(in srgb,var(--pr) 20%,transparent);border-radius:var(--rxl);padding:1.1rem">
+      <div style="font-size:.75rem;font-weight:700;color:var(--pr);margin-bottom:.5rem">🔒 プレミアムプラン（準備中）</div>
+      <div style="display:grid;gap:.35rem;font-size:.78rem;color:var(--mt)">
+        <div style="display:flex;align-items:center;gap:.5rem"><span style="color:var(--pr)">📊</span> 閲覧数・お気に入り数・応募数の統計（月額 560円）</div>
+        <div style="display:flex;align-items:center;gap:.5rem"><span style="color:var(--pr)">❤️</span> あなたの求人をお気に入りした求職者のプロフィールを閲覧（準備中）</div>
+        <div style="display:flex;align-items:center;gap:.5rem"><span style="color:var(--pr)">📅</span> 曜日別シフト充足状況の管理（準備中）</div>
+      </div>
+    </div>
+    <div class="bkw"><button class="btn bg bsm" data-nav="main">← トップに戻る</button></div>
+  </div>
+</div>
+
+<!-- ===== APPLICANT LOGIN ===== -->
+<div id="pg-applicant-login" class="pg">
+  <div class="shell lp">
+    <div class="lc">
+      <div class="ley">求職者専用</div>
+      <div class="ltt">求職者ログイン</div>
+      <div class="lld">登録済みの求職者の方はこちらからログインしてください。お気に入り医院の確認・応募履歴を見ることができます。</div>
+      <div class="lfi">
+        <div class="fi"><label>メールアドレス</label><input type="email" placeholder="your@email.com"></div>
+        <div class="fi"><label>パスワード</label><input type="password" placeholder="パスワードを入力"></div>
+      </div>
+      <button class="btn bp" style="width:100%" id="applicantLoginBtn">ログイン</button>
+      <div class="lft">
+        パスワードをお忘れの方は <a href="#" onclick="alert('準備中です');return false">こちら</a><br><br>
+        まだ登録がお済みでないですか？ <a href="#" id="applicantRegisterLink">新規登録</a>
+      </div>
+    </div>
+    <div class="bkw"><button class="btn bg bsm" data-nav="main">← トップに戻る</button></div>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="pg-dashboard" class="pg">
+  <div class="shell wrap">
+    <div class="dh">
+      <div>
+        <span class="tag tp">医院ダッシュボード</span>
+        <div style="display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-top:.4rem">
+          <div class="dt" style="margin:0">梅田みなと総合クリニック</div>
+          <button class="btn bs bsm" data-nav="clinic-info">✏️ クリニック情報を編集</button>
+        </div>
+        <div style="font-size:.8rem;color:var(--mt);margin-top:.2rem">大阪府大阪市北区梅田2-4-9</div>
+      </div>
+      <div style="display:flex;gap:.65rem;align-items:center;flex-wrap:wrap">
+        <span class="tag" style="background:var(--okb);color:var(--ok);border:none">🎉 キャンペーン適用中</span>
+        <button class="btn bg bsm" id="applicantLogoutBtn">ログアウト</button>
+      </div>
+    </div>
+    <div class="plb">
+      <div class="pli"><p>現在の料金</p><strong>無料</strong><small>〜 2028年12月末まで</small></div>
+      <div class="pli"><p>2029年1月〜2031年12月末</p><strong>月額 5,000円</strong><small>2027年12月31日までの登録限定</small></div>
+    </div>
+    <div class="sh"><div class="stl">掲載ステータス</div>
+      <div style="display:flex;align-items:center;gap:.65rem">
+        <span class="sb sok" id="statusBadge">掲載中</span>
+        <button class="btn bg bsm" id="statusToggleBtn">一時停止する</button>
+      </div>
+    </div>
+    <div id="statusNotice" style="display:none;margin-bottom:.9rem"></div>
+    <div class="cc">
+      <div style="font-size:.78rem;color:var(--mt);margin-bottom:.6rem">募集職種・給与（職種ごとに設定）</div>
+      <div style="display:grid;gap:.5rem">
+        <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.65rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:.5rem">
+          <div><span class="tag" style="margin-bottom:.3rem;display:inline-flex">看護師</span><div style="font-size:.75rem;color:var(--mt)">月給 320,000円〜420,000円 / フルタイム</div></div>
+          <button class="btn bs bsm" id="editJob1Btn">編集</button>
+        </div>
+        <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.65rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:.5rem">
+          <div><span class="tag" style="margin-bottom:.3rem;display:inline-flex">理学療法士</span><div style="font-size:.75rem;color:var(--mt)">時給 2,000円〜2,500円 / 週2回以上</div></div>
+          <button class="btn bs bsm" id="editJob2Btn">編集</button>
+        </div>
+        <button class="btn bg bsm" style="justify-content:center" id="addJobBtn">＋ 職種を追加</button>
+      </div>
+      <div style="display:grid;gap:.45rem;margin-top:.85rem">
+        <button class="btn bp bsm" style="width:fit-content" data-nav="clinic-info">クリニック情報を編集</button>
+      </div>
+      <div style="margin-top:.85rem;border:1.5px dashed var(--bd);border-radius:var(--rlg);padding:.85rem;position:relative;overflow:hidden">
+        <div style="position:absolute;top:.5rem;right:.5rem"><span style="background:var(--al);color:var(--ac);font-size:.68rem;font-weight:700;padding:.18rem .5rem;border-radius:var(--rf)">月額 560円</span></div>
+        <div style="font-size:.75rem;font-weight:700;color:var(--mt);margin-bottom:.6rem">📊 統計情報</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;text-align:center;filter:blur(4px);user-select:none">
+          <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.55rem"><strong style="display:block;font-size:1.05rem">12</strong><span style="font-size:.7rem;color:var(--mt)">閲覧数（今月）</span></div>
+          <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.55rem"><strong style="display:block;font-size:1.05rem">3</strong><span style="font-size:.7rem;color:var(--mt)">お気に入り</span></div>
+          <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.55rem"><strong style="display:block;font-size:1.05rem">2</strong><span style="font-size:.7rem;color:var(--mt)">応募</span></div>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;background:color-mix(in srgb,var(--bg) 60%,transparent);backdrop-filter:blur(2px);border-radius:var(--rlg)">
+          <span style="font-size:1.2rem">🔒</span>
+          <button class="btn bp bsm" onclick="alert('統計プランは準備中です（月額 560円）')">統計を見る（月額 560円）</button>
+        </div>
+      </div>
+    </div>
+    <div class="sh" style="margin-top:.5rem">
+      <div style="display:flex;gap:.4rem">
+        <button class="chip on" id="tabApplied">応募一覧</button>
+        <button class="chip" id="tabPending">保留リスト</button>
+      </div>
+    </div>
+    <div style="height:.9rem"></div>
+    <div id="appliedList">
+      <div class="apc">
+        <div style="display:flex;align-items:center;gap:.75rem;flex:1">
+          <div><div style="font-weight:700;font-size:.88rem">山田 花子</div><div style="font-size:.75rem;color:var(--mt)">看護師</div><div style="font-size:.7rem;color:var(--ft);margin-top:.1rem">2026年5月8日</div></div>
+          <div style="display:grid;gap:.25rem">
+            <span style="font-size:.68rem;padding:.15rem .45rem;border-radius:var(--rf);background:var(--okb);color:var(--ok);font-weight:700;white-space:nowrap">🧑 顔写真あり</span>
+            <span style="font-size:.68rem;padding:.15rem .45rem;border-radius:var(--rf);background:var(--okb);color:var(--ok);font-weight:700;white-space:nowrap">📄 資格証あり</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:.45rem;align-items:center;flex-shrink:0">
+          <span class="sb swn">未確認</span>
+          <button class="btn bs bsm" id="viewApp1Btn">詳細を見る</button>
+        </div>
+      </div>
+      <div class="apc">
+        <div style="display:flex;align-items:center;gap:.75rem;flex:1">
+          <div><div style="font-weight:700;font-size:.88rem">鈴木 一郎</div><div style="font-size:.75rem;color:var(--mt)">理学療法士</div><div style="font-size:.7rem;color:var(--ft);margin-top:.1rem">2026年5月1日</div></div>
+          <div style="display:grid;gap:.25rem">
+            <span style="font-size:.68rem;padding:.15rem .45rem;border-radius:var(--rf);background:var(--wnb);color:var(--wn);font-weight:700;white-space:nowrap">🧑 顔写真なし</span>
+            <span style="font-size:.68rem;padding:.15rem .45rem;border-radius:var(--rf);background:var(--okb);color:var(--ok);font-weight:700;white-space:nowrap">📄 資格証あり</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:.45rem;align-items:center;flex-shrink:0">
+          <span class="sb sok">確認済</span>
+          <button class="btn bs bsm" id="viewApp2Btn">詳細を見る</button>
+        </div>
+      </div>
+    </div>
+    <div id="pendingList" style="display:none">
+      <div class="nt np" style="font-size:.78rem">「保留リストに追加」した応募者がここに表示されます。</div>
+    </div>
+    <div style="margin-top:1.5rem;border:2px dashed var(--bd);border-radius:var(--rxl);padding:1.2rem;position:relative;overflow:hidden">
+      <div style="position:absolute;top:.75rem;right:.75rem"><span style="background:var(--al);color:var(--ac);font-size:.7rem;font-weight:700;padding:.2rem .6rem;border-radius:var(--rf)">プレミアムプラン</span></div>
+      <div style="font-weight:700;font-size:.95rem;margin-bottom:.3rem">📅 曜日別シフト管理</div>
+      <div style="font-size:.78rem;color:var(--mt);margin-bottom:1rem">必要な曜日・職種を設定して、不足しているシフトを一目で確認できます。</div>
+      <div style="position:absolute;inset:0;background:color-mix(in srgb,var(--bg) 75%,transparent);backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:var(--rxl)">
+        <div style="font-size:1.5rem;margin-bottom:.5rem">🔒</div>
+        <div style="font-weight:700;font-size:.88rem;margin-bottom:.25rem">プレミアムプランで利用可能</div>
+        <div style="font-size:.75rem;color:var(--mt);text-align:center;margin-bottom:.85rem;max-width:24ch">曜日別のシフト充足状況を確認して、不足している曜日を効率よく募集できます。</div>
+        <button class="btn bp bsm" onclick="alert('プレミアムプランは準備中です')">プランをアップグレード</button>
+      </div>
+    </div>
+    <div style="padding-bottom:3rem"></div>
+  </div>
+</div>
+
+<!-- ===== CLINIC INFO ===== -->
+<div id="pg-clinic-info" class="pg">
+  <div class="shell wrap">
+    <div class="cip">
+      <div class="dh" style="padding-top:1.5rem">
+        <div><span class="tag tp">クリニック情報</span><div class="dt" style="margin-top:.4rem">クリニック情報を入力</div></div>
+        <button class="btn bg bsm" data-nav="dashboard">← ダッシュボードに戻る</button>
+      </div>
+      <div class="card">
+        <div class="card-title">📋 基本情報</div>
+        <div style="display:grid;gap:.85rem">
+          <div class="fi"><label>クリニック名 *</label><input type="text" placeholder="例）梅田みなと総合クリニック" value="梅田みなと総合クリニック"></div>
+          <div class="fi"><label>院長名</label><input type="text" placeholder="例）湊 友哉"></div>
+          <div class="fi"><label>診療科目</label><input type="text" placeholder="例）内科・整形外科・皮膚科"></div>
+          <div class="fg">
+            <div class="fi"><label>電話番号</label><input type="tel" placeholder="例）06-1234-5678"></div>
+            <div class="fi"><label>開院年</label><input type="text" placeholder="例）2010年"></div>
+          </div>
+          <div class="fi"><label>住所</label><input type="text" placeholder="都道府県・市区町村・番地"></div>
+          <div class="fi"><label>公式サイト または GoogleマップURL</label><input type="url" placeholder="https://example-clinic.com"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🕐 診療情報</div>
+        <div style="display:grid;gap:.85rem">
+          <div class="fi">
+            <label>診療時間</label>
+            <div style="display:grid;gap:.45rem;margin-top:.25rem">
+              <div style="display:grid;grid-template-columns:2.5rem 1fr;gap:.5rem;align-items:center;font-size:.78rem;font-weight:600;color:var(--mt);padding-bottom:.3rem;border-bottom:1px solid var(--dv)">
+                <span></span>
+                <div style="display:grid;grid-template-columns:1fr auto 1fr 4rem;gap:.35rem;text-align:center"><span>開始</span><span></span><span>終了</span><span>休診</span></div>
+              </div>
+              <div class="hg-row"><span class="hg-day">月</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div>
+              <div class="hg-row"><span class="hg-day">火</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div>
+              <div class="hg-row"><span class="hg-day">水</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div>
+              <div class="hg-row"><span class="hg-day">木</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div>
+              <div class="hg-row"><span class="hg-day">金</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div>
+              <div class="hg-row"><span class="hg-day" style="color:var(--pr)">土</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="13:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div>
+              <div class="hg-row"><span class="hg-day" style="color:#e05050">日</span><div class="hg-inputs"><input type="time" value="" class="hg-time" style="opacity:.35"><span class="hg-sep">〜</span><input type="time" value="" class="hg-time" style="opacity:.35"><label class="hg-cl"><input type="checkbox" class="day-cb" checked style="accent-color:var(--pr)">休診</label></div></div>
+            </div>
+          </div>
+          <div class="fg">
+            <div class="fi"><label>駐車場</label><select><option>選択してください</option><option>あり（無料）</option><option>あり（有料）</option><option>なし</option></select></div>
+            <div class="fi"><label>アクセス</label><input type="text" placeholder="例）梅田駅から徒歩3分"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">👨‍⚕️ 院長挨拶・クリニック紹介</div>
+        <div style="display:grid;gap:.85rem">
+          <div class="fi"><label>院長挨拶</label><textarea placeholder="医院の想い、大切にしていること、歓迎する人物像など"></textarea></div>
+          <div class="fi"><label>クリニックの特徴・強み</label><textarea placeholder="例）完全予約制で残業なし、チームワークを大切にした職場など"></textarea></div>
+          <div class="fi"><label>求職者へのメッセージ</label><textarea placeholder="例）未経験でも丁寧に指導します。ブランクがある方も歓迎しています。"></textarea></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">👥 スタッフ情報（任意）</div>
+        <div style="font-size:.75rem;color:var(--mt);margin-bottom:.85rem">入力すると求職者が職場環境をイメージしやすくなります。</div>
+        <div class="fg">
+          <div class="fi"><label>スタッフ総数</label><input type="number" placeholder="例）12"></div>
+          <div class="fi"><label>うち男性</label><input type="number" placeholder="例）3"></div>
+          <div class="fi"><label>うち女性</label><input type="number" placeholder="例）9"></div>
+          <div class="fi"><label>平均年齢</label><input type="text" placeholder="例）32歳"></div>
+        </div>
+        <div class="fi" style="margin-top:.75rem"><label>職場の雰囲気</label><input type="text" placeholder="例）アットホーム、チームワーク重視"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">📷 写真</div>
+        <div style="font-size:.75rem;color:var(--mt);margin-bottom:.75rem">左のメイン写真が最も大きく表示されます。</div>
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem;margin-bottom:.85rem">
+          <div style="border-radius:var(--rlg);background:linear-gradient(140deg,var(--pl),var(--sf2));border:2px dashed var(--pr);min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;cursor:pointer;padding:1rem;text-align:center">
+            <span style="font-size:1.6rem">📷</span><span style="font-size:.75rem;font-weight:700;color:var(--pr)">メイン写真</span><span style="font-size:.7rem;color:var(--mt)">外観・全景など</span>
+          </div>
+          <div style="border-radius:var(--rlg);background:var(--bg);border:1.5px dashed var(--bd);min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;cursor:pointer;text-align:center;padding:.75rem">
+            <span style="font-size:1.3rem">📷</span><span style="font-size:.7rem;color:var(--mt)">写真2<br>受付など</span>
+          </div>
+          <div style="border-radius:var(--rlg);background:var(--bg);border:1.5px dashed var(--bd);min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;cursor:pointer;text-align:center;padding:.75rem">
+            <span style="font-size:1.3rem">📷</span><span style="font-size:.7rem;color:var(--mt)">写真3<br>診療室など</span>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem">
+          <div class="usl" style="aspect-ratio:1"><span style="font-size:1.1rem">＋</span><span>追加</span></div>
+          <div class="usl" style="aspect-ratio:1"><span style="font-size:1.1rem">＋</span><span>追加</span></div>
+          <div class="usl" style="aspect-ratio:1"><span style="font-size:1.1rem">＋</span><span>追加</span></div>
+          <div class="usl" style="aspect-ratio:1"><span style="font-size:1.1rem">＋</span><span>追加</span></div>
+        </div>
+      </div>
+      <div style="display:grid;gap:.6rem">
+        <button class="btn bp" style="width:100%" id="saveClinicInfoBtn">保存してダッシュボードに戻る</button>
+        <button class="btn bg" style="width:100%" data-nav="dashboard">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MYPAGE ===== -->
+<div id="pg-mypage" class="pg">
+  <div class="shell wrap">
+    <div class="mp-hd">
+      <div>
+        <span class="tag tp">求職者マイページ</span>
+        <div class="dt" style="margin-top:.4rem">山田 花子</div>
+        <div style="font-size:.8rem;color:var(--mt);margin-top:.2rem">看護師 / 関西</div>
+      </div>
+      <div style="display:flex;gap:.65rem;align-items:center;flex-wrap:wrap">
+        <button class="btn bp bsm" data-nav="main">求人を探す</button>
+        <button class="btn bg bsm" id="applicantLogoutBtn2">ログアウト</button>
+      </div>
+    </div>
+    <div style="background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);padding:1.2rem;margin-bottom:1.2rem">
+      <div style="display:flex;gap:1rem;align-items:center;margin-bottom:.85rem">
+        <div class="usl" style="width:80px;height:80px;border-radius:50%;flex-shrink:0"><span style="font-size:1.8rem">🧑</span></div>
+        <div>
+          <div style="font-weight:700;margin-bottom:.25rem">山田 花子</div>
+          <div style="font-size:.78rem;color:var(--mt);margin-bottom:.5rem">28歳 · 関西</div>
+          <button class="btn bs bsm">写真を変更</button>
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--dv);padding-top:.75rem">
+        <div style="font-size:.72rem;font-weight:700;color:var(--mt);margin-bottom:.4rem">保有資格</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.35rem"><span class="tag tp">看護師</span></div>
+      </div>
+    </div>
+    <div class="sh"><div class="stl">希望条件</div><button class="btn bs bsm" id="mypageEditBtn">編集</button></div>
+    <div style="background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);padding:1.1rem;margin-bottom:1.2rem;display:grid;gap:.5rem">
+      <div class="dr"><dt>希望曜日</dt><dd style="color:var(--ft);font-style:italic">未設定</dd></div>
+      <div class="dr"><dt>勤務形態</dt><dd style="color:var(--ft);font-style:italic">未設定</dd></div>
+      <div class="dr"><dt>希望エリア</dt><dd style="color:var(--ft);font-style:italic">未設定</dd></div>
+    </div>
+    <div class="sh"><div class="stl">保有資格</div><button class="btn bs bsm" id="licenseAddBtn">＋ 追加</button></div>
+    <div id="licenseCards" style="display:grid;gap:.65rem;margin-bottom:1.2rem">
+      <div style="background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);padding:1.1rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem">
+          <div style="display:flex;align-items:center;gap:.6rem">
+            <span class="tag tp">看護師</span>
+            <span style="font-size:.72rem;color:var(--mt)">経験年数未設定</span>
+          </div>
+          <button class="btn bs bsm" onclick="openLicenseDetail('看護師')">編集</button>
+        </div>
+        <div style="display:grid;grid-template-columns:64px 1fr;gap:.65rem;align-items:center;margin-bottom:.65rem">
+          <div class="usl" style="width:64px;height:64px;border-radius:var(--rmd)"><span style="font-size:1rem">📄</span><span style="font-size:.6rem">追加</span></div>
+          <div style="font-size:.75rem;color:var(--mt)">資格証写真（任意）<br>タップして追加</div>
+        </div>
+        <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.65rem">
+          <div style="font-size:.72rem;font-weight:700;color:var(--mt);margin-bottom:.25rem">自己PR</div>
+          <div style="font-size:.78rem;color:var(--ft);font-style:italic">未設定 — 編集から追加できます</div>
+        </div>
+      </div>
+    </div>
+    <div class="sh"><div class="stl">お気に入り医院</div></div>
+    <div class="nt np" style="margin-bottom:1.2rem;font-size:.78rem">お気に入り登録した医院がここに表示されます。</div>
+    <div class="sh"><div class="stl">応募履歴</div></div>
+    <div class="nt np" style="font-size:.78rem">応募した医院の履歴がここに表示されます。</div>
+    <div style="padding-bottom:3rem"></div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<div id="pg-about" class="pg">
+  <div class="shell lp">
+    <div class="lc" style="max-width:560px">
+      <div class="ley">About Medical Circle</div>
+      <div class="ltt">Medical Circleについて</div>
+      <div style="display:grid;gap:1.1rem;margin-top:1.25rem;font-size:.92rem;line-height:1.8;color:var(--tx)">
+        <p>Medical Circleは、クリニックと医療従事者が直接つながることができる医療職専門の求人サービスです。</p>
+        <p>採用にかかるコストを限りなく小さくすることで、持続可能な医療現場の構築に貢献したいと考えています。</p>
+      </div>
+    </div>
+    <div class="bkw"><button class="btn bg bsm" data-nav="main">← トップに戻る</button></div>
+  </div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<div id="pg-contact" class="pg">
+  <div class="shell lp">
+    <div class="lc" style="max-width:560px">
+      <div class="ley">Contact</div>
+      <div class="ltt">お問い合わせ</div>
+      <div class="lld">Medical Circle に関するご質問・ご要望はこちらからお送りください。</div>
+      <div style="display:grid;gap:.85rem">
+        <div class="fi"><label>お名前</label><input type="text" placeholder="山田 太郎"></div>
+        <div class="fi"><label>メールアドレス</label><input type="email" placeholder="your@email.com"></div>
+        <div class="fi"><label>種別</label><select><option>選択してください</option><option>医院掲載について</option><option>求職者登録について</option><option>料金・プランについて</option><option>不具合報告</option><option>その他</option></select></div>
+        <div class="fi"><label>内容</label><textarea placeholder="お問い合わせ内容をご記入ください"></textarea></div>
+        <button class="btn bp" onclick="alert('送信しました。後ほどご連絡いたします。')">送信する</button>
+      </div>
+    </div>
+    <div class="bkw"><button class="btn bg bsm" data-nav="main">← トップに戻る</button></div>
+  </div>
+</div>
+
+<!-- REGISTER MODAL -->
+<div class="mbg" id="regBg"></div>
+<div class="msh" id="regSh">
+  <div class="min">
+    <div class="mhd">
+      <div><div class="mey">Registration</div><div class="mtt">Medical Circle 登録</div></div>
+      <button class="ic-btn" id="regClose">✕</button>
+    </div>
+    <div class="mbd">
+      <div id="panelClinic">
+        <div class="si">
+          <div class="sd on" id="dot1"><div class="dot">1</div><div class="lbl">基本情報</div></div>
+          <div class="sl"></div>
+          <div class="sd" id="dot2"><div class="dot">2</div><div class="lbl">登録</div></div>
+        </div>
+        <div id="cStep1">
+          <div class="nt np" style="margin-bottom:1.1rem"><strong>初めに基本情報を入力してください</strong><br><span style="font-weight:400">登録後に写真や詳細情報の追加・編集が可能です。</span></div>
+          <div style="display:grid;gap:.85rem">
+            <div class="fi"><label>医院名 *</label><input type="text" placeholder="例）梅田みなと総合クリニック"></div>
+            <div class="fi"><label>メールアドレス *</label><input type="email" placeholder="管理用メールアドレス"></div>
+            <div class="fi"><label>ログイン用パスワード *</label><input type="password" placeholder="8文字以上で設定してください"></div>
+            <div class="fi"><label>パスワード確認 *</label><input type="password" placeholder="もう一度入力してください"></div>
+          </div>
+          <div class="nt np" style="margin-top:.9rem;font-size:.78rem">ℹ️ 住所・電話番号・院長名・募集職種などはログイン後の編集画面で入力できます。</div>
+          <button class="btn bp" style="width:100%;margin-top:.9rem" id="toStep2Btn">保存して登録に進む →</button>
+        </div>
+        <div id="cStep2" style="display:none">
+          <div class="nt nok" style="margin-bottom:.9rem">✓ 基本情報を保存しました。続けて登録へお進みください。</div>
+          <div class="pb">
+            <div class="pt">
+              <div class="camp">🎉 期間限定キャンペーン</div>
+              <div class="hl">2027年12月31日までにご登録いただいたクリニック様は<br>2028年12月末まで無料で掲載できます。</div>
+            </div>
+            <div class="pr-rows">
+              <div class="pr-row"><dt>〜 2028年12月末</dt><strong>無料</strong></div>
+              <div class="pr-row"><dt>2029年1月〜2031年12月末</dt><strong>月額 5,000円</strong></div>
+              <div class="pdv"></div>
+              <div class="pr-row"><dt>2032年1月より通常料金</dt><strong style="color:var(--tx)">月額 10,000円</strong></div>
+              <p style="font-size:.73rem;color:var(--mt)">※ 2027年12月31日までのご登録限定。仲介手数料は一切かかりません。</p>
+              <p style="font-size:.73rem;color:var(--mt)">※ 登録後はダッシュボードから掲載のオン・オフが可能です。一時停止中は月額料金が発生しません。</p>
+              <div class="nt nwn" style="margin-top:.4rem">💳 登録費用：初回登録料 <strong>10,000円（税込）</strong> が発生します。</div>
+            </div>
+          </div>
+          <div class="fg" style="margin-bottom:.9rem">
+            <div class="fi full"><label>カード番号</label><input type="text" placeholder="1234 5678 9012 3456"></div>
+            <div class="fi"><label>有効期限</label><input type="text" placeholder="MM / YY"></div>
+            <div class="fi"><label>セキュリティコード</label><input type="text" placeholder="CVC"></div>
+            <div class="fi full"><label>カード名義</label><input type="text" placeholder="TARO YAMADA"></div>
+          </div>
+          <label class="tc"><input type="checkbox" id="clinicTerms"><span><a href="#">利用規約</a>および<a href="#">プライバシーポリシー</a>に同意します。</span></label>
+          <div style="display:grid;gap:.55rem">
+            <button class="btn bp" style="width:100%" id="clinicSubmitBtn">登録する（登録料 10,000円）</button>
+            <button class="btn bg" style="width:100%" id="backToStep1Btn">← 戻る</button>
+          </div>
+        </div>
+      </div>
+      <div id="panelApplicant" style="display:none">
+        <div class="nt np" style="margin-bottom:1.1rem">求職者の登録・利用は<strong>完全無料</strong>です。</div>
+        <div class="fg" style="margin-bottom:.9rem">
+          <div class="fi"><label>氏名 *</label><input type="text" placeholder="山田 花子"></div>
+          <div class="fi"><label>年齢 *</label><input type="number" placeholder="28"></div>
+          <div class="fi"><label>メールアドレス *</label><input type="email" placeholder="your@email.com"></div>
+          <div class="fi"><label>電話番号 *</label><input type="tel" placeholder="090-1234-5678"></div>
+          <div class="fi full"><label>性別</label><select><option>選択してください</option><option>男性</option><option>女性</option><option>その他</option><option>回答しない</option></select></div>
+        </div>
+        <div style="font-size:.75rem;font-weight:700;color:var(--mt);margin-bottom:.55rem;padding-bottom:.35rem;border-bottom:1px solid var(--dv)">保有資格</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:.9rem">
+          <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem"><input type="checkbox" value="看護師" style="accent-color:var(--pr);width:15px;height:15px"> 看護師</label>
+          <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem"><input type="checkbox" value="薬剤師" style="accent-color:var(--pr);width:15px;height:15px"> 薬剤師</label>
+          <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem"><input type="checkbox" value="理学療法士" style="accent-color:var(--pr);width:15px;height:15px"> 理学療法士</label>
+          <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem"><input type="checkbox" value="作業療法士" style="accent-color:var(--pr);width:15px;height:15px"> 作業療法士</label>
+          <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem"><input type="checkbox" value="歯科衛生士" style="accent-color:var(--pr);width:15px;height:15px"> 歯科衛生士</label>
+          <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem"><input type="checkbox" value="管理栄養士" style="accent-color:var(--pr);width:15px;height:15px"> 管理栄養士</label>
+          <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem"><input type="checkbox" value="言語聴覚士" style="accent-color:var(--pr);width:15px;height:15px"> 言語聴覚士</label>
+          <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem"><input type="checkbox" value="診療放射線技師" style="accent-color:var(--pr);width:15px;height:15px"> 診療放射線技師</label>
+          <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem"><input type="checkbox" value="臨床検査技師" style="accent-color:var(--pr);width:15px;height:15px"> 臨床検査技師</label>
+          <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem"><input type="checkbox" value="助産師" style="accent-color:var(--pr);width:15px;height:15px"> 助産師</label>
+        </div>
+        <div class="nt np" style="font-size:.78rem;margin-bottom:.75rem">ℹ️ 資格証写真・希望曜日・勤務形態・自己PRなどはログイン後のマイページで設定できます。</div>
+        <label class="tc"><input type="checkbox" id="applicantTerms"><span><a href="#">利用規約</a>および<a href="#">プライバシーポリシー</a>に同意します。</span></label>
+        <button class="btn bp" style="width:100%" id="applicantSubmitBtn">無料で登録する</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="mbg" id="detailBg"></div>
+<div class="msh" id="detailSh">
+  <div class="min">
+    <div class="mcb"><button class="ic-btn" id="detailClose">✕</button></div>
+    <div class="mhd" style="padding-top:.25rem">
+      <div><div class="mey" id="dEyebrow"></div><div class="mtt" id="dName">—</div><div style="font-size:.8rem;color:var(--mt);margin-top:.2rem" id="dAddr"></div></div>
+      <span id="dScore" style="padding:.28rem .65rem;border-radius:var(--rf);background:var(--al);color:var(--ac);font-size:.73rem;font-weight:700;align-self:flex-start;white-space:nowrap"></span>
+    </div>
+    <div class="mbd">
+      <div class="gal">
+        <div class="gs" id="gp0"><span class="glb">外観</span></div>
+        <div class="gs" id="gp1"><span class="glb">受付</span></div>
+        <div class="gs" id="gp2"><span class="glb">診療室</span></div>
+      </div>
+      <div style="background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);padding:1rem;margin-bottom:1rem">
+        <p style="font-size:.75rem;color:var(--mt)">検索・閲覧は登録不要</p>
+        <div style="font-size:1.2rem;font-weight:700;margin:.5rem 0" id="dSalary">—</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.65rem" id="dBadges"></div>
+        <div class="nt np" style="font-size:.75rem;margin-bottom:.75rem">求職者の登録・応募は完全無料です。</div>
+        <div style="display:grid;grid-template-columns:1fr auto;gap:.5rem">
+          <button class="btn bp" id="detailApplyBtn">応募する</button>
+          <button class="fav" id="dFav" aria-label="お気に入り"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+      </div>
+      <div style="margin-bottom:1rem"><div style="font-weight:700;margin-bottom:.5rem;font-size:.92rem">院長挨拶</div><p id="dGreeting" style="font-size:.88rem;color:var(--mt)"></p></div>
+      <div style="border-top:1px solid var(--dv);padding-top:.9rem;margin-bottom:1rem">
+        <div style="font-weight:700;margin-bottom:.5rem;font-size:.92rem">スタッフ情報</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;text-align:center">
+          <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.65rem"><div style="font-size:1rem;font-weight:700">12名</div><div style="font-size:.7rem;color:var(--mt)">総スタッフ数</div></div>
+          <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.65rem"><div style="font-size:1rem;font-weight:700">3名</div><div style="font-size:.7rem;color:var(--mt)">男性</div></div>
+          <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.65rem"><div style="font-size:1rem;font-weight:700">9名</div><div style="font-size:.7rem;color:var(--mt)">女性</div></div>
+          <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.65rem"><div style="font-size:1rem;font-weight:700">32歳</div><div style="font-size:.7rem;color:var(--mt)">平均年齢</div></div>
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--dv);padding-top:.9rem;margin-bottom:1rem"><div style="font-weight:700;margin-bottom:.5rem;font-size:.92rem">この医院の魅力</div><div style="display:flex;flex-wrap:wrap;gap:.35rem" id="dSelling"></div></div>
+      <div style="border-top:1px solid var(--dv);padding-top:.9rem;margin-bottom:1rem"><div style="font-weight:700;margin-bottom:.5rem;font-size:.92rem">募集要項</div><dl id="dInfo"></dl></div>
+      <div style="border-top:1px solid var(--dv);padding-top:.9rem;margin-bottom:1rem"><div style="font-weight:700;margin-bottom:.5rem;font-size:.92rem">医院情報</div><dl id="dContact"></dl></div>
+      <div style="border-top:1px solid var(--dv);padding-top:.9rem"><div style="font-weight:700;margin-bottom:.5rem;font-size:.92rem">口コミ</div><div id="dReviews"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="mbg" id="authBg"></div>
+<div class="msh" id="authSh">
+  <div class="min" style="max-width:400px">
+    <div class="mhd">
+      <div><div class="mey">はじめに</div><div class="mtt" style="font-size:1.1rem">ログイン または 新規登録</div></div>
+      <button class="ic-btn" id="authClose">✕</button>
+    </div>
+    <div class="mbd">
+      <p style="font-size:.855rem;color:var(--mt);margin-bottom:1.1rem">この機能を利用するにはログインまたは無料登録が必要です。求職者の登録・利用は完全無料です。</p>
+      <div style="display:grid;gap:.55rem">
+        <button class="btn bp" style="width:100%" id="authLoginBtn">ログインする</button>
+        <button class="btn bs" style="width:100%" id="authRegisterBtn">新規無料登録</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APPLICANT DETAIL MODAL -->
+<div class="mbg" id="appBg"></div>
+<div class="msh" id="appSh">
+  <div class="min" style="max-width:460px">
+    <div class="mhd">
+      <div><div class="mey">応募者詳細</div><div class="mtt" id="amName">—</div></div>
+      <button class="ic-btn" id="appClose">✕</button>
+    </div>
+    <div class="mbd">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:.9rem">
+        <div><div style="font-size:.75rem;font-weight:600;color:var(--mt);margin-bottom:.35rem">顔写真</div><div style="aspect-ratio:1;border-radius:var(--rlg);background:linear-gradient(135deg,var(--pl),var(--sf2));border:1px solid var(--bd);display:grid;place-items:center;font-size:2.5rem">🧑</div></div>
+        <div><div style="font-size:.75rem;font-weight:600;color:var(--mt);margin-bottom:.35rem">資格証写真</div><div style="aspect-ratio:1;border-radius:var(--rlg);background:linear-gradient(135deg,var(--al),var(--sf2));border:1px solid var(--bd);display:grid;place-items:center;font-size:2.5rem">📄</div></div>
+      </div>
+      <div style="background:var(--pl);border:1px solid color-mix(in srgb,var(--pr) 20%,transparent);border-radius:var(--rlg);padding:.9rem;margin-bottom:.9rem">
+        <div style="font-size:.78rem;font-weight:700;color:var(--pr);margin-bottom:.6rem">📅 勤務可能日・時間帯</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem;margin-bottom:.6rem" id="amDayGrid"></div>
+        <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.3rem" id="amTimeSlot"></div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rlg);padding:.9rem;display:grid;gap:.5rem;margin-bottom:.9rem">
+        <div class="dr"><dt>資格種</dt><dd id="am-role"></dd></div>
+        <div class="dr"><dt>年齢</dt><dd id="am-age"></dd></div>
+        <div class="dr"><dt>性別</dt><dd id="am-gender"></dd></div>
+        <div class="dr"><dt>メールアドレス</dt><dd id="am-email" style="word-break:break-all"></dd></div>
+        <div class="dr"><dt>電話番号</dt><dd id="am-phone"></dd></div>
+        <div class="dr"><dt>応募日</dt><dd id="am-date"></dd></div>
+      </div>
+      <div style="margin-bottom:.9rem"><div style="font-weight:700;font-size:.875rem;margin-bottom:.4rem">備考・自己PR</div><p id="am-note" style="font-size:.855rem;color:var(--mt);background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.8rem"></p></div>
+      <div style="display:grid;gap:.5rem">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+          <button class="btn bp" onclick="alert('メール送信機能は準備中です')">メールを送る</button>
+          <button class="btn bs" onclick="alert('保留リストに追加しました')">保留リストに追加</button>
+        </div>
+        <button class="btn bg bsm" style="width:100%" id="appClose2">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPLETION MODAL -->
+<div class="mbg" id="compBg"></div>
+<div class="msh" id="compSh">
+  <div class="min" style="max-width:640px">
+    <div class="mhd">
+      <div><div class="mey">Completed</div><div class="mtt" id="compTitle"></div></div>
+      <button class="ic-btn" id="compClose">✕</button>
+    </div>
+    <div class="mbd">
+      <p id="compLead" style="font-size:.875rem;color:var(--mt);margin-bottom:1rem"></p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin-bottom:1.1rem">
+        <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rlg);padding:.85rem;font-size:.8rem"><strong style="display:block;margin-bottom:.3rem;font-size:.83rem">次の流れ</strong><span id="cs1"></span></div>
+        <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rlg);padding:.85rem;font-size:.8rem"><strong style="display:block;margin-bottom:.3rem;font-size:.83rem">確認できること</strong><span id="cs2"></span></div>
+        <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rlg);padding:.85rem;font-size:.8rem"><strong style="display:block;margin-bottom:.3rem;font-size:.83rem">次にできること</strong><span id="cs3"></span></div>
+      </div>
+      <div style="display:flex;gap:.65rem;flex-wrap:wrap">
+        <button class="btn bp" id="compEditBtn">編集画面へ進む</button>
+        <button class="btn bs" id="compSearchBtn">検索画面へ戻る</button>
+        <button class="btn bg" id="compCloseBtn">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APPLY COMPLETE MODAL -->
+<div class="mbg" id="applyBg"></div>
+<div class="msh" id="applySh">
+  <div class="min" style="max-width:440px">
+    <div class="mhd">
+      <div><div class="mey">応募完了</div><div class="mtt">応募が完了しました</div></div>
+      <button class="ic-btn" id="applyClose">✕</button>
+    </div>
+    <div class="mbd">
+      <div style="text-align:center;font-size:2rem;margin-bottom:.75rem">🎉</div>
+      <div class="nt nok" style="margin-bottom:1rem;font-size:.875rem"><strong>応募が完了しました。</strong><br>医院からのメッセージをお待ちください。</div>
+      <p style="font-size:.82rem;color:var(--mt);margin-bottom:1.1rem">案内メールはご登録のメールアドレスにクリニックより直接届きます。</p>
+      <button class="btn bp" style="width:100%" id="applyCloseBtn">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<!-- LICENSE DETAIL MODAL -->
+<div class="mbg" id="licenseDetailBg"></div>
+<div class="msh" id="licenseDetailSh">
+  <div class="min" style="max-width:480px">
+    <div class="mhd">
+      <div><div class="mey">資格編集</div><div class="mtt" id="licenseDetailTitle">看護師</div></div>
+      <button class="ic-btn" id="licenseDetailClose">✕</button>
+    </div>
+    <div class="mbd">
+      <div style="display:grid;gap:.85rem">
+        <div class="fi">
+          <label>資格証写真（任意）</label>
+          <div style="display:grid;grid-template-columns:100px 1fr;gap:.75rem;align-items:center;padding:.75rem;background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd)">
+            <div class="usl" style="width:100px;height:100px;border-radius:var(--rmd)"><span style="font-size:1.4rem">📄</span><span style="font-size:.68rem">タップして追加</span></div>
+            <div><div style="font-size:.78rem;color:var(--mt);margin-bottom:.4rem">資格証・免許証の写真を登録すると採用担当者への信頼度が上がります。</div><span style="font-size:.7rem;color:var(--ft)">JPG・PNG対応 / 最大5MB</span></div>
+          </div>
+        </div>
+        <div class="fi"><label>この資格に関する自己PR（任意）</label><textarea placeholder="例）看護師として5年間、外来・内科病棟での勤務経験があります。"></textarea></div>
+        <div class="fi"><label>経験年数</label><select><option>選択してください</option><option>1年未満</option><option>1〜3年</option><option>3〜5年</option><option>5〜10年</option><option>10年以上</option></select></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.55rem">
+          <button class="btn bp" onclick="alert('保存しました');closeModal('licenseDetail')">保存する</button>
+          <button class="btn bg" style="color:#e05050;border-color:#e05050" onclick="if(confirm('この資格を削除しますか？'))closeModal('licenseDetail')">削除する</button>
+        </div>
+        <button class="btn bs" onclick="closeModal('licenseDetail')">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LICENSE EDIT MODAL -->
+<div class="mbg" id="licenseBg"></div>
+<div class="msh" id="licenseSh">
+  <div class="min" style="max-width:520px">
+    <div class="mhd">
+      <div><div class="mey">編集</div><div class="mtt">保有資格を編集</div></div>
+      <button class="ic-btn" id="licenseClose">✕</button>
+    </div>
+    <div class="mbd">
+      <div style="font-size:.78rem;font-weight:700;color:var(--mt);margin-bottom:.4rem">追加する資格を1つ選択してください</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:1rem" id="licenseRadioGroup">
+        <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem;cursor:pointer"><input type="radio" name="licenseRadio" value="看護師" style="accent-color:var(--pr);width:15px;height:15px"> 看護師</label>
+        <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem;cursor:pointer"><input type="radio" name="licenseRadio" value="薬剤師" style="accent-color:var(--pr);width:15px;height:15px"> 薬剤師</label>
+        <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem;cursor:pointer"><input type="radio" name="licenseRadio" value="理学療法士" style="accent-color:var(--pr);width:15px;height:15px"> 理学療法士</label>
+        <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem;cursor:pointer"><input type="radio" name="licenseRadio" value="作業療法士" style="accent-color:var(--pr);width:15px;height:15px"> 作業療法士</label>
+        <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem;cursor:pointer"><input type="radio" name="licenseRadio" value="歯科衛生士" style="accent-color:var(--pr);width:15px;height:15px"> 歯科衛生士</label>
+        <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem;cursor:pointer"><input type="radio" name="licenseRadio" value="管理栄養士" style="accent-color:var(--pr);width:15px;height:15px"> 管理栄養士</label>
+        <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem;cursor:pointer"><input type="radio" name="licenseRadio" value="言語聴覚士" style="accent-color:var(--pr);width:15px;height:15px"> 言語聴覚士</label>
+        <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem;cursor:pointer"><input type="radio" name="licenseRadio" value="診療放射線技師" style="accent-color:var(--pr);width:15px;height:15px"> 診療放射線技師</label>
+        <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem;cursor:pointer"><input type="radio" name="licenseRadio" value="臨床検査技師" style="accent-color:var(--pr);width:15px;height:15px"> 臨床検査技師</label>
+        <label style="display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.82rem;cursor:pointer"><input type="radio" name="licenseRadio" value="助産師" style="accent-color:var(--pr);width:15px;height:15px"> 助産師</label>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.55rem">
+        <button class="btn bp" id="licenseSaveBtn">追加する</button>
+        <button class="btn bs" onclick="closeModal('license')">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATUS MODAL -->
+<div class="mbg" id="statusBg"></div>
+<div class="msh" id="statusSh">
+  <div class="min" style="max-width:420px">
+    <div class="mhd">
+      <div><div class="mey" id="statusEyebrow">確認</div><div class="mtt" id="statusTitle">掲載を一時停止しますか？</div></div>
+      <button class="ic-btn" id="statusClose">✕</button>
+    </div>
+    <div class="mbd">
+      <p id="statusDesc" style="font-size:.875rem;color:var(--mt);margin-bottom:1rem"></p>
+      <div id="statusFee" class="nt nwn" style="margin-bottom:1.1rem;font-size:.8rem"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
+        <button class="btn bp" id="statusConfirmBtn">一時停止する</button>
+        <button class="btn bs" id="statusCancelBtn">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JOB EDIT MODAL -->
+<div class="mbg" id="jobEditBg"></div>
+<div class="msh" id="jobEditSh">
+  <div class="min" style="max-width:520px">
+    <div class="mhd"><div><div class="mey">編集</div><div class="mtt" id="jobEditTitle">職種を編集</div></div><button class="ic-btn" id="jobEditClose">✕</button></div>
+    <div class="mbd">
+      <div style="display:grid;gap:.85rem">
+        <div class="fi"><label>職種</label><select><option>看護師</option><option>薬剤師</option><option>理学療法士</option><option>作業療法士</option><option>歯科衛生士</option><option>管理栄養士</option><option>言語聴覚士</option><option>診療放射線技師</option><option>臨床検査技師</option><option>助産師</option></select></div>
+        <div class="fi"><label>給与種別</label><select><option>月給</option><option>時給</option><option>要相談</option></select></div>
+        <div class="fg"><div class="fi"><label>給与（下限）</label><input type="text" placeholder="例）320,000"></div><div class="fi"><label>給与（上限）</label><input type="text" placeholder="例）420,000"></div></div>
+        <div class="fi"><label>勤務条件</label><select><option>フルタイム</option><option>週3回以上</option><option>週2回以上</option><option>午前のみ可</option><option>土曜勤務歓迎</option><option>夜勤あり</option></select></div>
+        <div class="fi"><label>交通費</label><select id="travel"><option value="">指定なし</option><option value="yes">あり</option><option value="no">なし</option></select></div>
+        <div class="fi">
+          <label>募集希望曜日</label>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:.3rem;margin-top:.25rem">
+            <label style="display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.4rem .1rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);cursor:pointer;font-size:.78rem;font-weight:700"><input type="checkbox" style="accent-color:var(--pr);width:13px;height:13px">月</label>
+            <label style="display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.4rem .1rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);cursor:pointer;font-size:.78rem;font-weight:700"><input type="checkbox" style="accent-color:var(--pr);width:13px;height:13px">火</label>
+            <label style="display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.4rem .1rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);cursor:pointer;font-size:.78rem;font-weight:700"><input type="checkbox" style="accent-color:var(--pr);width:13px;height:13px">水</label>
+            <label style="display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.4rem .1rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);cursor:pointer;font-size:.78rem;font-weight:700"><input type="checkbox" style="accent-color:var(--pr);width:13px;height:13px">木</label>
+            <label style="display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.4rem .1rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);cursor:pointer;font-size:.78rem;font-weight:700"><input type="checkbox" style="accent-color:var(--pr);width:13px;height:13px">金</label>
+            <label style="display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.4rem .1rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);cursor:pointer;font-size:.78rem;font-weight:700;color:var(--pr)"><input type="checkbox" style="accent-color:var(--pr);width:13px;height:13px">土</label>
+            <label style="display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.4rem .1rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);cursor:pointer;font-size:.78rem;font-weight:700;color:#e05050"><input type="checkbox" style="accent-color:var(--pr);width:13px;height:13px">日</label>
+          </div>
+        </div>
+        <div class="fi">
+          <label>募集時間帯</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.35rem;margin-top:.25rem">
+            <label style="display:flex;align-items:center;gap:.4rem;padding:.5rem .65rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);cursor:pointer;font-size:.78rem"><input type="checkbox" style="accent-color:var(--pr);width:13px;height:13px">午前（〜13時）</label>
+            <label style="display:flex;align-items:center;gap:.4rem;padding:.5rem .65rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);cursor:pointer;font-size:.78rem"><input type="checkbox" style="accent-color:var(--pr);width:13px;height:13px">午後（13時〜）</label>
+            <label style="display:flex;align-items:center;gap:.4rem;padding:.5rem .65rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);cursor:pointer;font-size:.78rem"><input type="checkbox" style="accent-color:var(--pr);width:13px;height:13px">終日OK</label>
+            <label style="display:flex;align-items:center;gap:.4rem;padding:.5rem .65rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);cursor:pointer;font-size:.78rem"><input type="checkbox" style="accent-color:var(--pr);width:13px;height:13px">夜勤可</label>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
+          <button class="btn bp" onclick="alert('保存しました');closeModal('jobEdit')">保存する</button>
+          <button class="btn bs" onclick="closeModal('jobEdit')">キャンセル</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MYPAGE EDIT MODAL -->
+<div class="mbg" id="mypageBg"></div>
+<div class="msh" id="mypageSh">
+  <div class="min" style="max-width:520px">
+    <div class="mhd"><div><div class="mey">編集</div><div class="mtt">希望条件を編集</div></div><button class="ic-btn" id="mypageClose">✕</button></div>
+    <div class="mbd">
+      <div style="display:grid;gap:1rem">
+        <div class="fi">
+          <label>働ける曜日・時間帯</label>
+          <div style="font-size:.72rem;color:var(--ft);margin-bottom:.5rem">働ける曜日の時間帯を選んでください。複数選択可能です。</div>
+          <div style="display:grid;gap:.35rem" id="mypageDayTimeGrid">
+            <div style="display:grid;grid-template-columns:2.5rem 1fr;gap:.4rem;align-items:center"><span style="font-size:.82rem;font-weight:700;text-align:center">月</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem"><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="月" data-mytime="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="月" data-mytime="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="月" data-mytime="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="月" data-mytime="夜勤">夜勤</button></div></div>
+            <div style="display:grid;grid-template-columns:2.5rem 1fr;gap:.4rem;align-items:center"><span style="font-size:.82rem;font-weight:700;text-align:center">火</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem"><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="火" data-mytime="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="火" data-mytime="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="火" data-mytime="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="火" data-mytime="夜勤">夜勤</button></div></div>
+            <div style="display:grid;grid-template-columns:2.5rem 1fr;gap:.4rem;align-items:center"><span style="font-size:.82rem;font-weight:700;text-align:center">水</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem"><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="水" data-mytime="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="水" data-mytime="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="水" data-mytime="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="水" data-mytime="夜勤">夜勤</button></div></div>
+            <div style="display:grid;grid-template-columns:2.5rem 1fr;gap:.4rem;align-items:center"><span style="font-size:.82rem;font-weight:700;text-align:center">木</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem"><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="木" data-mytime="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="木" data-mytime="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="木" data-mytime="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="木" data-mytime="夜勤">夜勤</button></div></div>
+            <div style="display:grid;grid-template-columns:2.5rem 1fr;gap:.4rem;align-items:center"><span style="font-size:.82rem;font-weight:700;text-align:center">金</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem"><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="金" data-mytime="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="金" data-mytime="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="金" data-mytime="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="金" data-mytime="夜勤">夜勤</button></div></div>
+            <div style="display:grid;grid-template-columns:2.5rem 1fr;gap:.4rem;align-items:center"><span style="font-size:.82rem;font-weight:700;text-align:center;color:var(--pr)">土</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem"><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="土" data-mytime="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="土" data-mytime="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="土" data-mytime="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="土" data-mytime="夜勤">夜勤</button></div></div>
+            <div style="display:grid;grid-template-columns:2.5rem 1fr;gap:.4rem;align-items:center"><span style="font-size:.82rem;font-weight:700;text-align:center;color:#e05050">日</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem"><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="日" data-mytime="午前">午前</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="日" data-mytime="午後">午後</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="日" data-mytime="終日">終日</button><button class="chip" style="font-size:.72rem;padding:.35rem .2rem" data-myday="日" data-mytime="夜勤">夜勤</button></div></div>
+          </div>
+        </div>
+        <div class="fi"><label>希望勤務形態</label><select><option>選択してください</option><option>フルタイム</option><option>週3日以上</option><option>週2日以上</option><option>週1日〜</option><option>要相談</option></select></div>
+        <div class="fi"><label>希望エリア</label><select><option>選択してください</option><option>北海道</option><option>東北</option><option>関東</option><option>中部</option><option>関西</option><option>中国・四国</option><option>九州・沖縄</option></select></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.55rem">
+          <button class="btn bp" onclick="alert('保存しました');closeModal('mypage')">保存する</button>
+          <button class="btn bs" onclick="closeModal('mypage')">キャンセル</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHOTO ZOOM -->
+<div class="mbg" id="photoBg" style="z-index:300"></div>
+<div id="photoSh" style="position:fixed;inset:0;z-index:301;display:none;place-items:center;background:rgba(0,0,0,.88)">
+  <div style="background:var(--sf);border-radius:var(--rxl);width:min(560px,92vw);overflow:hidden" onclick="event.stopPropagation()">
+    <div style="aspect-ratio:4/3;background:linear-gradient(140deg,var(--pl),var(--sf2));display:grid;place-items:center"><span id="photoLbl" style="font-size:1.3rem;font-weight:700;color:var(--pr)"></span></div>
+    <div style="padding:.85rem;display:flex;justify-content:space-between;align-items:center">
+      <span id="photoSub" style="font-size:.82rem;color:var(--mt)"></span>
+      <button class="btn bs bsm" id="photoClose">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var jobs = [
+  {id:1,url:'https://example.com',clinic:'梅田みなと総合クリニック',region:'関西',role:'看護師',payType:'monthly',salaryValue:32,salaryText:'月給 320,000円〜420,000円',cond:'full',condLabel:'フルタイム / 外来中心',travel:'yes',days:['月','火','水','木','金'],times:['終日'],address:'大阪府大阪市北区梅田2-4-9',director:'湊 友哉',phone:'06-1234-5678',headline:'常勤看護師を募集。外来補助と健診業務を安定した体制で担当できます。',greeting:'地域医療を支えるチームとして、患者さんにも働く人にも安心感のある現場を目指しています。',score:'口コミ 4.8',selling:['駅近','教育体制あり','福利厚生充実','外来中心'],details:[['勤務地','大阪府大阪市北区梅田2-4-9'],['給与','320,000円〜420,000円'],['勤務条件','フルタイム'],['交通費','支給あり']],reviews:[['★★★★★','教育体制と福利厚生のバランスが良いです。'],['★★★★☆','駅から近く安心して働けます。']]},
+  {id:2,url:'https://example.com',clinic:'札幌ひかりレディースクリニック',region:'北海道',role:'助産師',payType:'hourly',salaryValue:2400,salaryText:'時給 2,400円〜3,200円',cond:'weekend',condLabel:'土曜勤務歓迎 / 週2回以上',travel:'yes',days:['火','木','土'],times:['午前','午後'],address:'北海道札幌市中央区北3条西4-1',director:'小林 麻里',phone:'011-234-5678',headline:'分娩補助・外来を支える助産師募集。土曜だけの勤務も相談可。',greeting:'母子に寄り添う時間を大切にしながら、短時間勤務でも力を発揮できる現場を目指しています。',score:'口コミ 4.7',selling:['土曜勤務歓迎','短時間相談可','研修補助あり'],details:[['勤務地','北海道札幌市中央区北3条西4-1'],['給与','2,400円〜3,200円'],['勤務条件','週2回以上'],['交通費','全額支給']],reviews:[['★★★★★','土曜だけでも入りやすい雰囲気でした。']]},
+  {id:3,url:'https://example.com',clinic:'東京ベイ画像診断クリニック',region:'関東',role:'診療放射線技師',payType:'monthly',salaryValue:40,salaryText:'月給 400,000円〜480,000円',cond:'full',condLabel:'フルタイム / 画像診断専門',travel:'yes',days:['月','火','水','木','金'],times:['終日'],address:'東京都港区芝浦3-18-17',director:'岩田 直樹',phone:'03-3456-7890',headline:'MRI・CT経験を活かせる常勤ポジション。専門性重視の募集です。',greeting:'精度とスピードを両立する検査体制を常勤メンバーと一緒に整えています。',score:'口コミ 4.6',selling:['専門性重視','学会補助あり','高月給'],details:[['勤務地','東京都港区芝浦3-18-17'],['給与','400,000円〜480,000円'],['勤務条件','フルタイム'],['交通費','全額支給']],reviews:[['★★★★☆','専門性を伸ばしたい人に向いています。']]},
+  {id:4,url:'https://example.com',clinic:'仙台はな歯科ケア',region:'東北',role:'歯科衛生士',payType:'hourly',salaryValue:1700,salaryText:'時給 1,700円〜2,100円',cond:'morning',condLabel:'午前のみ可 / 週3回以上',travel:'yes',days:['月','水','金','土'],times:['午前'],address:'宮城県仙台市青葉区中央1-7-2',director:'花田 彩',phone:'022-123-4567',headline:'予防中心。午前診療だけ入りたい衛生士さん歓迎。',greeting:'患者さんとの継続的な関係づくりを大切にし、衛生士が主役になれる体制を整えています。',score:'口コミ 4.9',selling:['午前のみ可','予防中心','福利厚生充実'],details:[['勤務地','宮城県仙台市青葉区中央1-7-2'],['給与','1,700円〜2,100円'],['勤務条件','週3回以上'],['交通費','上限あり']],reviews:[['★★★★★','短時間でも患者担当を持ててやりがいがあります。']]},
+  {id:5,url:'',clinic:'博多リハビリステーション',region:'九州・沖縄',role:'理学療法士',payType:'negotiable',salaryValue:0,salaryText:'給与 要相談',cond:'twodays',condLabel:'週2回以上 / Wワーク可',travel:'no',days:['火','木'],times:['午前','午後'],address:'福岡県福岡市博多区博多駅前1-5-1',director:'高橋 修平',phone:'092-456-7891',headline:'訪問リハの短時間シフト。経験に応じて条件相談可能。',greeting:'患者さんに長く寄り添えるリハビリ体制を非常勤スタッフも含めて作っています。',score:'口コミ 4.5',selling:['要相談可','Wワーク可','外部研修補助'],details:[['勤務地','福岡県福岡市博多区博多駅前1-5-1'],['給与','経験・条件に応じて相談'],['勤務条件','週2回以上'],['交通費','なし']],reviews:[['★★★★☆','半日単位で相談できるのが助かります。']]},
+  {id:6,url:'https://example.com',clinic:'神戸みなみ薬局クリニック',region:'関西',role:'薬剤師',payType:'hourly',salaryValue:2300,salaryText:'時給 2,300円〜2,900円',cond:'weekend',condLabel:'土曜勤務歓迎 / 週2回以上',travel:'yes',days:['月','火','木','土'],times:['午前','午後'],address:'兵庫県神戸市中央区磯上通6-1-9',director:'山本 恒一',phone:'078-555-6789',headline:'外来調剤と服薬指導。土曜を含む週2日から歓迎。',greeting:'限られた時間でも患者さんとの対話を大切にできる薬局運営を心がけています。',score:'口コミ 4.6',selling:['土曜勤務歓迎','週2回から可','資格更新補助'],details:[['勤務地','兵庫県神戸市中央区磯上通6-1-9'],['給与','2,300円〜2,900円'],['勤務条件','週2回以上'],['交通費','支給あり']],reviews:[['★★★★★','土曜だけでも歓迎してもらえて助かりました。']]}
+];
+var applicantsData = [
+  {name:'山田 花子',role:'看護師',age:'28歳',gender:'女性',email:'hanako@example.com',phone:'090-1234-5678',date:'2026年5月8日',note:'経験5年。外来・健診業務の経験があります。',days:'月・水・金・土',timeSlot:'午前のみ'},
+  {name:'鈴木 一郎',role:'理学療法士',age:'34歳',gender:'男性',email:'ichiro@example.com',phone:'080-9876-5432',date:'2026年5月1日',note:'整形外科クリニック勤務10年。週3日から希望。',days:'火・木',timeSlot:'終日'}
+];
+var regions=['北海道','東北','関東','関西','九州・沖縄'];
+var roles=['看護師','薬剤師','理学療法士','作業療法士','歯科衛生士','管理栄養士','言語聴覚士','診療放射線技師','臨床検査技師','助産師'];
+var salaryOpts={'':[['',' 指定なし']],'monthly':[['','指定なし'],['monthly-25','月給25万円以上'],['monthly-30','月給30万円以上'],['monthly-40','月給40万円以上']],'hourly':[['','指定なし'],['hourly-1500','時給1,500円以上'],['hourly-1800','時給1,800円以上'],['hourly-2200','時給2,200円以上']],'negotiable':[['','指定なし']]};
+var state={keyword:'',region:'',role:'',payType:'',salary:'',cond:'',travel:'',dayTimes:[]};
+var favorites={};
+var isLoggedIn=false;
+var currentJobId=null;
+var clinicStatusPaused=false;
+
+function showPage(name){
+  document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');p.style.display='none';});
+  var t=document.getElementById('pg-'+name);
+  if(t){t.classList.add('on');t.style.display='block';}
+  window.scrollTo(0,0);
+  isLoggedIn?hideApplicantBtns():showApplicantBtns();
+}
+function showApplicantBtns(){['heroApplicantBtn','searchApplicantBtn','drawerApplicantBtn'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display='';});var b=document.getElementById('loginBadge');if(b)b.style.display='none';}
+function hideApplicantBtns(){['heroApplicantBtn','searchApplicantBtn','drawerApplicantBtn'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display='none';});var b=document.getElementById('loginBadge');if(b)b.style.display='inline-flex';}
+document.addEventListener('click',function(e){var el=e.target.closest('[data-nav]');if(el&&el.id!=='applicantLogoutBtn'&&el.id!=='applicantLogoutBtn2'){e.preventDefault();closeAllModals();showPage(el.getAttribute('data-nav'));}});
+
+var modals={reg:{bg:'regBg',sh:'regSh'},detail:{bg:'detailBg',sh:'detailSh'},auth:{bg:'authBg',sh:'authSh'},app:{bg:'appBg',sh:'appSh'},comp:{bg:'compBg',sh:'compSh'},status:{bg:'statusBg',sh:'statusSh'},jobEdit:{bg:'jobEditBg',sh:'jobEditSh'},mypage:{bg:'mypageBg',sh:'mypageSh'},photo:{bg:'photoBg',sh:'photoSh',isDiv:true},apply:{bg:'applyBg',sh:'applySh'},license:{bg:'licenseBg',sh:'licenseSh'},licenseDetail:{bg:'licenseDetailBg',sh:'licenseDetailSh'}};
+function openModal(k){var m=modals[k];if(!m)return;document.getElementById(m.bg).classList.add('open');var s=document.getElementById(m.sh);if(m.isDiv)s.style.display='grid';else s.classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(k){var m=modals[k];if(!m)return;document.getElementById(m.bg).classList.remove('open');var s=document.getElementById(m.sh);if(m.isDiv)s.style.display='none';else s.classList.remove('open');document.body.style.overflow='';}
+function closeAllModals(){Object.keys(modals).forEach(function(k){closeModal(k);});}
+Object.keys(modals).forEach(function(k){var bg=document.getElementById(modals[k].bg);if(bg)bg.addEventListener('click',function(){closeModal(k);});});
+var closeMap={'regClose':'reg','detailClose':'detail','authClose':'auth','appClose':'app','appClose2':'app','compClose':'comp','statusClose':'status','jobEditClose':'jobEdit','mypageClose':'mypage','photoClose':'photo','applyClose':'apply','applyCloseBtn':'apply','licenseClose':'license','licenseDetailClose':'licenseDetail'};
+Object.keys(closeMap).forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('click',function(){closeModal(closeMap[id]);});});
+
+function openRegModal(tab){document.getElementById('panelClinic').style.display=tab==='clinic'?'block':'none';document.getElementById('panelApplicant').style.display=tab==='applicant'?'block':'none';openModal('reg');if(tab==='clinic')goStep(1);}
+document.getElementById('clinicRegisterLink').addEventListener('click',function(e){e.preventDefault();openRegModal('clinic');});
+document.getElementById('applicantRegisterLink').addEventListener('click',function(e){e.preventDefault();openRegModal('applicant');});
+document.getElementById('toStep2Btn').addEventListener('click',function(){goStep(2);});
+document.getElementById('backToStep1Btn').addEventListener('click',function(){goStep(1);});
+document.getElementById('clinicSubmitBtn').addEventListener('click',function(){if(!document.getElementById('clinicTerms').checked){alert('利用規約への同意が必要です');return;}closeModal('reg');openCompletion('clinic');});
+document.getElementById('applicantSubmitBtn').addEventListener('click',function(){if(!document.getElementById('applicantTerms').checked){alert('利用規約への同意が必要です');return;}isLoggedIn=true;hideApplicantBtns();closeModal('reg');openCompletion('applicant');});
+function goStep(n){document.getElementById('cStep1').style.display=n===1?'block':'none';document.getElementById('cStep2').style.display=n===2?'block':'none';var d1=document.getElementById('dot1'),d2=document.getElementById('dot2');n>=1?d1.classList.add('on'):d1.classList.remove('on');n>=2?d2.classList.add('on'):d2.classList.remove('on');}
+
+function renderChips(){var rc=document.getElementById('regionChips'),rlc=document.getElementById('roleChips');if(!rc||!rlc)return;rc.innerHTML=regions.map(function(v){return'<button class="chip'+(state.region===v?' on':'')+'" data-filter-key="region" data-filter-val="'+v+'">'+v+'</button>';}).join('');rlc.innerHTML=roles.map(function(v){return'<button class="chip'+(state.role===v?' on':'')+'" data-filter-key="role" data-filter-val="'+v+'">'+v+'</button>';}).join('');}
+document.addEventListener('click',function(e){var chip=e.target.closest('[data-filter-key]');if(chip){var key=chip.getAttribute('data-filter-key'),val=chip.getAttribute('data-filter-val');state[key]=state[key]===val?'':val;renderChips();renderJobs();}});
+function updateSalaryOpts(type){var sel=document.getElementById('salaryRange');if(!sel)return;var opts=salaryOpts[type]||salaryOpts[''];sel.innerHTML=opts.map(function(o){return'<option value="'+o[0]+'">'+o[1]+'</option>';}).join('');state.salary='';}
+document.getElementById('payType').addEventListener('change',function(){state.payType=this.value;updateSalaryOpts(this.value);renderJobs();});
+document.getElementById('salaryRange').addEventListener('change',function(){state.salary=this.value;renderJobs();});
+document.getElementById('workCond').addEventListener('change',function(){state.cond=this.value;renderJobs();});
+document.getElementById('keyword').addEventListener('input',function(){state.keyword=this.value;renderJobs();});
+document.getElementById('resetBtn').addEventListener('click',function(){state={keyword:'',region:'',role:'',payType:'',salary:'',cond:'',travel:'',dayTimes:[]};document.getElementById('keyword').value='';document.getElementById('payType').value='';document.getElementById('workCond').value='';document.querySelectorAll('[data-day][data-time]').forEach(function(c){c.classList.remove('on');});updateSalaryOpts('');renderChips();renderJobs();});
+function salaryPass(j,f){if(!f)return true;var p=f.split('-');return j.payType===p[0]&&j.salaryValue>=Number(p[1]);}
+function filterJobs(){return jobs.filter(function(j){var kw=state.keyword.toLowerCase();var kwPass=!kw||[j.clinic,j.address,j.headline,j.role,j.region].join(' ').toLowerCase().indexOf(kw)>=0;var dtPass=state.dayTimes.length===0||state.dayTimes.some(function(dt){return j.days&&j.days.indexOf(dt.day)>=0&&j.times&&j.times.indexOf(dt.time)>=0;});return kwPass&&(!state.region||j.region===state.region)&&(!state.role||j.role===state.role)&&(!state.payType||j.payType===state.payType)&&salaryPass(j,state.salary)&&(!state.cond||j.cond===state.cond)&&dtPass;});}
+function renderJobs(){var list=filterJobs();document.getElementById('resultCount').textContent=list.length+'件の医院を表示中';if(list.length===0){document.getElementById('jobList').innerHTML='<div class="nt np">条件に合う医院が見つかりませんでした。</div>';return;}var html='';for(var i=0;i<list.length;i++){var j=list[i];var pt=j.payType==='monthly'?'月給':j.payType==='hourly'?'時給':'要相談';var tr='交通費'+(j.travel==='yes'?'あり':'なし');var tags=[j.role,pt,j.salaryText,j.condLabel,tr];var tagHtml=tags.map(function(t){return'<span class="tag" style="font-size:.72rem">'+t+'</span>';}).join('');var urlHtml=j.url?'<div class="jul"><a href="javascript:void(0)">公式サイト ↗</a></div>':'';var favOn=favorites[j.id]?' on':'';html+='<div class="jc"><div class="jth">'+j.region+'<br>'+j.role+'</div><div><div class="jnm">'+j.clinic+'</div><div class="jmt">'+j.address+' / '+j.director+'</div><div class="jhl">'+j.headline+'</div>'+urlHtml+'<div class="jtg">'+tagHtml+'</div><div class="jac"><button class="btn bp bsm job-detail-btn" data-job-id="'+j.id+'">詳細を見る</button><button class="fav'+favOn+' job-fav-btn" data-job-id="'+j.id+'" aria-label="お気に入り"><svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="'+(favorites[j.id]?'currentColor':'none')+'"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="btn bs bsm apply-btn">応募する</button></div></div></div>';}document.getElementById('jobList').innerHTML=html;}
+document.getElementById('jobList').addEventListener('click',function(e){var d=e.target.closest('.job-detail-btn');if(d){renderDetail(Number(d.getAttribute('data-job-id')));return;}var f=e.target.closest('.job-fav-btn');if(f){toggleFav(Number(f.getAttribute('data-job-id')));return;}var a=e.target.closest('.apply-btn');if(a){isLoggedIn?openModal('apply'):openAuthModal();return;}});
+
+function renderDetail(id){var j=null;for(var i=0;i<jobs.length;i++){if(jobs[i].id===id){j=jobs[i];break;}}if(!j)return;currentJobId=id;document.getElementById('dEyebrow').textContent=j.role+' / '+j.region;document.getElementById('dName').textContent=j.clinic;document.getElementById('dAddr').textContent=j.address;document.getElementById('dScore').textContent=j.score;document.getElementById('dSalary').textContent=j.salaryText;document.getElementById('dBadges').innerHTML=[j.role,j.condLabel].map(function(t){return'<span class="tag" style="font-size:.72rem">'+t+'</span>';}).join('');document.getElementById('dGreeting').textContent=j.greeting;document.getElementById('dInfo').innerHTML=j.details.map(function(d){return'<div class="dr"><dt>'+d[0]+'</dt><dd>'+d[1]+'</dd></div>';}).join('');var urlRow=j.url?'<div class="dr"><dt>Webサイト</dt><dd><a href="javascript:void(0)" style="color:var(--pr);font-weight:600">公式サイト ↗</a></dd></div>':'';document.getElementById('dContact').innerHTML=[['医院名',j.clinic],['院長名',j.director],['電話番号',j.phone],['住所',j.address]].map(function(d){return'<div class="dr"><dt>'+d[0]+'</dt><dd>'+d[1]+'</dd></div>';}).join('')+urlRow;document.getElementById('dSelling').innerHTML=j.selling.map(function(s){return'<span class="tag tp">'+s+'</span>';}).join('');document.getElementById('dReviews').innerHTML=j.url?'<a href="'+j.url+'" target="_blank" style="display:flex;align-items:center;gap:.6rem;padding:.85rem 1rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.875rem;font-weight:600;color:var(--pr)">Googleマップで口コミを見る ↗</a>':'<p style="font-size:.82rem;color:var(--ft)">口コミ情報はありません。</p>';updateDetailFav();openModal('detail');}
+document.getElementById('dFav').addEventListener('click',function(){toggleFav(currentJobId);});
+document.getElementById('detailApplyBtn').addEventListener('click',function(){if(!isLoggedIn){closeModal('detail');openAuthModal();}else{closeModal('detail');openModal('apply');}});
+function toggleFav(id){if(!isLoggedIn){openAuthModal();return;}favorites[id]=!favorites[id];renderJobs();if(currentJobId===id)updateDetailFav();}
+function updateDetailFav(){var btn=document.getElementById('dFav');if(!btn||!currentJobId)return;var on=favorites[currentJobId];on?btn.classList.add('on'):btn.classList.remove('on');btn.querySelector('svg').setAttribute('fill',on?'currentColor':'none');}
+document.getElementById('gp0').addEventListener('click',function(){openPhoto('外観');});
+document.getElementById('gp1').addEventListener('click',function(){openPhoto('受付');});
+document.getElementById('gp2').addEventListener('click',function(){openPhoto('診療室');});
+function openPhoto(label){document.getElementById('photoLbl').textContent=label;document.getElementById('photoSub').textContent=label+'の写真';openModal('photo');}
+
+function openAuthModal(){openModal('auth');}
+document.getElementById('authLoginBtn').addEventListener('click',function(){closeModal('auth');showPage('applicant-login');});
+document.getElementById('authRegisterBtn').addEventListener('click',function(){closeModal('auth');openRegModal('applicant');});
+document.getElementById('applicantLoginBtn').addEventListener('click',function(){isLoggedIn=true;hideApplicantBtns();showPage('mypage');});
+
+document.getElementById('viewApp1Btn').addEventListener('click',function(){openApplicantDetail(0);});
+document.getElementById('viewApp2Btn').addEventListener('click',function(){openApplicantDetail(1);});
+function openApplicantDetail(idx){var a=applicantsData[idx];document.getElementById('amName').textContent=a.name;document.getElementById('am-role').textContent=a.role;document.getElementById('am-age').textContent=a.age;document.getElementById('am-gender').textContent=a.gender;document.getElementById('am-email').textContent=a.email;document.getElementById('am-phone').textContent=a.phone;document.getElementById('am-date').textContent=a.date;document.getElementById('am-note').textContent=a.note;var tsEl=document.getElementById('amTimeSlot');tsEl.innerHTML=a.timeSlot?a.timeSlot.split('・').map(function(t){return'<span class="tag tp" style="font-size:.73rem">'+t+'</span>';}).join(''):'<span style="font-size:.78rem;color:var(--ft)">未設定</span>';var allDays=['月','火','水','木','金','土','日'],activeDays=a.days?a.days.split('・'):[];document.getElementById('amDayGrid').innerHTML=allDays.map(function(d){var on=activeDays.indexOf(d)>=0;return'<div style="text-align:center;padding:.3rem .1rem;border-radius:var(--rsm);font-size:.75rem;font-weight:700;'+(on?'background:var(--pr);color:#fff;border:1px solid transparent':'background:var(--sf2);color:var(--ft);border:1px solid var(--bd)')+'">'+d+'</div>';}).join('');openModal('app');}
+
+function openCompletion(kind){document.getElementById('compTitle').textContent=kind==='clinic'?'医院登録の受付が完了しました':'求職者登録が完了しました';document.getElementById('compLead').textContent=kind==='clinic'?'登録ありがとうございました。内容確認後、掲載準備に進める想定です。':'無料登録ありがとうございました。求人検索を続けて応募先を探せます。';document.getElementById('cs1').textContent=kind==='clinic'?'医院名・電話番号・職種・給与条件を確認します。':'登録情報をもとに応募の準備に進めます。';document.getElementById('cs2').textContent=kind==='clinic'?'掲載イメージや募集内容の整理に進めます。':'気になる医院を探して詳細を確認できます。';document.getElementById('cs3').textContent=kind==='clinic'?'ログインページから写真・詳細情報の追加・編集ができます。':'検索画面へ戻って、そのまま求人を探せます。';var eb=document.getElementById('compEditBtn');eb.style.display='inline-flex';eb.textContent=kind==='clinic'?'編集画面へ進む':'ログインしてマイページへ';eb.onclick=function(){closeModal('comp');showPage(kind==='clinic'?'dashboard':'applicant-login');};openModal('comp');}
+document.getElementById('compSearchBtn').addEventListener('click',function(){closeModal('comp');showPage('main');});
+document.getElementById('compCloseBtn').addEventListener('click',function(){closeModal('comp');});
+
+document.getElementById('statusToggleBtn').addEventListener('click',function(){var title=document.getElementById('statusTitle'),desc=document.getElementById('statusDesc'),fee=document.getElementById('statusFee'),confirmBtn=document.getElementById('statusConfirmBtn');if(!clinicStatusPaused){title.textContent='掲載を一時停止しますか？';desc.textContent='求職者からの検索結果に表示されなくなります。';fee.innerHTML='💴 <strong>料金について</strong><br>一時停止中は月額料金が発生しません。';confirmBtn.textContent='一時停止する';confirmBtn.className='btn bg';}else{title.textContent='掲載を再開しますか？';desc.textContent='求職者の検索結果に再び表示されるようになります。';fee.innerHTML='💴 <strong>料金について</strong><br>再開すると翌月より月額料金が再開されます。';confirmBtn.textContent='掲載を再開する';confirmBtn.className='btn bp';}openModal('status');});
+document.getElementById('statusConfirmBtn').addEventListener('click',function(){clinicStatusPaused=!clinicStatusPaused;var badge=document.getElementById('statusBadge'),btn=document.getElementById('statusToggleBtn'),notice=document.getElementById('statusNotice');if(clinicStatusPaused){badge.textContent='一時停止中';badge.className='sb swn';btn.textContent='掲載を再開する';notice.style.display='block';notice.className='nt nwn';notice.innerHTML='⏸ 掲載を一時停止中です。';}else{badge.textContent='掲載中';badge.className='sb sok';btn.textContent='一時停止する';notice.style.display='none';}closeModal('status');});
+document.getElementById('statusCancelBtn').addEventListener('click',function(){closeModal('status');});
+
+document.getElementById('editJob1Btn').addEventListener('click',function(){document.getElementById('jobEditTitle').textContent='看護師を編集';openModal('jobEdit');});
+document.getElementById('editJob2Btn').addEventListener('click',function(){document.getElementById('jobEditTitle').textContent='理学療法士を編集';openModal('jobEdit');});
+document.getElementById('addJobBtn').addEventListener('click',function(){document.getElementById('jobEditTitle').textContent='職種を追加';openModal('jobEdit');});
+document.getElementById('mypageEditBtn').addEventListener('click',function(){openModal('mypage');});
+document.getElementById('saveClinicInfoBtn').addEventListener('click',function(){alert('保存しました');showPage('dashboard');});
+
+document.getElementById('tabApplied').addEventListener('click',function(){this.classList.add('on');document.getElementById('tabPending').classList.remove('on');document.getElementById('appliedList').style.display='block';document.getElementById('pendingList').style.display='none';});
+document.getElementById('tabPending').addEventListener('click',function(){this.classList.add('on');document.getElementById('tabApplied').classList.remove('on');document.getElementById('appliedList').style.display='none';document.getElementById('pendingList').style.display='block';});
+document.getElementById('heroSearchBtn').addEventListener('click',function(){document.getElementById('search').scrollIntoView({behavior:'smooth'});});
+
+document.getElementById('menuBtn').addEventListener('click',function(){document.getElementById('drawerBg').classList.add('open');document.getElementById('drawerSh').classList.add('open');document.body.style.overflow='hidden';});
+document.getElementById('drawerClose').addEventListener('click',function(){document.getElementById('drawerBg').classList.remove('open');document.getElementById('drawerSh').classList.remove('open');document.body.style.overflow='';});
+document.getElementById('drawerBg').addEventListener('click',function(){document.getElementById('drawerBg').classList.remove('open');document.getElementById('drawerSh').classList.remove('open');document.body.style.overflow='';});
+document.getElementById('brandBtn').addEventListener('click',function(){showPage('main');});
+document.getElementById('themeBtn').addEventListener('click',function(){var d=document.documentElement,next=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',next);this.textContent=next==='dark'?'☀':'☾';});
+
+document.addEventListener('change',function(e){if(e.target.classList.contains('day-cb')){var row=e.target.closest('.hg-row');if(!row)return;var inputs=row.querySelectorAll('.hg-time'),closed=e.target.checked;for(var i=0;i<inputs.length;i++){inputs[i].style.opacity=closed?'.35':'1';inputs[i].style.pointerEvents=closed?'none':'';};}});
+
+document.getElementById('applicantLogoutBtn').addEventListener('click',function(){isLoggedIn=false;closeAllModals();showPage('main');});
+document.getElementById('applicantLogoutBtn2').addEventListener('click',function(){isLoggedIn=false;closeAllModals();showPage('main');});
+document.getElementById('licenseAddBtn').addEventListener('click',function(){openModal('license');});
+
+var savedLicenses=['看護師'];
+document.getElementById('licenseSaveBtn').addEventListener('click',function(){var sel=document.querySelector('input[name="licenseRadio"]:checked');if(!sel){alert('資格を選択してください');return;}if(savedLicenses.indexOf(sel.value)>=0){alert('保存済みです。同じ資格は1つまでです。');return;}savedLicenses.push(sel.value);alert(sel.value+'を追加しました');sel.checked=false;closeModal('license');});
+function openLicenseDetail(name){document.getElementById('licenseDetailTitle').textContent=name;openModal('licenseDetail');}
+
+document.getElementById('dayTimeGrid').addEventListener('click',function(e){var btn=e.target.closest('[data-day][data-time]');if(!btn)return;var day=btn.getAttribute('data-day'),time=btn.getAttribute('data-time');var found=-1;for(var i=0;i<state.dayTimes.length;i++){if(state.dayTimes[i].day===day&&state.dayTimes[i].time===time){found=i;break;}}if(found>=0){state.dayTimes.splice(found,1);btn.classList.remove('on');}else{state.dayTimes.push({day:day,time:time});btn.classList.add('on');}var grid=document.getElementById('dayTimeGrid');var gozen=grid.querySelector('[data-day="'+day+'"][data-time="午前"]'),gogo=grid.querySelector('[data-day="'+day+'"][data-time="午後"]'),shujitsu=grid.querySelector('[data-day="'+day+'"][data-time="終日"]');if(gozen&&gogo&&shujitsu){if(time==='午前'||time==='午後'){if(gozen.classList.contains('on')&&gogo.classList.contains('on')){if(!shujitsu.classList.contains('on')){shujitsu.classList.add('on');state.dayTimes.push({day:day,time:'終日'});}}else{if(shujitsu.classList.contains('on')){shujitsu.classList.remove('on');state.dayTimes=state.dayTimes.filter(function(dt){return!(dt.day===day&&dt.time==='終日');});}}}else if(time==='終日'){if(shujitsu.classList.contains('on')){if(!gozen.classList.contains('on')){gozen.classList.add('on');state.dayTimes.push({day:day,time:'午前'});}if(!gogo.classList.contains('on')){gogo.classList.add('on');state.dayTimes.push({day:day,time:'午後'});}}else{if(gozen.classList.contains('on')){gozen.classList.remove('on');state.dayTimes=state.dayTimes.filter(function(dt){return!(dt.day===day&&dt.time==='午前');});}if(gogo.classList.contains('on')){gogo.classList.remove('on');state.dayTimes=state.dayTimes.filter(function(dt){return!(dt.day===day&&dt.time==='午後');});}}}}renderJobs();});
+
+document.getElementById('mypageDayTimeGrid').addEventListener('click',function(e){var btn=e.target.closest('[data-myday][data-mytime]');if(!btn)return;btn.classList.toggle('on');var day=btn.getAttribute('data-myday'),time=btn.getAttribute('data-mytime');var grid=document.getElementById('mypageDayTimeGrid');var gozen=grid.querySelector('[data-myday="'+day+'"][data-mytime="午前"]'),gogo=grid.querySelector('[data-myday="'+day+'"][data-mytime="午後"]'),shujitsu=grid.querySelector('[data-myday="'+day+'"][data-mytime="終日"]');if(!gozen||!gogo||!shujitsu)return;if(time==='午前'||time==='午後'){gozen.classList.contains('on')&&gogo.classList.contains('on')?shujitsu.classList.add('on'):shujitsu.classList.remove('on');}else if(time==='終日'){if(shujitsu.classList.contains('on')){gozen.classList.add('on');gogo.classList.add('on');}else{gozen.classList.remove('on');gogo.classList.remove('on');}}});
+
+document.getElementById('dayTimeToggleBtn').addEventListener('click',function(){var panel=document.getElementById('dayTimePanel'),arrow=document.getElementById('dayTimeArrow'),open=panel.style.display==='none';panel.style.display=open?'block':'none';arrow.textContent=open?'▲ 閉じる':'▼ 開く';});
+
+renderChips();
+renderJobs();
+</script>
+</body>
+</html>
