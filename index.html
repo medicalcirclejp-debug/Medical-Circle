@@ -1384,7 +1384,17 @@ document.getElementById('clinicSubmitBtn').addEventListener('click',async functi
   closeModal('reg');openCompletion('clinic');
 });
 
-document.getElementById('applicantSubmitBtn').addEventListener('click',function(){if(!document.getElementById('applicantTerms').checked){alert('利用規約への同意が必要です');return;}isLoggedIn=true;hideApplicantBtns();closeModal('reg');openCompletion('applicant');});
+document.getElementById('applicantSubmitBtn').addEventListener('click',async function(){
+  if(!document.getElementById('applicantTerms').checked){alert('利用規約への同意が必要です');return;}
+  var email=document.querySelector('#panelApplicant input[type="email"]').value;
+  var password=document.querySelector('#panelApplicant input[type="password"]').value;
+  var name=document.querySelector('#panelApplicant input[placeholder*="花子"]').value;
+  if(!email||!password||!name){alert('氏名・メールアドレス・パスワードを入力してください');return;}
+  var {data,error}=await _supabase.auth.signUp({email:email,password:password});
+  if(error){alert('登録エラー：'+error.message);return;}
+  await _supabase.from('applicants').insert({name:name,email:email});
+  isLoggedIn=true;hideApplicantBtns();closeModal('reg');openCompletion('applicant');
+});
 
 function goStep(n){
   document.getElementById('cStep1').style.display=n===1?'block':'none';
