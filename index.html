@@ -1276,6 +1276,13 @@ img,svg{display:block;max-width:100%}
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://fmtboixqqqbvnmteciwx.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZtdGJvaXhxcXFidm5tdGVjaXd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MDQyMTcsImV4cCI6MjA5NDQ4MDIxN30.P2_oobd8tHotr3U782EX7pjKvy0nZpopbdr2c7DxbKA';
+const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+</script>
+
 <script>
 var jobs = [
   {id:1,url:'https://example.com',clinic:'梅田みなと総合クリニック',region:'関西',role:'看護師',payType:'monthly',salaryValue:32,salaryText:'月給 320,000円〜420,000円',cond:'full-weekday',condLabel:'フルタイム（平日） / 外来中心',travel:'yes',days:['月','火','水','木','金'],times:['終日'],address:'大阪府大阪市北区梅田2-4-9',director:'湊 友哉',phone:'06-1234-5678',headline:'常勤看護師を募集。外来補助と健診業務を安定した体制で担当できます。',greeting:'地域医療を支えるチームとして、患者さんにも働く人にも安心感のある現場を目指しています。',feature:'完全予約制で残業ほぼなし。チームワークを大切にしたアットホームな職場です。',message:'未経験でも丁寧に指導します。ブランクがある方も歓迎しています。',score:'口コミ 4.8',selling:['駅近','教育体制あり','福利厚生充実'],details:[['勤務地','大阪府大阪市北区梅田2-4-9'],['給与','320,000円〜420,000円'],['勤務条件','フルタイム（平日）'],['交通費','支給あり']]},
