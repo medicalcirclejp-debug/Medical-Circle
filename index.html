@@ -1372,7 +1372,18 @@ document.getElementById('clinicRegisterLink').addEventListener('click',function(
 document.getElementById('applicantRegisterLink').addEventListener('click',function(e){e.preventDefault();openRegModal('applicant');});
 document.getElementById('toStep2Btn').addEventListener('click',function(){goStep(2);});
 document.getElementById('backToStep1Btn').addEventListener('click',function(){goStep(1);});
-document.getElementById('clinicSubmitBtn').addEventListener('click',function(){if(!document.getElementById('clinicTerms').checked){alert('利用規約への同意が必要です');return;}closeModal('reg');openCompletion('clinic');});
+document.getElementById('clinicSubmitBtn').addEventListener('click',async function(){
+  if(!document.getElementById('clinicTerms').checked){alert('利用規約への同意が必要です');return;}
+  var email=document.querySelector('#panelClinic input[type="email"]').value;
+  var password=document.querySelector('#panelClinic input[type="password"]').value;
+  var name=document.querySelector('#panelClinic input[placeholder*="クリニック"]').value;
+  if(!email||!password||!name){alert('医院名・メールアドレス・パスワードを入力してください');return;}
+  var {data,error}=await _supabase.auth.signUp({email:email,password:password});
+  if(error){alert('登録エラー：'+error.message);return;}
+  await _supabase.from('clinics').insert({name:name,email:email,status:'active'});
+  closeModal('reg');openCompletion('clinic');
+});
+
 document.getElementById('applicantSubmitBtn').addEventListener('click',function(){if(!document.getElementById('applicantTerms').checked){alert('利用規約への同意が必要です');return;}isLoggedIn=true;hideApplicantBtns();closeModal('reg');openCompletion('applicant');});
 
 function goStep(n){
