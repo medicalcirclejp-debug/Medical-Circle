@@ -899,9 +899,25 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 </script>
 <script>
-var _stripe = Stripe('pk_test_51TWulbEyoOWsMSx21pFCieNm4BmGc96rzSedI4apJHzOpc7gtwHWBjLUpK4jJpvWjBV3HlPTi1qTxfpk6msIHn1Q00MOIdcwYa');
+var _stripeKey = 'pk_test_51TWulbEyoOWsMSx21pFCieNm4BmGc96rzSedI4apJHzOpc7gtwHWBjLUpK4jJpvWjBV3HlPTi1qTxfpk6msIHn1Q00MOIdcwYa';
+var _stripe = null;
 var _stripeElements = null;
 var _cardElement = null;
+function getStripe(){
+  if(!_stripe){
+    if(typeof Stripe === 'undefined'){
+      // Stripeがまだ読み込まれていない場合は動的に読み込む
+      return new Promise(function(resolve){
+        var s=document.createElement('script');
+        s.src='https://js.stripe.com/v3/';
+        s.onload=function(){_stripe=Stripe(_stripeKey);resolve(_stripe);};
+        document.head.appendChild(s);
+      });
+    }
+    _stripe=Stripe(_stripeKey);
+  }
+  return Promise.resolve(_stripe);
+}
 </script>
 <script>
 // ===== グローバル変数 =====
@@ -1002,6 +1018,14 @@ document.addEventListener('click',function(e){
     showPage(nav);
   }
 });
+
+// ===== ダッシュボード読み込み =====
+async function loadDashboard(){
+  if(!currentClinic)return;
+  updateDashboardUI();
+  await loadClinicJobs();
+  await loadApplications();
+}
 
 // ===== セッション復元 =====
 _supabase.auth.onAuthStateChange(async function(event, session){
@@ -1366,10 +1390,11 @@ document.getElementById('clinicSubmitBtn').addEventListener('click', async funct
   if(!cardNumber||!cardExpiry||!cardCvc||!cardName){alert('カード情報を入力してください');return;}
   this.textContent='決済処理中...';this.disabled=true;
   try{
+    var stripe=await getStripe();
     var expParts=cardExpiry.split('/');
     var expMonth=parseInt(expParts[0].trim(),10);
     var expYear=parseInt('20'+(expParts[1]||'').trim(),10);
-    var result=await _stripe.createToken('card',{
+    var result=await stripe.createToken('card',{
       number:cardNumber,exp_month:expMonth,exp_year:expYear,cvc:cardCvc,name:cardName
     });
     if(result.error){
