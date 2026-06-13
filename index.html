@@ -685,13 +685,13 @@ img,svg{display:block;max-width:100%}
         <div id="cStep2" style="display:none">
           <div class="nt nok" style="margin-bottom:.9rem">✓ 基本情報を保存しました。続けて登録へお進みください。</div>
           <div class="pb"><div class="pt"><div class="camp">🎉 期間限定キャンペーン</div><div class="hl">2027年12月31日までにご登録いただいたクリニック様は<br>2028年12月末まで無料で掲載できます。</div></div><div class="pr-rows"><div class="pr-row"><dt>〜 2028年12月末</dt><strong>無料</strong></div><div class="pdv"></div><div class="pr-row"><dt>2029年1月より通常料金</dt><strong style="color:var(--tx)">月額 4,680円</strong></div><p style="font-size:.73rem;color:var(--mt)">※ 2027年12月31日までのご登録限定。仲介手数料は一切かかりません。</p><div class="nt nwn" style="margin-top:.4rem">💳 登録費用：初回登録料 <strong>500円（税込）</strong>（2026年中のご登録限定）が発生します。通常登録料は1,500円です。</div></div></div>
-          <div style="margin-bottom:.9rem">
-  <div class="fi full">
-    <label>クレジットカード情報</label>
-    <div id="stripe-card-element" style="padding:.75rem 1rem;border:1.5px solid var(--bd);border-radius:var(--rmd);background:var(--sf2);min-height:46px;transition:border-color 140ms"></div>
-    <div id="stripe-card-errors" style="color:#e05050;font-size:.78rem;margin-top:.35rem"></div>
-  </div>
-</div>
+          <div class="fg" style="margin-bottom:.9rem">
+            <div class="fi full"><label>カード番号</label><input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric"></div>
+            <div class="fi"><label>有効期限</label><input type="text" id="cardExpiry" placeholder="MM / YY" maxlength="7" inputmode="numeric"></div>
+            <div class="fi"><label>セキュリティコード</label><input type="text" id="cardCvc" placeholder="CVC" maxlength="4" inputmode="numeric"></div>
+            <div class="fi full"><label>カード名義</label><input type="text" id="cardName" placeholder="TARO YAMADA"></div>
+            <div id="stripe-card-errors" style="color:#e05050;font-size:.78rem;margin-top:.25rem;grid-column:1/-1"></div>
+          </div>
           <label class="tc"><input type="checkbox" id="clinicTerms"><span><a href="#">利用規約</a>および<a href="#">プライバシーポリシー</a>に同意します。</span></label>
           <div style="display:grid;gap:.55rem"><button class="btn bp" style="width:100%" id="clinicSubmitBtn">登録する（登録料 500円）</button><button class="btn bg" style="width:100%" id="backToStep1Btn">← 戻る</button></div>
         </div>
