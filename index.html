@@ -1350,7 +1350,6 @@ document.addEventListener('input',function(e){
     e.target.value=e.target.value.replace(/[^0-9]/g,'').substring(0,4);
   }
 });
-
 document.getElementById('clinicSubmitBtn').addEventListener('click', async function(){
   if(!document.getElementById('clinicTerms').checked){alert('利用規約への同意が必要です');return;}
   var name = document.querySelector('#panelClinic input[placeholder="例）梅田みなと総合クリニック"]').value;
@@ -1369,38 +1368,25 @@ document.getElementById('clinicSubmitBtn').addEventListener('click', async funct
   try{
     var expParts=cardExpiry.split('/');
     var expMonth=parseInt(expParts[0].trim(),10);
-    var expYear=parseInt((expParts[1]||'').trim(),10);
-    var elements=_stripe.elements();
-    var tempCard=elements.create('card');
-    var dummy=document.createElement('div');
-    dummy.style.display='none';
-    document.body.appendChild(dummy);
-    tempCard.mount(dummy);
-    setTimeout(async function(){
-      var result=await _stripe.createToken(tempCard,{
-        number:cardNumber,exp_month:expMonth,exp_year:expYear,cvc:cardCvc,name:cardName
-      });
-      tempCard.destroy();
-      document.body.removeChild(dummy);
-      if(result.error){
-        document.getElementById('stripe-card-errors').textContent=result.error.message;
-        document.getElementById('clinicSubmitBtn').textContent='登録する（登録料 500円）';
-        document.getElementById('clinicSubmitBtn').disabled=false;return;
-      }
-      var {data,error}=await _supabase.auth.signUp({email:email,password:pass});
-      if(error){alert('登録エラー：'+error.message);document.getElementById('clinicSubmitBtn').textContent='登録する（登録料 500円）';document.getElementById('clinicSubmitBtn').disabled=false;return;}
-      var {error:err2}=await _supabase.from('clinics').insert({user_id:data.user.id,name:name,email:email,status:'active',stripe_token:result.token.id});
-      if(err2){alert('DB保存エラー：'+err2.message);document.getElementById('clinicSubmitBtn').textContent='登録する（登録料 500円）';document.getElementById('clinicSubmitBtn').disabled=false;return;}
-      currentClinic={user_id:data.user.id,name:name,email:email,status:'active'};
-      isLoggedIn=true;hideApplicantBtns();
-      document.getElementById('clinicSubmitBtn').textContent='登録する（登録料 500円）';
-      document.getElementById('clinicSubmitBtn').disabled=false;
-      closeModal('reg');openCompletion('clinic');
-    },500);
+    var expYear=parseInt('20'+(expParts[1]||'').trim(),10);
+    var result=await _stripe.createToken('card',{
+      number:cardNumber,exp_month:expMonth,exp_year:expYear,cvc:cardCvc,name:cardName
+    });
+    if(result.error){
+      document.getElementById('stripe-card-errors').textContent=result.error.message;
+      this.textContent='登録する（登録料 500円）';this.disabled=false;return;
+    }
+    var {data,error}=await _supabase.auth.signUp({email:email,password:pass});
+    if(error){alert('登録エラー：'+error.message);this.textContent='登録する（登録料 500円）';this.disabled=false;return;}
+    var {error:err2}=await _supabase.from('clinics').insert({user_id:data.user.id,name:name,email:email,status:'active',stripe_token:result.token.id});
+    if(err2){alert('DB保存エラー：'+err2.message);this.textContent='登録する（登録料 500円）';this.disabled=false;return;}
+    currentClinic={user_id:data.user.id,name:name,email:email,status:'active'};
+    isLoggedIn=true;hideApplicantBtns();
+    this.textContent='登録する（登録料 500円）';this.disabled=false;
+    closeModal('reg');openCompletion('clinic');
   }catch(e){
     alert('エラー：'+e.message);this.textContent='登録する（登録料 500円）';this.disabled=false;
   }
-});
 
 // ===== 新規登録（求職者）=====
 document.getElementById('applicantSubmitBtn').addEventListener('click', async function(){
