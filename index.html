@@ -1332,14 +1332,7 @@ function openRegModal(tab){
 }
 document.getElementById('clinicRegisterLink').addEventListener('click',function(e){e.preventDefault();openRegModal('clinic');});
 document.getElementById('applicantRegisterLink').addEventListener('click',function(e){e.preventDefault();openRegModal('applicant');});
-document.getElementById('toStep2Btn').addEventListener('click',function(){
-  goStep(2);
-  if(_cardElement){_cardElement.unmount();_cardElement=null;}
-  var elements=_stripe.elements();
-  _cardElement=elements.create('card',{style:{base:{fontSize:'15px',fontFamily:'inherit','::placeholder':{color:'#a09c96'}}},hidePostalCode:true});
-  _cardElement.mount('#stripe-card-element');
-  _cardElement.on('change',function(e){var el=document.getElementById('stripe-card-errors');if(el)el.textContent=e.error?e.error.message:'';});
-});
+document.getElementById('toStep2Btn').addEventListener('click',function(){goStep(2);});
 document.getElementById('backToStep1Btn').addEventListener('click',function(){goStep(1);});
 
 // カード番号フォーマット（4桁ずつスペース）
