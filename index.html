@@ -1322,7 +1322,7 @@ document.getElementById('saveClinicInfoBtn').addEventListener('click', async fun
   updateDashboardUI();
   alert('保存しました');
   showPage('dashboard');
-　}　
+});
 
 // ===== 新規登録（クリニック）=====
 function openRegModal(tab){
@@ -1386,7 +1386,7 @@ document.getElementById('clinicSubmitBtn').addEventListener('click', async funct
     closeModal('reg');openCompletion('clinic');
   }catch(e){
     alert('エラー：'+e.message);this.textContent='登録する（登録料 500円）';this.disabled=false;
-  } 
+  }
 });
 // ===== 新規登録（求職者）=====
 document.getElementById('applicantSubmitBtn').addEventListener('click', async function(){
