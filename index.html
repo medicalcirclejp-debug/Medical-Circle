@@ -1394,8 +1394,10 @@ document.getElementById('clinicSubmitBtn').addEventListener('click', async funct
     var expParts=cardExpiry.split('/');
     var expMonth=parseInt(expParts[0].trim(),10);
     var expYear=parseInt('20'+(expParts[1]||'').trim(),10);
-    var result=await stripe.createToken('card',{
-      number:cardNumber,exp_month:expMonth,exp_year:expYear,cvc:cardCvc,name:cardName
+    var result=await stripe.createPaymentMethod({
+      type:'card',
+      card:{number:cardNumber,exp_month:expMonth,exp_year:expYear,cvc:cardCvc},
+      billing_details:{name:cardName}
     });
     if(result.error){
       document.getElementById('stripe-card-errors').textContent=result.error.message;
@@ -1403,7 +1405,7 @@ document.getElementById('clinicSubmitBtn').addEventListener('click', async funct
     }
     var {data,error}=await _supabase.auth.signUp({email:email,password:pass});
     if(error){alert('登録エラー：'+error.message);this.textContent='登録する（登録料 500円）';this.disabled=false;return;}
-    var {error:err2}=await _supabase.from('clinics').insert({user_id:data.user.id,name:name,email:email,status:'active',stripe_token:result.token.id});
+    var {error:err2}=await _supabase.from('clinics').insert({user_id:data.user.id,name:name,email:email,status:'active',stripe_token:result.paymentMethod.id});
     if(err2){alert('DB保存エラー：'+err2.message);this.textContent='登録する（登録料 500円）';this.disabled=false;return;}
     currentClinic={user_id:data.user.id,name:name,email:email,status:'active'};
     isLoggedIn=true;hideApplicantBtns();
