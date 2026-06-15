@@ -685,12 +685,11 @@ img,svg{display:block;max-width:100%}
         <div id="cStep2" style="display:none">
           <div class="nt nok" style="margin-bottom:.9rem">✓ 基本情報を保存しました。続けて登録へお進みください。</div>
           <div class="pb"><div class="pt"><div class="camp">🎉 期間限定キャンペーン</div><div class="hl">2027年12月31日までにご登録いただいたクリニック様は<br>2028年12月末まで無料で掲載できます。</div></div><div class="pr-rows"><div class="pr-row"><dt>〜 2028年12月末</dt><strong>無料</strong></div><div class="pdv"></div><div class="pr-row"><dt>2029年1月より通常料金</dt><strong style="color:var(--tx)">月額 4,680円</strong></div><p style="font-size:.73rem;color:var(--mt)">※ 2027年12月31日までのご登録限定。仲介手数料は一切かかりません。</p><div class="nt nwn" style="margin-top:.4rem">💳 登録費用：初回登録料 <strong>500円（税込）</strong>（2026年中のご登録限定）が発生します。通常登録料は1,500円です。</div></div></div>
-          <div class="fg" style="margin-bottom:.9rem">
-            <div class="fi full"><label>カード番号</label><input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric"></div>
-            <div class="fi"><label>有効期限</label><input type="text" id="cardExpiry" placeholder="MM / YY" maxlength="7" inputmode="numeric"></div>
-            <div class="fi"><label>セキュリティコード</label><input type="text" id="cardCvc" placeholder="CVC" maxlength="4" inputmode="numeric"></div>
-            <div class="fi full"><label>カード名義</label><input type="text" id="cardName" placeholder="TARO YAMADA"></div>
-            <div id="stripe-card-errors" style="color:#e05050;font-size:.78rem;margin-top:.25rem;grid-column:1/-1"></div>
+          <div style="margin-bottom:.9rem">
+            <div class="fi full" style="margin-bottom:.65rem"><label>カード情報</label>
+              <div id="stripe-card-element" style="padding:.75rem 1rem;border-radius:.875rem;border:1.5px solid rgba(30,25,15,.09);background:#fff;min-height:44px;font-size:.9rem"></div>
+            </div>
+            <div id="stripe-card-errors" style="color:#e05050;font-size:.78rem;margin-top:.25rem"></div>
           </div>
           <label class="tc"><input type="checkbox" id="clinicTerms"><span><a href="#">利用規約</a>および<a href="#">プライバシーポリシー</a>に同意します。</span></label>
           <div style="display:grid;gap:.55rem"><button class="btn bp" style="width:100%" id="clinicSubmitBtn">登録する（登録料 500円）</button><button class="btn bg" style="width:100%" id="backToStep1Btn">← 戻る</button></div>
@@ -901,22 +900,36 @@ const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 <script>
 var _stripeKey = 'pk_test_51TWulbEyoOWsMSx21pFCieNm4BmGc96rzSedI4apJHzOpc7gtwHWBjLUpK4jJpvWjBV3HlPTi1qTxfpk6msIHn1Q00MOIdcwYa';
 var _stripe = null;
-var _stripeElements = null;
 var _cardElement = null;
-function getStripe(){
-  if(!_stripe){
-    if(typeof Stripe === 'undefined'){
-      // Stripeがまだ読み込まれていない場合は動的に読み込む
-      return new Promise(function(resolve){
-        var s=document.createElement('script');
-        s.src='https://js.stripe.com/v3/';
-        s.onload=function(){_stripe=Stripe(_stripeKey);resolve(_stripe);};
-        document.head.appendChild(s);
+
+function initStripeElement(){
+  if(_cardElement)return;
+  var mountTarget = document.getElementById('stripe-card-element');
+  if(!mountTarget)return;
+  if(typeof Stripe === 'undefined'){
+    var s=document.createElement('script');
+    s.src='https://js.stripe.com/v3/';
+    s.onload=function(){
+      _stripe=Stripe(_stripeKey);
+      var elements=_stripe.elements();
+      _cardElement=elements.create('card',{style:{base:{fontSize:'16px',fontFamily:'Hiragino Sans,sans-serif'}}});
+      _cardElement.mount('#stripe-card-element');
+      _cardElement.on('change',function(e){
+        var el=document.getElementById('stripe-card-errors');
+        if(el)el.textContent=e.error?e.error.message:'';
       });
-    }
+    };
+    document.head.appendChild(s);
+  } else {
     _stripe=Stripe(_stripeKey);
+    var elements=_stripe.elements();
+    _cardElement=elements.create('card',{style:{base:{fontSize:'16px',fontFamily:'Hiragino Sans,sans-serif'}}});
+    _cardElement.mount('#stripe-card-element');
+    _cardElement.on('change',function(e){
+      var el=document.getElementById('stripe-card-errors');
+      if(el)el.textContent=e.error?e.error.message:'';
+    });
   }
-  return Promise.resolve(_stripe);
 }
 </script>
 <script>
@@ -1356,24 +1369,11 @@ function openRegModal(tab){
 }
 document.getElementById('clinicRegisterLink').addEventListener('click',function(e){e.preventDefault();openRegModal('clinic');});
 document.getElementById('applicantRegisterLink').addEventListener('click',function(e){e.preventDefault();openRegModal('applicant');});
-document.getElementById('toStep2Btn').addEventListener('click',function(){goStep(2);});
+document.getElementById('toStep2Btn').addEventListener('click',function(){goStep(2);setTimeout(initStripeElement,100);});
 document.getElementById('backToStep1Btn').addEventListener('click',function(){goStep(1);});
 
 // カード番号フォーマット（4桁ずつスペース）
-document.addEventListener('input',function(e){
-  if(e.target.id==='cardNumber'){
-    var v=e.target.value.replace(/[^0-9]/g,'').substring(0,16);
-    e.target.value=v.replace(/(.{4})/g,'$1 ').trim();
-  }
-  if(e.target.id==='cardExpiry'){
-    var v=e.target.value.replace(/[^0-9]/g,'').substring(0,4);
-    if(v.length>=3)v=v.substring(0,2)+' / '+v.substring(2);
-    e.target.value=v;
-  }
-  if(e.target.id==='cardCvc'){
-    e.target.value=e.target.value.replace(/[^0-9]/g,'').substring(0,4);
-  }
-});
+// カード入力はStripe Elementsが処理
 document.getElementById('clinicSubmitBtn').addEventListener('click', async function(){
   if(!document.getElementById('clinicTerms').checked){alert('利用規約への同意が必要です');return;}
   var name = document.querySelector('#panelClinic input[placeholder="例）梅田みなと総合クリニック"]').value;
@@ -1383,22 +1383,11 @@ document.getElementById('clinicSubmitBtn').addEventListener('click', async funct
   if(!name||!email||!pass){alert('必須項目を入力してください');return;}
   if(pass!==pass2){alert('パスワードが一致しません');return;}
   if(pass.length<8){alert('パスワードは8文字以上で設定してください');return;}
-  var cardNumber=document.getElementById('cardNumber').value.replace(/ /g,'');
-  var cardExpiry=document.getElementById('cardExpiry').value.replace(/\s/g,'');
-  var cardCvc=document.getElementById('cardCvc').value;
-  var cardName=document.getElementById('cardName').value;
-  if(!cardNumber||!cardExpiry||!cardCvc||!cardName){alert('カード情報を入力してください');return;}
+  // カード情報はStripe Elementsで収集
   this.textContent='決済処理中...';this.disabled=true;
   try{
-    var stripe=await getStripe();
-    var expParts=cardExpiry.split('/');
-    var expMonth=parseInt(expParts[0].trim(),10);
-    var expYear=parseInt('20'+(expParts[1]||'').trim(),10);
-    var result=await stripe.createPaymentMethod({
-      type:'card',
-      card:{number:cardNumber,exp_month:expMonth,exp_year:expYear,cvc:cardCvc},
-      billing_details:{name:cardName}
-    });
+    if(!_cardElement){alert('カード情報の読み込みに失敗しました。ページを再読み込みしてください。');this.textContent='登録する（登録料 500円）';this.disabled=false;return;}
+    var result=await _stripe.createPaymentMethod({type:'card',card:_cardElement});
     if(result.error){
       document.getElementById('stripe-card-errors').textContent=result.error.message;
       this.textContent='登録する（登録料 500円）';this.disabled=false;return;
