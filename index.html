@@ -912,7 +912,7 @@ function initStripeElement(){
     s.onload=function(){
       _stripe=Stripe(_stripeKey);
       var elements=_stripe.elements();
-      _cardElement=elements.create('card',{style:{base:{fontSize:'16px',fontFamily:'Hiragino Sans,sans-serif'}}});
+      _cardElement=elements.create('card',{hidePostalCode:true,style:{base:{fontSize:'16px',fontFamily:'Hiragino Sans,sans-serif'}}});
       _cardElement.mount('#stripe-card-element');
       _cardElement.on('change',function(e){
         var el=document.getElementById('stripe-card-errors');
@@ -923,7 +923,7 @@ function initStripeElement(){
   } else {
     _stripe=Stripe(_stripeKey);
     var elements=_stripe.elements();
-    _cardElement=elements.create('card',{style:{base:{fontSize:'16px',fontFamily:'Hiragino Sans,sans-serif'}}});
+    _cardElement=elements.create('card',{hidePostalCode:true,style:{base:{fontSize:'16px',fontFamily:'Hiragino Sans,sans-serif'}}});
     _cardElement.mount('#stripe-card-element');
     _cardElement.on('change',function(e){
       var el=document.getElementById('stripe-card-errors');
