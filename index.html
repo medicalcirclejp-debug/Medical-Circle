@@ -1664,8 +1664,8 @@ document.getElementById('compCloseBtn').addEventListener('click',function(){clos
 // ===== ステータス切り替え =====
 document.getElementById('statusToggleBtn').addEventListener('click',function(){
   var title=document.getElementById('statusTitle'),desc=document.getElementById('statusDesc'),fee=document.getElementById('statusFee'),confirmBtn=document.getElementById('statusConfirmBtn');
-  if(!clinicStatusPaused){title.textContent='掲載を一時停止しますか？';desc.textContent='求職者からの検索結果に表示されなくなります。';fee.innerHTML='💴 <strong>料金について</strong><br>一時停止中は月額料金が発生しません。';confirmBtn.textContent='一時停止する';confirmBtn.className='btn bg';}
-  else{title.textContent='掲載を再開しますか？';desc.textContent='求職者の検索結果に再び表示されるようになります。';fee.innerHTML='💴 <strong>料金について</strong><br>再開すると翌月より月額料金が再開されます。';confirmBtn.textContent='掲載を再開する';confirmBtn.className='btn bp';}
+  if(!clinicStatusPaused){title.textContent='掲載を一時停止しますか？';desc.textContent='求職者からの検索結果に表示されなくなります。';fee.innerHTML='💴 <strong>料金について</strong><br>一時停止した翌月から月額料金が発生しません。停止中の期間は課金されません。';confirmBtn.textContent='一時停止する';confirmBtn.className='btn bg';}
+  else{title.textContent='掲載を再開しますか？';desc.textContent='求職者の検索結果に再び表示されるようになります。';fee.innerHTML='💴 <strong>料金について</strong><br>再開した月から月額料金が発生します。';confirmBtn.textContent='掲載を再開する';confirmBtn.className='btn bp';}
   openModal('status');
 });
 document.getElementById('statusConfirmBtn').addEventListener('click',function(){
