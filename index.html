@@ -519,6 +519,13 @@ img,svg{display:block;max-width:100%}
   <div class="shell wrap">
     <div class="cip">
       <div class="dh" style="padding-top:1.5rem"><div><span class="tag tp">クリニック情報</span><div class="dt" style="margin-top:.4rem">クリニック情報を入力</div></div><button class="btn bg bsm" data-nav="dashboard">← ダッシュボードに戻る</button></div>
+      <div class="card"><div class="card-title">📷 クリニック写真</div>
+        <div style="display:grid;gap:.75rem">
+          <div style="font-size:.78rem;color:var(--mt);line-height:1.7">外観・受付・診療室・その他の写真を登録できます。求職者の詳細画面に表示されます。</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem" id="photoUploadGrid"></div>
+          <div id="photoUploadMsg"></div>
+        </div>
+      </div>
       <div class="card"><div class="card-title">📋 基本情報</div><div style="display:grid;gap:.85rem"><div class="fi"><label>クリニック名 *</label><input type="text" id="ci-name" placeholder="例）梅田みなと総合クリニック"></div><div class="fi"><label>院長名</label><input type="text" id="ci-director" placeholder="例）湊 友哉"></div><div class="fi"><label>診療科目</label><input type="text" id="ci-specialty" placeholder="例）内科・整形外科・皮膚科"></div><div class="fg"><div class="fi"><label>電話番号</label><input type="tel" id="ci-phone" placeholder="例）06-1234-5678"></div><div class="fi"><label>開院年</label><input type="text" id="ci-founded" placeholder="例）2010年"></div></div><div class="fi"><label>住所</label><input type="text" id="ci-address" placeholder="都道府県・市区町村・番地"></div><div class="fi"><label>公式サイト または GoogleマップURL</label><input type="url" id="ci-website" placeholder="https://example-clinic.com"></div></div></div>
       <div class="card"><div class="card-title">🕐 診療情報</div><div style="display:grid;gap:.85rem"><div class="fi"><label>診療時間</label><div style="display:grid;gap:.45rem;margin-top:.25rem"><div class="hg-row"><span class="hg-day">月</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row"><span class="hg-day">火</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row"><span class="hg-day">水</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row"><span class="hg-day">木</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row"><span class="hg-day">金</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row"><span class="hg-day" style="color:var(--pr)">土</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="13:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row"><span class="hg-day" style="color:#e05050">日</span><div class="hg-inputs"><input type="time" class="hg-time" style="opacity:.35"><span class="hg-sep">〜</span><input type="time" class="hg-time" style="opacity:.35"><label class="hg-cl"><input type="checkbox" class="day-cb" checked style="accent-color:var(--pr)">休診</label></div></div></div></div><div class="fi"><label>昼休み時間</label><div class="hg-row" style="padding:0"><span class="hg-day" style="color:var(--mt);font-size:.75rem;font-weight:500">休憩</span><div class="hg-inputs"><input type="time" value="12:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="13:00" class="hg-time"><label class="hg-cl"><input type="checkbox" style="accent-color:var(--pr)">なし</label></div></div></div><div class="fg"><div class="fi"><label>駐車場</label><select><option>選択してください</option><option>あり（無料）</option><option>あり（有料）</option><option>なし</option></select></div><div class="fi"><label>アクセス</label><input type="text" id="ci-access" placeholder="例）梅田駅から徒歩3分"></div></div></div></div>
       <div class="card"><div class="card-title">👨‍⚕️ 院長挨拶・クリニック紹介</div><div style="display:grid;gap:.85rem"><div class="fi"><label>院長挨拶</label><textarea id="ci-greeting" placeholder="医院の想い、大切にしていること、歓迎する人物像など"></textarea></div><div class="fi"><label>クリニックの特徴・強み</label><textarea id="ci-feature" placeholder="例）完全予約制で残業なし、チームワークを大切にした職場など"></textarea></div><div class="fi"><label>求職者へのメッセージ</label><textarea id="ci-message" placeholder="例）未経験でも丁寧に指導します。ブランクがある方も歓迎しています。"></textarea></div></div></div>
@@ -1379,6 +1386,7 @@ function loadClinicInfoForm() {
   if (!currentClinic) return;
   var fields = {'ci-name':'name','ci-director':'director','ci-specialty':'specialty','ci-phone':'phone','ci-address':'address','ci-website':'website','ci-greeting':'greeting','ci-feature':'feature','ci-message':'message'};
   Object.keys(fields).forEach(function(id){ var el = document.getElementById(id); if(el) el.value = currentClinic[fields[id]] || ''; });
+  loadClinicPhotos();
 }
 document.getElementById('saveClinicInfoBtn').addEventListener('click', async function() {
   if (!currentClinic) { alert('ログインが必要です'); return; }
@@ -1491,7 +1499,7 @@ async function syncJobsFromDB() {
         var salaryText = payType==='negotiable'?'給与 要相談':payLabel+' '+(j.salary_min||'')+'円〜'+(j.salary_max||'')+'円';
         var c = j.clinics || {};
         jobs.push({
-          id:j.id, url:c.website||'', clinic:c.name||'', region:'', role:j.role||'',
+          id:j.id, clinic_id:j.clinic_id, url:c.website||'', clinic:c.name||'', region:'', role:j.role||'',
           payType, salaryValue:j.salary_min||0, salaryText, cond, condLabel,
           days:j.days?j.days.split(','):[], times:j.times?j.times.split(','):[],
           address:c.address||'', director:c.director||'', phone:c.phone||'',
@@ -1669,6 +1677,7 @@ function renderDetail(id) {
   document.getElementById('dContact').innerHTML = [['医院名',j.clinic],['院長名',j.director||'—'],['電話番号',j.phone||'—'],['住所',j.address||'—']].map(function(d){ return '<div class="dr"><dt>'+d[0]+'</dt><dd>'+d[1]+'</dd></div>'; }).join('');
   document.getElementById('dReviews').innerHTML = j.url ? '<a href="'+j.url+'" target="_blank" style="display:flex;align-items:center;gap:.6rem;padding:.85rem 1rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.875rem;font-weight:600;color:var(--pr)">Googleマップで口コミを見る ↗</a>' : '<p style="font-size:.82rem;color:var(--ft)">口コミ情報はありません。</p>';
   updateDetailFav(); openModal('detail'); initGalCount();
+  if (j.clinic_id) loadDetailPhotos(j.clinic_id);
 }
 document.getElementById('dFav').addEventListener('click', function(){ toggleFav(currentJobId); });
 document.getElementById('dFav2').addEventListener('click', function(){ toggleFav(currentJobId); });
@@ -1915,6 +1924,30 @@ document.addEventListener('change', function(e) {
     for (var i=0; i<inputs.length; i++){ inputs[i].style.opacity=closed?'.35':'1'; inputs[i].style.pointerEvents=closed?'none':''; }
   }
   if (e.target.id === 'avatarInput') { var file = e.target.files[0]; if (file) uploadAvatarPhoto(file); }
+  if (e.target.id === 'clinicPhotoInput') {
+    var file = e.target.files[0];
+    var slot = e.target.getAttribute('data-target-slot');
+    if (!file || !slot || !currentClinic) return;
+    var msgEl = document.getElementById('photoUploadMsg');
+    showMsg(msgEl, slot + ' の写真をアップロード中...', 'warn');
+    (async function() {
+      try {
+        var compressed = await compressImage(file, 1200, 0.82);
+        var path = 'clinic-' + currentClinic.id + '/' + slot + '.jpg';
+        var { error } = await _supabase.storage.from('clinic-photos').upload(path, compressed, {
+          upsert: true, contentType: 'image/jpeg'
+        });
+        if (error) { showMsg(msgEl, 'アップロードエラー：' + error.message, 'err'); return; }
+        var urlRes = _supabase.storage.from('clinic-photos').getPublicUrl(path);
+        clinicPhotos[slot] = urlRes.data.publicUrl + '?t=' + Date.now();
+        renderPhotoUploadGrid();
+        showMsg(msgEl, '✓ ' + slot + ' の写真を保存しました', 'ok');
+      } catch(ex) {
+        showMsg(msgEl, 'エラー：' + ex.message, 'err');
+      }
+      e.target.value = '';
+    })();
+  }
 });
 async function uploadAvatarPhoto(file) {
   if (!currentApplicant) return;
@@ -1966,9 +1999,106 @@ function initGalCount() { var el=document.getElementById('galScroll'); if(el){el
 function switchAboutTab(tab) { var appl=document.getElementById('aboutApplicant'); var clin=document.getElementById('aboutClinic'); var btnA=document.getElementById('aboutTabApplicant'); var btnC=document.getElementById('aboutTabClinic'); if(tab==='applicant'){appl.style.display='block';clin.style.display='none';btnA.style.background='var(--pr)';btnA.style.color='#fff';btnC.style.background='transparent';btnC.style.color='var(--mt)';}else{appl.style.display='none';clin.style.display='block';btnC.style.background='var(--pr)';btnC.style.color='#fff';btnA.style.background='transparent';btnA.style.color='var(--mt)';} }
 function setMyStatus(status) { myEmploymentStatus=status; var btnE=document.getElementById('myStatusEmployed'); var btnU=document.getElementById('myStatusUnemployed'); if(status==='employed'){btnE.classList.add('on');btnU.classList.remove('on');}else{btnU.classList.add('on');btnE.classList.remove('on');} }
 
+
+// ===== クリニック写真アップロード =====
+var PHOTO_SLOTS = [
+  { key: 'exterior',   label: '外観',   emoji: '🏥' },
+  { key: 'reception',  label: '受付',   emoji: '🛎' },
+  { key: 'treatment',  label: '診療室', emoji: '🩺' },
+  { key: 'other',      label: 'その他', emoji: '📷' },
+];
+var clinicPhotos = {};
+
+function renderPhotoUploadGrid() {
+  var grid = document.getElementById('photoUploadGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  PHOTO_SLOTS.forEach(function(slot) {
+    var url = clinicPhotos[slot.key];
+    var div = document.createElement('div');
+    div.style.cssText = 'border-radius:var(--rlg);overflow:hidden;border:1.5px dashed var(--bd);background:var(--bg);cursor:pointer;position:relative;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;transition:border-color 150ms';
+    if (url) {
+      div.innerHTML = '<img src="'+url+'" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"><div style="position:absolute;inset:0;background:rgba(0,0,0,.38);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem"><span style="font-size:1.2rem">✏️</span><span style="font-size:.7rem;color:#fff;font-weight:600">'+slot.label+' を変更</span></div>';
+    } else {
+      div.innerHTML = '<span style="font-size:1.5rem">'+slot.emoji+'</span><span style="font-size:.72rem;color:var(--mt);font-weight:600">'+slot.label+'</span><span style="font-size:.68rem;color:var(--ft)">タップして追加</span>';
+    }
+    div.addEventListener('click', function() {
+      var inp = document.getElementById('clinicPhotoInput');
+      inp.setAttribute('data-target-slot', slot.key);
+      inp.value = '';
+      inp.click();
+    });
+    grid.appendChild(div);
+  });
+}
+
+async function loadClinicPhotos() {
+  if (!currentClinic || !currentClinic.id) return;
+  await Promise.all(PHOTO_SLOTS.map(async function(slot) {
+    var path = 'clinic-' + currentClinic.id + '/' + slot.key + '.jpg';
+    var res = _supabase.storage.from('clinic-photos').getPublicUrl(path);
+    var url = res.data ? res.data.publicUrl : null;
+    if (!url) { clinicPhotos[slot.key] = null; return; }
+    try {
+      var r = await fetch(url, { method: 'HEAD' });
+      clinicPhotos[slot.key] = r.ok ? url + '?t=' + Date.now() : null;
+    } catch(e) { clinicPhotos[slot.key] = null; }
+  }));
+  renderPhotoUploadGrid();
+}
+
+function compressImage(file, maxPx, quality) {
+  return new Promise(function(resolve) {
+    var img = new Image();
+    var blobUrl = URL.createObjectURL(file);
+    img.onload = function() {
+      var w = img.width, h = img.height;
+      if (w > maxPx || h > maxPx) {
+        if (w > h) { h = Math.round(h * maxPx / w); w = maxPx; }
+        else { w = Math.round(w * maxPx / h); h = maxPx; }
+      }
+      var canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      URL.revokeObjectURL(blobUrl);
+      canvas.toBlob(function(blob) { resolve(blob); }, 'image/jpeg', quality);
+    };
+    img.src = blobUrl;
+  });
+}
+
+async function loadDetailPhotos(clinicId) {
+  if (!clinicId) return;
+  var galSlots = [
+    { elId: 'gp0', key: 'exterior' },
+    { elId: 'gp1', key: 'reception' },
+    { elId: 'gp2', key: 'treatment' },
+  ];
+  galSlots.forEach(function(s) {
+    var el = document.getElementById(s.elId);
+    if (el) el.style.backgroundImage = '';
+  });
+  await Promise.all(galSlots.map(async function(s) {
+    var path = 'clinic-' + clinicId + '/' + s.key + '.jpg';
+    var res = _supabase.storage.from('clinic-photos').getPublicUrl(path);
+    if (!res.data) return;
+    try {
+      var r = await fetch(res.data.publicUrl, { method: 'HEAD' });
+      if (!r.ok) return;
+      var el = document.getElementById(s.elId);
+      if (el) {
+        el.style.backgroundImage = 'url(' + res.data.publicUrl + ')';
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
+      }
+    } catch(e) {}
+  }));
+}
+
 // ===== 初期化 =====
 renderChips();
 syncJobsFromDB();
 </script>
+<input type="file" id="clinicPhotoInput" accept="image/*" style="display:none">
 </body>
 </html>
