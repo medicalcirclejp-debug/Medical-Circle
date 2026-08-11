@@ -527,9 +527,9 @@ img,svg{display:block;max-width:100%}
         </div>
       </div>
       <div class="card"><div class="card-title">📋 基本情報</div><div style="display:grid;gap:.85rem"><div class="fi"><label>クリニック名 *</label><input type="text" id="ci-name" placeholder="例）梅田みなと総合クリニック"></div><div class="fi"><label>院長名</label><input type="text" id="ci-director" placeholder="例）湊 友哉"></div><div class="fi"><label>診療科目</label><input type="text" id="ci-specialty" placeholder="例）内科・整形外科・皮膚科"></div><div class="fg"><div class="fi"><label>電話番号</label><input type="tel" id="ci-phone" placeholder="例）06-1234-5678"></div><div class="fi"><label>開院年</label><input type="text" id="ci-founded" placeholder="例）2010年"></div></div><div class="fi"><label>住所</label><input type="text" id="ci-address" placeholder="都道府県・市区町村・番地"></div><div class="fi"><label>公式サイト または GoogleマップURL</label><input type="url" id="ci-website" placeholder="https://example-clinic.com"></div></div></div>
-      <div class="card"><div class="card-title">🕐 診療情報</div><div style="display:grid;gap:.85rem"><div class="fi"><label>診療時間</label><div style="display:grid;gap:.45rem;margin-top:.25rem"><div class="hg-row"><span class="hg-day">月</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row"><span class="hg-day">火</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row"><span class="hg-day">水</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row"><span class="hg-day">木</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row"><span class="hg-day">金</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row"><span class="hg-day" style="color:var(--pr)">土</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="13:00" class="hg-time"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row"><span class="hg-day" style="color:#e05050">日</span><div class="hg-inputs"><input type="time" class="hg-time" style="opacity:.35"><span class="hg-sep">〜</span><input type="time" class="hg-time" style="opacity:.35"><label class="hg-cl"><input type="checkbox" class="day-cb" checked style="accent-color:var(--pr)">休診</label></div></div></div></div><div class="fi"><label>昼休み時間</label><div class="hg-row" style="padding:0"><span class="hg-day" style="color:var(--mt);font-size:.75rem;font-weight:500">休憩</span><div class="hg-inputs"><input type="time" value="12:00" class="hg-time"><span class="hg-sep">〜</span><input type="time" value="13:00" class="hg-time"><label class="hg-cl"><input type="checkbox" style="accent-color:var(--pr)">なし</label></div></div></div><div class="fg"><div class="fi"><label>駐車場</label><select><option>選択してください</option><option>あり（無料）</option><option>あり（有料）</option><option>なし</option></select></div><div class="fi"><label>アクセス</label><input type="text" id="ci-access" placeholder="例）梅田駅から徒歩3分"></div></div></div></div>
+      <div class="card"><div class="card-title">🕐 診療情報</div><div style="display:grid;gap:.85rem"><div class="fi"><label>診療時間</label><div style="display:grid;gap:.45rem;margin-top:.25rem" id="ci-hours-grid"><div class="hg-row" data-day="月"><span class="hg-day">月</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time" data-role="open"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time" data-role="close"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row" data-day="火"><span class="hg-day">火</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time" data-role="open"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time" data-role="close"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row" data-day="水"><span class="hg-day">水</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time" data-role="open"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time" data-role="close"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row" data-day="木"><span class="hg-day">木</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time" data-role="open"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time" data-role="close"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row" data-day="金"><span class="hg-day">金</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time" data-role="open"><span class="hg-sep">〜</span><input type="time" value="18:00" class="hg-time" data-role="close"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row" data-day="土"><span class="hg-day" style="color:var(--pr)">土</span><div class="hg-inputs"><input type="time" value="09:00" class="hg-time" data-role="open"><span class="hg-sep">〜</span><input type="time" value="13:00" class="hg-time" data-role="close"><label class="hg-cl"><input type="checkbox" class="day-cb" style="accent-color:var(--pr)">休診</label></div></div><div class="hg-row" data-day="日"><span class="hg-day" style="color:#e05050">日</span><div class="hg-inputs"><input type="time" class="hg-time" data-role="open" style="opacity:.35"><span class="hg-sep">〜</span><input type="time" class="hg-time" data-role="close" style="opacity:.35"><label class="hg-cl"><input type="checkbox" class="day-cb" checked style="accent-color:var(--pr)">休診</label></div></div></div></div><div class="fi"><label>昼休み時間</label><div class="hg-row" style="padding:0"><span class="hg-day" style="color:var(--mt);font-size:.75rem;font-weight:500">休憩</span><div class="hg-inputs"><input type="time" value="12:00" class="hg-time" id="ci-lunch-start"><span class="hg-sep">〜</span><input type="time" value="13:00" class="hg-time" id="ci-lunch-end"><label class="hg-cl"><input type="checkbox" id="ci-lunch-none" style="accent-color:var(--pr)">なし</label></div></div></div><div class="fg"><div class="fi"><label>駐車場</label><select id="ci-parking"><option>選択してください</option><option>あり（無料）</option><option>あり（有料）</option><option>なし</option></select></div><div class="fi"><label>アクセス</label><input type="text" id="ci-access" placeholder="例）梅田駅から徒歩3分"></div></div></div></div>
       <div class="card"><div class="card-title">👨‍⚕️ 院長挨拶・クリニック紹介</div><div style="display:grid;gap:.85rem"><div class="fi"><label>院長挨拶</label><textarea id="ci-greeting" placeholder="医院の想い、大切にしていること、歓迎する人物像など"></textarea></div><div class="fi"><label>クリニックの特徴・強み</label><textarea id="ci-feature" placeholder="例）完全予約制で残業なし、チームワークを大切にした職場など"></textarea></div><div class="fi"><label>求職者へのメッセージ</label><textarea id="ci-message" placeholder="例）未経験でも丁寧に指導します。ブランクがある方も歓迎しています。"></textarea></div></div></div>
-      <div class="card"><div class="card-title">👥 スタッフ情報（任意）</div><div class="fg"><div class="fi"><label>スタッフ総数</label><input type="number" placeholder="例）12"></div><div class="fi"><label>うち男性</label><input type="number" placeholder="例）3"></div><div class="fi"><label>うち女性</label><input type="number" placeholder="例）9"></div><div class="fi"><label>平均年齢</label><input type="text" placeholder="例）32歳"></div></div><div class="fi" style="margin-top:.75rem"><label>職場の雰囲気</label><input type="text" placeholder="例）アットホーム、チームワーク重視"></div></div>
+      <div class="card"><div class="card-title">👥 スタッフ情報（任意）</div><div class="fg"><div class="fi"><label>スタッフ総数</label><input type="number" id="ci-staff-total" placeholder="例）12"></div><div class="fi"><label>うち男性</label><input type="number" id="ci-staff-male" placeholder="例）3"></div><div class="fi"><label>うち女性</label><input type="number" id="ci-staff-female" placeholder="例）9"></div><div class="fi"><label>平均年齢</label><input type="text" id="ci-staff-avg-age" placeholder="例）32歳"></div></div><div class="fi" style="margin-top:.75rem"><label>職場の雰囲気</label><input type="text" id="ci-atmosphere" placeholder="例）アットホーム、チームワーク重視"></div></div>
       <div id="saveClinicInfoMsg"></div>
       <div style="display:grid;gap:.6rem"><button class="btn bp" style="width:100%" id="saveClinicInfoBtn">保存してダッシュボードに戻る</button><button class="btn bg" style="width:100%" data-nav="dashboard">キャンセル</button></div>
     </div>
@@ -1407,10 +1407,55 @@ function loadClinicInfoForm() {
   var fields = {'ci-name':'name','ci-director':'director','ci-specialty':'specialty','ci-phone':'phone','ci-address':'address','ci-website':'website','ci-greeting':'greeting','ci-feature':'feature','ci-message':'message'};
   Object.keys(fields).forEach(function(id){ var el = document.getElementById(id); if(el) el.value = currentClinic[fields[id]] || ''; });
   loadClinicPhotos();
+  // ★診療情報・スタッフ情報の読み込み
+  var hours = currentClinic.business_hours || {};
+  document.querySelectorAll('#ci-hours-grid .hg-row').forEach(function(row) {
+    var day = row.getAttribute('data-day');
+    var h = hours[day] || {};
+    var openInput = row.querySelector('[data-role="open"]');
+    var closeInput = row.querySelector('[data-role="close"]');
+    var cb = row.querySelector('.day-cb');
+    if (openInput) openInput.value = h.open || '';
+    if (closeInput) closeInput.value = h.close || '';
+    if (cb) {
+      cb.checked = !!h.closed;
+      openInput.style.opacity = h.closed ? '.35' : '1';
+      openInput.style.pointerEvents = h.closed ? 'none' : '';
+      closeInput.style.opacity = h.closed ? '.35' : '1';
+      closeInput.style.pointerEvents = h.closed ? 'none' : '';
+    }
+  });
+  document.getElementById('ci-lunch-start').value = currentClinic.lunch_break_start || '';
+  document.getElementById('ci-lunch-end').value = currentClinic.lunch_break_end || '';
+  document.getElementById('ci-lunch-none').checked = !!currentClinic.lunch_break_none;
+  document.getElementById('ci-parking').value = currentClinic.parking || '選択してください';
+  document.getElementById('ci-access').value = currentClinic.access || '';
+  document.getElementById('ci-staff-total').value = currentClinic.staff_total != null ? currentClinic.staff_total : '';
+  document.getElementById('ci-staff-male').value = currentClinic.staff_male != null ? currentClinic.staff_male : '';
+  document.getElementById('ci-staff-female').value = currentClinic.staff_female != null ? currentClinic.staff_female : '';
+  document.getElementById('ci-staff-avg-age').value = currentClinic.staff_avg_age || '';
+  document.getElementById('ci-atmosphere').value = currentClinic.workplace_atmosphere || '';
 }
 document.getElementById('saveClinicInfoBtn').addEventListener('click', async function() {
   if (!currentClinic) { alert('ログインが必要です'); return; }
   this.textContent = '保存中...'; this.disabled = true;
+  // ★診療情報：曜日ごとの開始・終了・休診フラグをJSONBにまとめる
+  var businessHours = {};
+  document.querySelectorAll('#ci-hours-grid .hg-row').forEach(function(row) {
+    var day = row.getAttribute('data-day');
+    var openInput = row.querySelector('[data-role="open"]');
+    var closeInput = row.querySelector('[data-role="close"]');
+    var cb = row.querySelector('.day-cb');
+    businessHours[day] = {
+      open: openInput && openInput.value ? openInput.value : null,
+      close: closeInput && closeInput.value ? closeInput.value : null,
+      closed: cb ? cb.checked : false
+    };
+  });
+  var parkingVal = document.getElementById('ci-parking').value;
+  var staffTotalVal = document.getElementById('ci-staff-total').value;
+  var staffMaleVal = document.getElementById('ci-staff-male').value;
+  var staffFemaleVal = document.getElementById('ci-staff-female').value;
   var {error} = await _supabase.from('clinics').update({
     name: document.getElementById('ci-name').value,
     director: document.getElementById('ci-director').value,
@@ -1421,6 +1466,17 @@ document.getElementById('saveClinicInfoBtn').addEventListener('click', async fun
     greeting: document.getElementById('ci-greeting').value,
     feature: document.getElementById('ci-feature').value,
     message: document.getElementById('ci-message').value,
+    business_hours: businessHours,
+    lunch_break_start: document.getElementById('ci-lunch-start').value || null,
+    lunch_break_end: document.getElementById('ci-lunch-end').value || null,
+    lunch_break_none: document.getElementById('ci-lunch-none').checked,
+    parking: parkingVal === '選択してください' ? null : parkingVal,
+    access: document.getElementById('ci-access').value,
+    staff_total: staffTotalVal ? Number(staffTotalVal) : null,
+    staff_male: staffMaleVal ? Number(staffMaleVal) : null,
+    staff_female: staffFemaleVal ? Number(staffFemaleVal) : null,
+    staff_avg_age: document.getElementById('ci-staff-avg-age').value,
+    workplace_atmosphere: document.getElementById('ci-atmosphere').value,
   }).eq('user_id', currentClinic.user_id);
   if (error) { showMsg(document.getElementById('saveClinicInfoMsg'), 'エラー：' + error.message, 'err'); }
   else {
@@ -1535,7 +1591,7 @@ document.getElementById('jobSaveBtn').addEventListener('click', async function()
 // ===== SupabaseDBからjobs同期 =====
 async function syncJobsFromDB() {
   try {
-    var {data} = await _supabase.from('jobs').select('*, clinics(name,address,director,phone,greeting,feature,message,website)');
+    var {data} = await _supabase.from('jobs').select('*, clinics(name,address,director,phone,greeting,feature,message,website,business_hours,lunch_break_start,lunch_break_end,lunch_break_none,parking,access,staff_total,staff_male,staff_female,staff_avg_age,workplace_atmosphere)');
     if (data && data.length > 0) {
       jobs = jobs.filter(function(j){ return String(j.id).startsWith('demo-'); });
       data.forEach(function(j) {
@@ -1555,14 +1611,33 @@ async function syncJobsFromDB() {
           salaryValue = j.salary_min;
         }
         var c = j.clinics || {};
+        // ★診療時間（JSONB）を表示用の "09:00〜18:00" / "休診" 形式に変換
+        var hoursObj = {};
+        var bh = c.business_hours || {};
+        ['月','火','水','木','金','土','日'].forEach(function(d) {
+          var h = bh[d];
+          if (!h || h.closed || !h.open || !h.close) { hoursObj[d] = '休診'; }
+          else { hoursObj[d] = h.open + '〜' + h.close; }
+        });
+        var lunchBreakText = c.lunch_break_none ? '' : (c.lunch_break_start && c.lunch_break_end ? c.lunch_break_start + '〜' + c.lunch_break_end : '');
+        var extraDetails = [['勤務地',c.address||''],['給与',salaryText],['勤務条件',condLabel]];
+        if (c.parking) extraDetails.push(['駐車場', c.parking]);
+        if (c.access) extraDetails.push(['アクセス', c.access]);
+        if (c.staff_total) {
+          var staffText = c.staff_total + '名';
+          if (c.staff_male != null || c.staff_female != null) staffText += '（男性'+(c.staff_male||0)+'名 / 女性'+(c.staff_female||0)+'名）';
+          extraDetails.push(['スタッフ数', staffText]);
+        }
+        if (c.staff_avg_age) extraDetails.push(['平均年齢', c.staff_avg_age]);
+        if (c.workplace_atmosphere) extraDetails.push(['職場の雰囲気', c.workplace_atmosphere]);
         jobs.push({
           id:j.id, clinic_id:j.clinic_id, url:c.website||'', clinic:c.name||'', region:'', role:j.role||'',
           payType, salaryValue, salaryText, cond, condLabel,
           days:j.days?j.days.split(','):[], times:j.times?j.times.split(','):[],
           address:c.address||'', director:c.director||'', phone:c.phone||'',
           headline:j.main_duties||'', greeting:c.greeting||'',
-          feature:c.feature||'', message:c.message||'', score:'', hours:{}, lunchBreak:'',
-          details:[['勤務地',c.address||''],['給与',salaryText],['勤務条件',condLabel]]
+          feature:c.feature||'', message:c.message||'', score:'', hours:hoursObj, lunchBreak:lunchBreakText,
+          details:extraDetails
         });
       });
     }
@@ -1749,6 +1824,7 @@ function renderDetail(id) {
   document.getElementById('dInfo').innerHTML = (j.details||[]).map(function(d){ return '<div class="dr"><dt>'+d[0]+'</dt><dd>'+d[1]+'</dd></div>'; }).join('');
   var hoursHtml = '<div style="display:grid;gap:.25rem">';
   allDays.forEach(function(d){ var h = j.hours&&j.hours[d]?j.hours[d]:'—'; var closed = h==='休診'; var c = dayColors[d]||'var(--tx)'; hoursHtml += '<div class="dr"><dt style="color:'+c+';font-weight:700">'+d+'</dt><dd style="'+(closed?'color:var(--ft)':'')+'">'+h+'</dd></div>'; });
+  if (j.lunchBreak) { hoursHtml += '<div class="dr"><dt style="color:var(--mt)">休憩</dt><dd>'+j.lunchBreak+'</dd></div>'; }
   hoursHtml += '</div>';
   document.getElementById('dHours').innerHTML = hoursHtml;
   document.getElementById('dContact').innerHTML = [['医院名',j.clinic],['院長名',j.director||'—'],['電話番号',j.phone||'—'],['住所',j.address||'—']].map(function(d){ return '<div class="dr"><dt>'+d[0]+'</dt><dd>'+d[1]+'</dd></div>'; }).join('');
