@@ -846,7 +846,7 @@ img,svg{display:block;max-width:100%}
 <div class="msh" id="applySh">
   <div class="min" style="max-width:440px">
     <div class="mhd"><div><div class="mey">応募完了</div><div class="mtt">応募が完了しました</div></div><button class="ic-btn" id="applyClose">✕</button></div>
-    <div class="mbd"><div style="text-align:center;font-size:2rem;margin-bottom:.75rem">🎉</div><div class="nt nok" style="margin-bottom:1rem;font-size:.875rem"><strong>応募が完了しました。</strong><br>医院からのメッセージをお待ちください。</div><p style="font-size:.82rem;color:var(--mt);margin-bottom:1.1rem">案内メールはご登録のメールアドレスにクリニックより直接届きます。</p><button class="btn bp" style="width:100%" id="applyCloseBtn">閉じる</button></div>
+    <div class="mbd"><div style="text-align:center;font-size:2rem;margin-bottom:.75rem">🎉</div><div class="nt nok" style="margin-bottom:1rem;font-size:.875rem"><strong>応募が完了しました。</strong><br>ご登録のメールアドレスより、医院へ応募通知メールが送信されました。</div><p style="font-size:.82rem;color:var(--mt);margin-bottom:1.1rem">医院からの連絡は、ご登録のメールアドレスをご確認ください。</p><button class="btn bp" style="width:100%" id="applyCloseBtn">閉じる</button></div>
   </div>
 </div>
 
@@ -1086,7 +1086,7 @@ Object.keys(closeMap).forEach(function(id) {
 });
 
 // ===== data-nav =====
-document.addEventListener('click', function(e) {
+document.addEventListener('click', async function(e) {
   var el = e.target.closest('[data-nav]');
   if (el && el.id !== 'applicantLogoutBtn' && el.id !== 'mypageLogoutBtn' && el.id !== 'searchLogoutBtn') {
     e.preventDefault();
@@ -1095,6 +1095,11 @@ document.addEventListener('click', function(e) {
     document.body.style.overflow = '';
     closeAllModals();
     var nav = el.getAttribute('data-nav');
+    // ★修正：既にログイン済みの状態でログインページへの導線を押した場合、
+    // 混乱を避けるためログインフォームではなくマイページ／ダッシュボードへ誘導する。
+    if (typeof authReadyPromise !== 'undefined') { await authReadyPromise; }
+    if (nav === 'clinic-login' && currentClinic) { nav = 'dashboard'; }
+    if (nav === 'applicant-login' && currentApplicant) { nav = 'mypage'; }
     if (nav === 'clinic-info' && currentClinic) loadClinicInfoForm();
     if (nav === 'dashboard' && currentClinic) loadDashboard();
     showPage(nav);
@@ -1103,17 +1108,30 @@ document.addEventListener('click', function(e) {
 </script>
 <script>
 // ===== セッション復元 =====
-_supabase.auth.onAuthStateChange(async function(event, session) {
-  if (session && session.user) {
-    var {data:clinic} = await _supabase.from('clinics').select('*').eq('user_id', session.user.id).maybeSingle();
-    if (clinic) {
-      currentClinic = clinic; isLoggedIn = true; updateDashboardUI();
-    } else {
-      var {data:applicant} = await _supabase.from('applicants').select('*').eq('user_id', session.user.id).maybeSingle();
-      if (applicant) { currentApplicant = applicant; isLoggedIn = true; updateMypageUI(); }
-    }
-    hideApplicantBtns();
+// ★修正：ログイン状態の復元はSupabaseへの問い合わせを伴う非同期処理のため、
+// これが終わる前に「応募する」等がクリックされると isLoggedIn/currentApplicant が
+// まだ未設定で、実際はログイン済みなのにログイン画面が出てしまうことがあった。
+// authReadyPromise を用意し、ログイン要否を判定する処理はこれを待ってから行うようにする。
+async function applySessionUser(user) {
+  var {data:clinic} = await _supabase.from('clinics').select('*').eq('user_id', user.id).maybeSingle();
+  if (clinic) {
+    currentClinic = clinic; isLoggedIn = true; updateDashboardUI();
+  } else {
+    var {data:applicant} = await _supabase.from('applicants').select('*').eq('user_id', user.id).maybeSingle();
+    if (applicant) { currentApplicant = applicant; isLoggedIn = true; updateMypageUI(); }
   }
+  hideApplicantBtns();
+}
+var authReadyPromise = (async function initAuth() {
+  try {
+    var {data} = await _supabase.auth.getSession();
+    var session = data && data.session;
+    if (session && session.user) { await applySessionUser(session.user); }
+  } catch (e) { console.log('auth init error', e); }
+})();
+_supabase.auth.onAuthStateChange(function(event, session) {
+  if (event === 'SIGNED_OUT') return;
+  if (session && session.user) { applySessionUser(session.user); }
 });
 
 // ===== クリニックログイン =====
@@ -1620,17 +1638,22 @@ function renderJobs() {
   });
   document.getElementById('jobList').innerHTML = html;
 }
-document.getElementById('jobList').addEventListener('click', function(e) {
+document.getElementById('jobList').addEventListener('click', async function(e) {
   var db = e.target.closest('.job-detail-btn');
   if (db) { renderDetail(db.getAttribute('data-job-id')); return; }
   var fb = e.target.closest('.job-fav-btn');
-  if (fb) { toggleFav(fb.getAttribute('data-job-id')); return; }
+  if (fb) { await authReadyPromise; toggleFav(fb.getAttribute('data-job-id')); return; }
   var ab = e.target.closest('.apply-btn');
-  if (ab) { currentJobId = ab.getAttribute('data-job-id'); if (!isLoggedIn) openAuthModal(); else applyToJob(currentJobId); }
+  if (ab) {
+    currentJobId = ab.getAttribute('data-job-id');
+    await authReadyPromise;
+    if (!isLoggedIn) openAuthModal(); else applyToJob(currentJobId);
+  }
 });
 
 // ===== 応募 =====
 async function applyToJob(jobId) {
+  await authReadyPromise;
   if (!currentApplicant) { openAuthModal(); return; }
   var job = null;
   for (var i=0; i<jobs.length; i++) { if (String(jobs[i].id)===String(jobId)) { job = jobs[i]; break; } }
@@ -1711,10 +1734,10 @@ function renderDetail(id) {
   resetGalleryPhotos();
   if (j.clinic_id) loadDetailPhotos(j.clinic_id);
 }
-document.getElementById('dFav').addEventListener('click', function(){ toggleFav(currentJobId); });
-document.getElementById('dFav2').addEventListener('click', function(){ toggleFav(currentJobId); });
-document.getElementById('detailApplyBtn').addEventListener('click', function(){ if (!isLoggedIn){ closeModal('detail'); openAuthModal(); } else { closeModal('detail'); applyToJob(currentJobId); } });
-document.getElementById('detailApplyBtn2').addEventListener('click', function(){ if (!isLoggedIn){ closeModal('detail'); openAuthModal(); } else { closeModal('detail'); applyToJob(currentJobId); } });
+document.getElementById('dFav').addEventListener('click', async function(){ await authReadyPromise; toggleFav(currentJobId); });
+document.getElementById('dFav2').addEventListener('click', async function(){ await authReadyPromise; toggleFav(currentJobId); });
+document.getElementById('detailApplyBtn').addEventListener('click', async function(){ await authReadyPromise; if (!isLoggedIn){ closeModal('detail'); openAuthModal(); } else { closeModal('detail'); applyToJob(currentJobId); } });
+document.getElementById('detailApplyBtn2').addEventListener('click', async function(){ await authReadyPromise; if (!isLoggedIn){ closeModal('detail'); openAuthModal(); } else { closeModal('detail'); applyToJob(currentJobId); } });
 function toggleFav(id) { if (!isLoggedIn){ openAuthModal(); return; } favorites[id] = !favorites[id]; renderJobs(); if (String(currentJobId)===String(id)) updateDetailFav(); }
 function updateDetailFav() {
   var btn = document.getElementById('dFav'); if (!btn||!currentJobId) return;
