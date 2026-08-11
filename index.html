@@ -6,17 +6,17 @@
 <title>Medical Circle | 医療職求人 - 看護師・薬剤師・理学療法士など10職種対応</title>
 <meta name="description" content="Medical Circleは医院と医療従事者が直接つながる求人サービスです。看護師・薬剤師・理学療法士など10職種対応。求職者の登録・利用は完全無料。仲介手数料なし。">
 <meta name="keywords" content="医療 求人,看護師 求人,薬剤師 求人,理学療法士 求人,作業療法士 求人,歯科衛生士 求人,管理栄養士 求人,クリニック 求人,医院 求人,直接採用">
-<link rel="canonical" href="https://medicalcirclejp-debug.github.io/Medical-Circle/">
+<link rel="canonical" href="https://medicalcircle.jp/">
 <meta property="og:title" content="Medical Circle | 医療職求人">
 <meta property="og:description" content="医院と医療従事者が直接つながる求人サービス。10職種対応・求職者完全無料・仲介手数料なし。">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://medicalcirclejp-debug.github.io/Medical-Circle/">
+<meta property="og:url" content="https://medicalcircle.jp/">
 <meta property="og:site_name" content="Medical Circle">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Medical Circle | 医療職求人">
 <meta name="twitter:description" content="医院と医療従事者が直接つながる求人サービス。10職種対応・求職者完全無料。">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"Medical Circle","url":"https://medicalcirclejp-debug.github.io/Medical-Circle/","description":"医院と医療従事者が直接つながる医療職専門の求人サービス","potentialAction":{"@type":"SearchAction","target":"https://medicalcirclejp-debug.github.io/Medical-Circle/","query-input":"required name=search_term_string"}}
+{"@context":"https://schema.org","@type":"WebSite","name":"Medical Circle","url":"https://medicalcircle.jp/","description":"医院と医療従事者が直接つながる医療職専門の求人サービス","potentialAction":{"@type":"SearchAction","target":"https://medicalcircle.jp/","query-input":"required name=search_term_string"}}
 </script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -463,7 +463,7 @@ img,svg{display:block;max-width:100%}
         <button class="btn bp bsm" style="width:fit-content" data-nav="clinic-info">クリニック情報を編集</button>
       </div>
       <div style="margin-top:.85rem;border:1.5px dashed var(--bd);border-radius:var(--rlg);padding:.85rem;position:relative;overflow:hidden">
-        <div style="position:absolute;top:.5rem;right:.5rem"><span style="background:var(--al);color:var(--ac);font-size:.68rem;font-weight:700;padding:.18rem .5rem;border-radius:var(--rf)">月額 560円</span></div>
+        <div style="position:absolute;top:.5rem;right:.5rem"><span style="background:var(--al);color:var(--ac);font-size:.68rem;font-weight:700;padding:.18rem .5rem;border-radius:var(--rf)">近日公開</span></div>
         <div style="font-size:.75rem;font-weight:700;color:var(--mt);margin-bottom:.6rem">📊 統計情報</div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;text-align:center;filter:blur(4px);user-select:none">
           <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.55rem"><strong style="display:block;font-size:1.05rem">12</strong><span style="font-size:.7rem;color:var(--mt)">閲覧数（今月）</span></div>
@@ -471,15 +471,15 @@ img,svg{display:block;max-width:100%}
           <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.55rem"><strong style="display:block;font-size:1.05rem">2</strong><span style="font-size:.7rem;color:var(--mt)">応募</span></div>
         </div>
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;background:color-mix(in srgb,var(--bg) 60%,transparent);backdrop-filter:blur(2px);border-radius:var(--rlg)">
-          <span style="font-size:1.2rem">🔒</span>
-          <button class="btn bp bsm" onclick="alert('統計プランは準備中です（月額 560円）')">統計を見る（月額 560円）</button>
+          <span style="font-size:1.2rem">🚧</span>
+          <span style="font-size:.78rem;font-weight:700;color:var(--mt)">統計機能は近日公開予定です</span>
         </div>
       </div>
     </div>
     <div class="sh" style="margin-top:.5rem">
       <div style="display:flex;gap:.4rem">
         <button class="chip on" id="tabApplied">応募一覧</button>
-        <button class="chip" id="tabPending">保留リスト</button>
+        <button class="chip" id="tabPending">保留リスト<span style="font-size:.62rem;color:var(--ft);margin-left:.25rem">(近日公開)</span></button>
         <button class="chip" id="tabContacted">案内済み</button>
       </div>
     </div>
@@ -488,7 +488,7 @@ img,svg{display:block;max-width:100%}
       <div class="nt np" style="font-size:.78rem" id="appliedEmpty">応募者がここに表示されます。</div>
       <div id="appliedItems"></div>
     </div>
-    <div id="pendingList" style="display:none"><div class="nt np" style="font-size:.78rem">「保留リストに追加」した応募者がここに表示されます。</div></div>
+    <div id="pendingList" style="display:none"><div class="nt nwn" style="font-size:.78rem">🚧 保留リスト機能は近日公開予定です。気になる応募者を一時的に保留にして、後からまとめて連絡できるようになります。</div></div>
     <div id="contactedList" style="display:none"><div class="nt np" style="font-size:.78rem" id="contactedEmpty">案内済みの応募者がここに表示されます。</div><div id="contactedItems"></div></div>
     <div style="padding-bottom:3rem"></div>
     <div style="border-top:1px solid var(--dv);padding-top:1.2rem;margin-bottom:1rem">
@@ -940,7 +940,7 @@ img,svg{display:block;max-width:100%}
       <div style="background:var(--pl);border:1px solid color-mix(in srgb,var(--pr) 20%,transparent);border-radius:var(--rlg);padding:.9rem;margin-bottom:.9rem"><div style="font-size:.78rem;font-weight:700;color:var(--pr);margin-bottom:.6rem">📅 勤務可能日・時間帯</div><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem;margin-bottom:.6rem" id="amDayGrid"></div><div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.3rem" id="amTimeSlot"></div></div>
       <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rlg);padding:.9rem;display:grid;gap:.5rem;margin-bottom:.9rem"><div class="dr"><dt>資格種</dt><dd id="am-role"></dd></div><div class="dr"><dt>年齢</dt><dd id="am-age"></dd></div><div class="dr"><dt>性別</dt><dd id="am-gender"></dd></div><div class="dr"><dt>在職状況</dt><dd id="am-employed"></dd></div><div class="dr"><dt>メールアドレス</dt><dd id="am-email" style="word-break:break-all"></dd></div><div class="dr"><dt>電話番号</dt><dd id="am-phone"></dd></div><div class="dr"><dt>応募日</dt><dd id="am-date"></dd></div></div>
       <div style="margin-bottom:.9rem"><div style="font-weight:700;font-size:.875rem;margin-bottom:.4rem">備考・自己PR</div><p id="am-note" style="font-size:.855rem;color:var(--mt);background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.8rem"></p></div>
-      <div style="display:grid;gap:.5rem"><div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem"><button class="btn bp" id="sendMailBtn">メールを送る</button><button class="btn bs" onclick="alert('保留リストに追加しました')">保留リストに追加</button></div><button class="btn bg bsm" style="width:100%" id="appClose2">閉じる</button></div>
+      <div style="display:grid;gap:.5rem"><div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem"><button class="btn bp" id="sendMailBtn">メールを送る</button><button class="btn bs" onclick="alert('この機能は近日公開予定です')">保留リストに追加</button></div><button class="btn bg bsm" style="width:100%" id="appClose2">閉じる</button></div>
     </div>
   </div>
 </div>
@@ -958,8 +958,9 @@ img,svg{display:block;max-width:100%}
 <script src="https://js.stripe.com/v3/"></script>
 <script>
 // ===== 設定 =====
-// ★ 本番化時に差し替え: pk_test_ → pk_live_
-var _stripeKey = 'pk_live_ここに貼る';
+// ★ 現在はテストモードのキーです。本番課金を開始する際は
+//    Stripeを本番(Live)モードに切り替えて pk_live_... のキーに差し替えてください。
+var _stripeKey = 'pk_test_51TWulbEyo0WsMSx21pFCieNm4BmGc96rzSedI4apJHz0pc7gtwHWBjLUpK4jJpvWjBV3HLPTilqTxfpk6msIHn1Q00MOIdcwYa';
 // ★ 本番化時に差し替え: Edge FunctionデプロイURL
 var STRIPE_CHARGE_URL = 'https://fmtboixqqqbvnmteciwx.supabase.co/functions/v1/stripe-charge';
 var NOTIFY_CLINIC_URL = 'https://fmtboixqqqbvnmteciwx.supabase.co/functions/v1/notify-clinic';
@@ -1498,10 +1499,20 @@ async function syncJobsFromDB() {
         var payType = j.pay_type || 'monthly';
         var payLabel = payType==='monthly'?'月給':payType==='hourly'?'時給':'要相談';
         var salaryText = payType==='negotiable'?'給与 要相談':payLabel+' '+(j.salary_min||'')+'円〜'+(j.salary_max||'')+'円';
+        // ★修正：検索フィルターの給与条件（月給は「万円」単位、時給は「円」単位）に
+        // 合わせて salaryValue の単位をそろえる。以前は DB の生の円単位の値を
+        // そのまま入れていたため、月給の求人は常にフィルター条件を満たしてしまい
+        // 「給与条件」での絞り込みが実質機能しないバグがあった。
+        var salaryValue = 0;
+        if (payType === 'monthly' && j.salary_min) {
+          salaryValue = Math.round(j.salary_min / 10000);
+        } else if (payType === 'hourly' && j.salary_min) {
+          salaryValue = j.salary_min;
+        }
         var c = j.clinics || {};
         jobs.push({
           id:j.id, clinic_id:j.clinic_id, url:c.website||'', clinic:c.name||'', region:'', role:j.role||'',
-          payType, salaryValue:j.salary_min||0, salaryText, cond, condLabel,
+          payType, salaryValue, salaryText, cond, condLabel,
           days:j.days?j.days.split(','):[], times:j.times?j.times.split(','):[],
           address:c.address||'', director:c.director||'', phone:c.phone||'',
           headline:j.main_duties||'', greeting:c.greeting||'',
@@ -1693,6 +1704,11 @@ function renderDetail(id) {
   document.getElementById('dContact').innerHTML = [['医院名',j.clinic],['院長名',j.director||'—'],['電話番号',j.phone||'—'],['住所',j.address||'—']].map(function(d){ return '<div class="dr"><dt>'+d[0]+'</dt><dd>'+d[1]+'</dd></div>'; }).join('');
   document.getElementById('dReviews').innerHTML = j.url ? '<a href="'+j.url+'" target="_blank" style="display:flex;align-items:center;gap:.6rem;padding:.85rem 1rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.875rem;font-weight:600;color:var(--pr)">Googleマップで口コミを見る ↗</a>' : '<p style="font-size:.82rem;color:var(--ft)">口コミ情報はありません。</p>';
   updateDetailFav(); openModal('detail'); initGalCount();
+  // ★修正：前に開いた医院の写真が背景に残ったまま次の求人（写真未登録の
+  // デモ求人など）を表示してしまうバグを修正。clinic_id の有無に関わらず、
+  // 詳細を開くたびに必ずギャラリー画像をリセットしてから、必要な場合のみ
+  // 実際の写真を読み込む。
+  resetGalleryPhotos();
   if (j.clinic_id) loadDetailPhotos(j.clinic_id);
 }
 document.getElementById('dFav').addEventListener('click', function(){ toggleFav(currentJobId); });
@@ -2083,6 +2099,16 @@ function compressImage(file, maxPx, quality) {
   });
 }
 
+// ★修正：詳細モーダルのギャラリー（外観・受付・診療室）の背景画像を
+// リセットする処理を独立した関数にし、clinic_id の有無に関わらず
+// renderDetail() から必ず呼び出すようにした。
+function resetGalleryPhotos() {
+  ['gp0', 'gp1', 'gp2'].forEach(function(elId) {
+    var el = document.getElementById(elId);
+    if (el) el.style.backgroundImage = '';
+  });
+}
+
 async function loadDetailPhotos(clinicId) {
   if (!clinicId) return;
   var galSlots = [
@@ -2090,10 +2116,6 @@ async function loadDetailPhotos(clinicId) {
     { elId: 'gp1', key: 'reception' },
     { elId: 'gp2', key: 'treatment' },
   ];
-  galSlots.forEach(function(s) {
-    var el = document.getElementById(s.elId);
-    if (el) el.style.backgroundImage = '';
-  });
   await Promise.all(galSlots.map(async function(s) {
     var path = 'clinic-' + clinicId + '/' + s.key + '.jpg';
     var res = _supabase.storage.from('clinic-photos').getPublicUrl(path);
