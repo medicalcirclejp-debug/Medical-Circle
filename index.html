@@ -36,17 +36,19 @@
   --ease:cubic-bezier(.16,1,.3,1);
 }
 [data-theme=dark]{
-  /* ★夕焼け・夕暮れテーマ（淡め）：暗いワイン系から、優しいピーチ・クリーム系に変更 */
-  --bg:#f7e3d3;--sf:#fdf1e5;--sf2:#fffaf5;
-  --bd:rgba(140,70,40,.14);--dv:rgba(140,70,40,.08);
-  --tx:#5a3624;--mt:#93624a;--ft:#bd9179;
+  /* ★夕焼けテーマ：背景は白系（ライトモードと同じ）のまま、
+     オレンジ・アンバーはボタンやアクセントなど「色を使う部分」だけに使う。
+     背景全体をオレンジで覆うと文字とのコントラストが落ちてしまうため。 */
+  --bg:#f5f3ee;--sf:#faf9f6;--sf2:#fff;
+  --bd:rgba(30,25,15,.09);--dv:rgba(30,25,15,.07);
+  --tx:#1a1814;--mt:#6b6760;--ft:#a09c96;
   --pr:#e8734a;--pl:#fbe2cf;--ph:#d35f38;
   --ac:#d98a2b;--al:#fbe8ce;
-  --ok:#5f9d52;--okb:#e5f0dd;
-  --wn:#b8860b;--wnb:#fbeece;
-  --sh:0 1px 3px rgba(140,70,30,.1);
-  --shm:0 8px 28px rgba(140,70,30,.14);
-  --shl:0 24px 64px rgba(140,70,30,.18);
+  --ok:#2d6e2d;--okb:#e8f2e8;
+  --wn:#7a5c00;--wnb:#fef9ec;
+  --sh:0 1px 3px rgba(15,10,5,.06);
+  --shm:0 8px 28px rgba(15,10,5,.1);
+  --shl:0 24px 64px rgba(15,10,5,.15);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-y:auto}
@@ -57,6 +59,8 @@ img,svg{display:block;max-width:100%}
 .pg{display:none!important;background:var(--bg);min-height:100dvh}
 .pg.on{display:block!important}
 .topbar{position:fixed;inset:0 0 auto;z-index:100;backdrop-filter:blur(20px);background:color-mix(in srgb,var(--bg) 85%,transparent);border-bottom:1px solid var(--bd)}
+/* ★夕焼けテーマの時だけ、ヘッダー部分にオレンジ背景をつける（文字はそのまま上に乗る） */
+[data-theme=dark] .topbar{background:color-mix(in srgb,#f7e3d3 90%,transparent)}
 .topbar-in{max-width:1280px;margin:0 auto;padding:0 1.25rem;height:60px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
 .brand{display:flex;align-items:center;gap:.55rem}
 .brand-ic{width:32px;height:32px;color:var(--pr)}
