@@ -133,6 +133,8 @@ img,svg{display:block;max-width:100%}
 .usl{border-radius:var(--rlg);border:2px dashed var(--bd);background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;cursor:pointer;color:var(--ft);font-size:.75rem;text-align:center;padding:1rem}
 .top-shell{min-height:calc(100dvh - 60px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.25rem 3rem;position:relative}
 .top-glow{position:absolute;top:22%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;border-radius:50%;background:rgba(26,107,111,.11);pointer-events:none;z-index:0}
+/* ★夕焼けテーマの時、ヒーロー背景のグロー円もオレンジに */
+[data-theme=dark] .top-glow{background:color-mix(in srgb,var(--pr) 18%,transparent)}
 .top-badge{display:inline-flex;padding:.3rem .8rem;border-radius:var(--rf);background:var(--pl);color:var(--pr);font-size:.73rem;font-weight:700;margin-bottom:1.1rem;position:relative;z-index:1}
 .top-title{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.2;text-align:center;margin-bottom:.6rem;position:relative;z-index:1}
 .top-sub{font-size:.88rem;color:var(--mt);text-align:center;margin-bottom:2rem;max-width:36ch;line-height:1.7;position:relative;z-index:1}
@@ -288,15 +290,76 @@ img,svg{display:block;max-width:100%}
 <!-- 各種モーダル（TERMS / ROLES / FEE / FREE） -->
 <div class="mbg" id="termsBg"></div>
 <div class="msh" id="termsSh">
-  <div class="min" style="max-width:560px">
+  <div class="min" style="max-width:640px">
     <div class="mhd"><div><div class="mey">Legal</div><div class="mtt">利用規約・プライバシーポリシー</div></div><button class="ic-btn" id="termsClose">✕</button></div>
     <div class="mbd">
-      <div style="display:grid;gap:1.2rem;font-size:.855rem;line-height:1.8;color:var(--mt)">
-        <div><div style="font-weight:700;color:var(--tx);margin-bottom:.4rem">利用規約</div><p>本サービスは医療従事者と医療機関をつなぐ求人プラットフォームです。登録情報はサービス運営の目的範囲内で適切に取り扱われます。掲載内容の正確性については各医療機関の責任のもとで管理されます。</p></div>
-        <div><div style="font-weight:700;color:var(--tx);margin-bottom:.4rem">料金の改定について</div><p>本サービスは、登録クリニック数の増加やサービス機能の拡充・向上に伴い、月額料金を改定する場合があります。料金を改定する際は、変更内容および適用開始日を事前にご登録のメールアドレスへご案内いたします。改定後も継続してご利用いただける場合は、変更後の料金にご同意いただけたものとして取り扱わせていただきます。</p></div>
-        <div><div style="font-weight:700;color:var(--tx);margin-bottom:.4rem">プライバシーポリシー</div><p>登録いただいた個人情報（氏名・メールアドレス・電話番号・保有資格等）は、求人マッチングの目的のみに使用し、第三者への提供は行いません。</p></div>
-        <div><div style="font-weight:700;color:var(--tx);margin-bottom:.4rem">顔写真・資格証写真の取り扱い</div><p>登録いただいた顔写真および資格証写真は、応募先の医療機関（クリニック）の採用担当者のみが閲覧できます。それ以外の第三者への開示は行いません。</p></div>
-        <div style="font-size:.78rem;color:var(--ft)">※ 正式な利用規約・プライバシーポリシーは別途公開予定です。</div>
+      <div style="display:grid;gap:1.6rem;font-size:.84rem;line-height:1.85;color:var(--mt)">
+
+        <div class="nt nwn" style="font-size:.76rem">本規約は運営会社（合同会社Medical Circle）が作成したドラフトです。公開前に専門家（弁護士等）による確認を推奨します。</div>
+
+        <div>
+          <div style="font-weight:800;color:var(--tx);font-size:1rem;margin-bottom:.8rem">利用規約</div>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第1条（適用）</div>
+          <p style="margin-bottom:.9rem">本規約は、合同会社Medical Circle（以下「当社」といいます）が提供する求人情報提供サービス「Medical Circle」（以下「本サービス」といいます）の利用条件を定めるものです。登録医療機関（以下「クリニック」といいます）および求職者（以下「求職者」といい、クリニックとあわせて「利用者」といいます）は、本規約に同意のうえ本サービスを利用するものとします。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第2条（本サービスの内容）</div>
+          <p style="margin-bottom:.9rem">本サービスは、クリニックが掲載する求人情報を求職者に提供し、両者が直接連絡を取り合うための場を提供する求人情報提供サービスです。当社は職業紹介事業者としてあっせん行為を行うものではなく、採用の可否、労働条件、雇用契約の締結・履行等に関する一切の事項は、クリニックと求職者の間で直接決定・合意していただきます。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第3条（利用登録）</div>
+          <p style="margin-bottom:.9rem">本サービスの利用を希望する者は、当社の定める方法により利用登録を申請し、当社がこれを承認することで登録が完了します。当社は、登録申請者が過去に本規約違反等により利用停止処分を受けたことがある場合その他当社が不適当と判断した場合、登録を拒否することがあります。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第4条（禁止事項）</div>
+          <p style="margin-bottom:.9rem">利用者は、本サービスの利用にあたり、以下の行為をしてはなりません。①虚偽の情報を登録・掲載する行為　②法令または公序良俗に違反する行為　③当社、他の利用者その他第三者の権利・利益を侵害する行為　④本サービスの運営を妨害する行為　⑤登録情報を本サービスの目的外で利用する行為　⑥その他当社が不適切と判断する行為</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第5条（利用料金・登録料）</div>
+          <p style="margin-bottom:.9rem">求職者による本サービスの登録・検索・応募等の利用は無料です。クリニックの利用料金（登録料・月額掲載料）は、本サービス上に表示する内容に従うものとします。当社は、登録クリニック数の増加やサービス機能の拡充・向上に伴い、月額料金を改定する場合があります。料金を改定する際は、変更内容および適用開始日を事前にご登録のメールアドレスへご案内いたします。改定後も継続してご利用いただける場合は、変更後の料金にご同意いただけたものとして取り扱わせていただきます。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第6条（掲載内容の管理）</div>
+          <p style="margin-bottom:.9rem">クリニックが掲載する求人情報の内容（給与、勤務条件、業務内容等）の正確性については、各クリニックの責任において管理されるものとし、当社はその内容を保証するものではありません。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第7条（本サービスの停止・変更・終了）</div>
+          <p style="margin-bottom:.9rem">当社は、システムの保守・点検、不可抗力その他運営上必要と判断した場合、利用者への事前の通知なく本サービスの全部または一部を停止・変更・終了することができるものとします。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第8条（免責事項）</div>
+          <p style="margin-bottom:.9rem">当社は、本サービスを通じて成立した雇用契約その他の合意、または利用者間で生じたトラブルについて、当社に故意または重過失がある場合を除き、一切の責任を負いません。当社は本サービスの内容の完全性、正確性、有用性等について保証するものではありません。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第9条（利用規約の変更）</div>
+          <p style="margin-bottom:.9rem">当社は、必要と判断した場合、利用者への事前の通知なく本規約を変更できるものとします。変更後の規約は、本サービス上に表示した時点から効力を生じるものとします。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第10条（準拠法・管轄裁判所）</div>
+          <p>本規約の解釈にあたっては日本法を準拠法とします。本サービスに関して紛争が生じた場合には、当社本店所在地を管轄する裁判所を第一審の専属的合意管轄裁判所とします。</p>
+        </div>
+
+        <div>
+          <div style="font-weight:800;color:var(--tx);font-size:1rem;margin-bottom:.8rem">プライバシーポリシー</div>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第1条（取得する個人情報）</div>
+          <p style="margin-bottom:.9rem">当社は、本サービスの提供にあたり、以下の情報を取得します。氏名、メールアドレス、電話番号、生年月日・年齢、性別、保有資格、勤務可能な曜日・時間帯、顔写真、資格証写真、その他登録・応募の過程で入力される情報。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第2条（利用目的）</div>
+          <p style="margin-bottom:.9rem">取得した個人情報は、以下の目的のために利用します。①求職者とクリニックとの求人マッチングのため　②本サービスに関するご案内・お問い合わせ対応のため　③本サービスの改善・不正利用防止のため　④法令に基づく対応のため</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第3条（第三者提供）</div>
+          <p style="margin-bottom:.9rem">当社は、法令に基づく場合を除き、本人の同意なく個人情報を第三者に提供しません。ただし、求職者が応募したクリニックに対しては、応募に必要な範囲で当該求職者の登録情報（氏名、連絡先、保有資格、顔写真、資格証写真等を含みます）を開示します。これは求人マッチングという本サービスの性質上必要な開示であり、求職者は応募をもってこれに同意したものとします。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第4条（顔写真・資格証写真の取り扱い）</div>
+          <p style="margin-bottom:.9rem">登録いただいた顔写真および資格証写真は、応募先クリニックの採用担当者のみが閲覧できるものとし、それ以外の第三者への開示は行いません。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第5条（安全管理措置）</div>
+          <p style="margin-bottom:.9rem">当社は、取得した個人情報の漏えい、滅失またはき損の防止その他の安全管理のため、必要かつ適切な措置を講じます。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第6条（開示・訂正・削除等の請求）</div>
+          <p style="margin-bottom:.9rem">利用者は、当社の定める方法により、当社に対して自己の個人情報の開示、訂正、利用停止、削除を請求することができます。当社は、本人確認のうえ、法令に従い遅滞なく対応します。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第7条（Cookie等の利用）</div>
+          <p style="margin-bottom:.9rem">本サービスでは、利用状況の分析やサービス改善のため、Cookie等の技術を利用する場合があります。</p>
+
+          <div style="font-weight:700;color:var(--tx);margin-bottom:.3rem">第8条（お問い合わせ窓口）</div>
+          <p>個人情報の取り扱いに関するお問い合わせは、本サービスの「お問い合わせ」フォームよりご連絡ください。</p>
+        </div>
+
+        <div style="font-size:.76rem;color:var(--ft);border-top:1px solid var(--dv);padding-top:.9rem">制定日：2026年8月13日<br>合同会社Medical Circle</div>
       </div>
     </div>
   </div>
