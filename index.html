@@ -195,6 +195,15 @@ img,svg{display:block;max-width:100%}
 @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:1024px){.sl-grid{grid-template-columns:1fr}.filters{position:static}.gal{grid-template-columns:1fr 1fr}.plb{grid-template-columns:1fr}}
 @media(max-width:680px){.jc{grid-template-columns:1fr}.jth{aspect-ratio:16/9}.fg{grid-template-columns:1fr}.fg .full{grid-column:1}}
+/* ★PC(デスクトップ)用：写真エリアを大きく、全体の横幅も広めに使う */
+@media(min-width:1025px){
+  .wrap{max-width:1600px}
+  .sl-grid{grid-template-columns:320px 1fr;gap:1.8rem}
+  .jc{grid-template-columns:300px 1fr;gap:1.3rem;padding:1.3rem}
+  .jth{aspect-ratio:4/3;font-size:.85rem;border-radius:var(--rxl)}
+  .jnm{font-size:1.1rem}
+  .jmt{font-size:.82rem}
+}
 </style>
 </head>
 <body>
