@@ -1730,9 +1730,8 @@ function renderJobs() {
     var tagHtml = tags.map(function(t){ return '<span class="tag" style="font-size:.72rem">'+t+'</span>'; }).join('');
     var favOn = favorites[j.id] ? ' on' : '';
     html += '<div class="jc"><div class="jth">'+(j.region||'全国')+'<br>'+j.role+'</div><div>';
-    html += '<div class="jnm">'+j.clinic+'</div>';
-    html += '<div class="jmt">'+(j.address||'')+(j.director?' / '+j.director:'')+'</div>';
-    html += '<div class="jhl">'+j.headline+'</div>';
+    html += '<div class="jnm" style="line-height:1.4">'+(j.headline||j.clinic)+'</div>';
+    html += '<div class="jmt">'+j.clinic+(j.address?' ・ '+j.address:'')+(j.director?' / '+j.director:'')+'</div>';
     html += '<div class="jtg">'+tagHtml+'</div>';
     html += '<div class="jac"><button class="btn bp bsm job-detail-btn" data-job-id="'+j.id+'">詳細を見る</button>';
     html += '<button class="fav'+favOn+' job-fav-btn" data-job-id="'+j.id+'" aria-label="お気に入り"><svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="'+(favorites[j.id]?'currentColor':'none')+'"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>';
