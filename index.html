@@ -932,10 +932,10 @@ img,svg{display:block;max-width:100%}
     <div class="mbd">
       <div style="position:relative;margin-bottom:1.2rem">
         <div id="galScroll" style="display:flex;gap:.5rem;overflow-x:auto;padding-bottom:.25rem;-webkit-overflow-scrolling:touch;scrollbar-width:none" onscroll="updateGalCount(this)">
-          <div class="gs" id="gp0" style="min-width:220px;min-height:140px;flex-shrink:0"><span class="glb">外観</span></div>
-          <div class="gs" id="gp1" style="min-width:150px;min-height:140px;flex-shrink:0"><span class="glb">受付</span></div>
-          <div class="gs" id="gp2" style="min-width:150px;min-height:140px;flex-shrink:0"><span class="glb">診療室</span></div>
-          <div class="gs" style="min-width:150px;min-height:140px;flex-shrink:0;cursor:pointer" onclick="openPhoto('その他')"><span class="glb">その他</span></div>
+          <div class="gs" id="gp0" style="min-width:220px;min-height:140px;flex-shrink:0;cursor:pointer"><span class="glb">外観</span></div>
+          <div class="gs" id="gp1" style="min-width:150px;min-height:140px;flex-shrink:0;cursor:pointer"><span class="glb">受付</span></div>
+          <div class="gs" id="gp2" style="min-width:150px;min-height:140px;flex-shrink:0;cursor:pointer"><span class="glb">診療室</span></div>
+          <div class="gs" id="gp3" style="min-width:150px;min-height:140px;flex-shrink:0;cursor:pointer"><span class="glb">その他</span></div>
         </div>
         <div id="galCount" style="position:absolute;bottom:.5rem;right:.5rem;background:rgba(0,0,0,.55);color:#fff;font-size:.7rem;font-weight:700;padding:.2rem .55rem;border-radius:var(--rf);pointer-events:none">1 / 4</div>
       </div>
@@ -1084,7 +1084,7 @@ img,svg{display:block;max-width:100%}
 <div class="mbg" id="photoBg" style="z-index:300"></div>
 <div id="photoSh" style="position:fixed;inset:0;z-index:301;display:none;place-items:center;background:rgba(0,0,0,.88)">
   <div style="background:var(--sf);border-radius:var(--rxl);width:min(560px,92vw);overflow:hidden" onclick="event.stopPropagation()">
-    <div style="aspect-ratio:4/3;background:linear-gradient(140deg,var(--pl),var(--sf2));display:grid;place-items:center"><span id="photoLbl" style="font-size:1.3rem;font-weight:700;color:var(--pr)"></span></div>
+    <div id="photoStage" style="aspect-ratio:4/3;background:linear-gradient(140deg,var(--pl),var(--sf2));display:grid;place-items:center"><span style="font-size:1.3rem;font-weight:700;color:var(--pr)"></span></div>
     <div style="padding:.85rem;display:flex;justify-content:space-between;align-items:center"><span id="photoSub" style="font-size:.82rem;color:var(--mt)"></span><button class="btn bs bsm" id="photoClose">閉じる</button></div>
   </div>
 </div>
@@ -1984,11 +1984,27 @@ function updateDetailFav() {
   on ? btn2.classList.add('on') : btn2.classList.remove('on');
   btn2.querySelector('svg').setAttribute('fill', on ? 'currentColor' : 'none');
 }
-document.getElementById('gp0').addEventListener('click', function(){ openPhoto('外観'); });
-document.getElementById('gp1').addEventListener('click', function(){ openPhoto('受付'); });
-document.getElementById('gp2').addEventListener('click', function(){ openPhoto('診療室'); });
+var _detailPhotoUrls = {};
+document.getElementById('gp0').addEventListener('click', function(){ openPhoto('外観', 'exterior'); });
+document.getElementById('gp1').addEventListener('click', function(){ openPhoto('受付', 'reception'); });
+document.getElementById('gp2').addEventListener('click', function(){ openPhoto('診療室', 'treatment'); });
+document.getElementById('gp3').addEventListener('click', function(){ openPhoto('その他', 'other'); });
 document.getElementById('photoBg').addEventListener('click', function(){ closeModal('photo'); });
-function openPhoto(label) { document.getElementById('photoLbl').textContent = label; document.getElementById('photoSub').textContent = label+'の写真'; openModal('photo'); }
+function openPhoto(label, key) {
+  var stage = document.getElementById('photoStage');
+  var url = key ? _detailPhotoUrls[key] : null;
+  if (stage) {
+    if (url) {
+      stage.style.background = '#000';
+      stage.innerHTML = '<img src="'+url+'" style="width:100%;height:100%;object-fit:contain">';
+    } else {
+      stage.style.background = 'linear-gradient(140deg,var(--pl),var(--sf2))';
+      stage.innerHTML = '<span style="font-size:1.3rem;font-weight:700;color:var(--pr)">'+label+'</span>';
+    }
+  }
+  document.getElementById('photoSub').textContent = url ? label + 'の写真' : label + '（写真未登録）';
+  openModal('photo');
+}
 function openAuthModal() { openModal('auth'); }
 document.getElementById('authLoginBtn').addEventListener('click', function(){ closeModal('auth'); showPage('applicant-login'); });
 document.getElementById('authRegisterBtn').addEventListener('click', function(){ closeModal('auth'); openRegModal('applicant'); });
@@ -2389,10 +2405,11 @@ function compressImage(file, maxPx, quality) {
 // リセットする処理を独立した関数にし、clinic_id の有無に関わらず
 // renderDetail() から必ず呼び出すようにした。
 function resetGalleryPhotos() {
-  ['gp0', 'gp1', 'gp2'].forEach(function(elId) {
+  ['gp0', 'gp1', 'gp2', 'gp3'].forEach(function(elId) {
     var el = document.getElementById(elId);
     if (el) el.style.backgroundImage = '';
   });
+  _detailPhotoUrls = {};
 }
 
 async function loadDetailPhotos(clinicId) {
@@ -2401,6 +2418,7 @@ async function loadDetailPhotos(clinicId) {
     { elId: 'gp0', key: 'exterior' },
     { elId: 'gp1', key: 'reception' },
     { elId: 'gp2', key: 'treatment' },
+    { elId: 'gp3', key: 'other' },
   ];
   await Promise.all(galSlots.map(async function(s) {
     var path = 'clinic-' + clinicId + '/' + s.key + '.jpg';
@@ -2409,6 +2427,7 @@ async function loadDetailPhotos(clinicId) {
     try {
       var r = await fetch(res.data.publicUrl, { method: 'HEAD' });
       if (!r.ok) return;
+      _detailPhotoUrls[s.key] = res.data.publicUrl;
       var el = document.getElementById(s.elId);
       if (el) {
         el.style.backgroundImage = 'url(' + res.data.publicUrl + ')';
