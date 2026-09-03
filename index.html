@@ -325,6 +325,11 @@ img,svg{display:block;max-width:100%}
         <span class="tag tp" id="rolesTagBtn" style="cursor:pointer">10職種対応 ›</span>
         <span class="tag tp" id="freeTagBtn" style="cursor:pointer">求職者は完全無料 ›</span>
       </div>
+      <!-- ★追加：求職者向け／クリニック向けの案内ページへ、それぞれ直接飛べる導線 -->
+      <div style="display:flex;gap:.5rem;margin-top:.9rem;width:100%;max-width:340px;position:relative;z-index:1">
+        <button class="btn bg bsm" style="flex:1" data-nav="about-applicant">求職者の方へ ›</button>
+        <button class="btn bg bsm" style="flex:1" data-nav="about-clinic">クリニックの方へ ›</button>
+      </div>
       <div style="margin-top:.75rem;position:relative;z-index:1">
         <button class="btn bg bsm" data-nav="about">About ›</button>
       </div>
@@ -796,6 +801,7 @@ img,svg{display:block;max-width:100%}
           <div style="padding:.9rem 1rem;border-radius:var(--rlg);background:var(--bg);border:1px solid var(--bd)"><div style="font-size:.78rem;font-weight:700;color:var(--pr);margin-bottom:.35rem">エージェントからの営業電話は一切ありません</div><div style="font-size:.855rem;color:var(--mt);line-height:1.7">Medical Circleに仲介エージェントは存在しません。ご自身が応募したクリニックからのみ、直接メールでご連絡が届く仕組みです。</div></div>
           <div style="padding:.9rem 1rem;border-radius:var(--rlg);background:var(--bg);border:1px solid var(--bd)"><div style="font-size:.78rem;font-weight:700;color:var(--pr);margin-bottom:.35rem">最短即日、クリニックより直接メールが届きます</div><div style="font-size:.855rem;color:var(--mt);line-height:1.7">条件が合えば、応募先クリニックよりご登録のメールアドレスへ直接案内メールが届きます。</div></div>
           <div style="padding:.9rem 1rem;border-radius:var(--rlg);background:var(--bg);border:1px solid var(--bd)"><div style="font-size:.78rem;font-weight:700;color:var(--pr);margin-bottom:.35rem">曜日・時間帯を細かく絞って求人を探せます</div><div style="font-size:.855rem;color:var(--mt);line-height:1.7">午前のみ・土曜だけ・週2日からといった細かい条件でも絞り込めます。</div></div>
+          <div style="padding:.9rem 1rem;border-radius:var(--rlg);background:var(--bg);border:1px solid var(--bd)"><div style="font-size:.78rem;font-weight:700;color:var(--pr);margin-bottom:.35rem">何軒応募しても無料です</div><div style="font-size:.855rem;color:var(--mt);line-height:1.7">応募件数に上限はありません。気になる求人には何軒でも、費用の心配なく応募いただけます。</div></div>
           <div style="background:linear-gradient(135deg,var(--pr),var(--ph));border-radius:var(--rxl);padding:1.2rem 1.4rem;color:#fff"><p style="font-size:.73rem;opacity:.75;margin-bottom:.2rem">求職者は</p><strong style="font-size:1.05rem;font-weight:700;display:block;margin-bottom:.15rem">登録・検索・応募、すべて完全無料</strong><small style="font-size:.7rem;opacity:.7">隠れた費用は一切ありません</small></div>
         </div>
         <div style="display:grid;gap:.55rem;margin-bottom:1rem">
@@ -823,6 +829,50 @@ img,svg{display:block;max-width:100%}
         <span onclick="openModal('terms')" style="font-size:.75rem;color:var(--ft);cursor:pointer;text-decoration:underline">プライバシーポリシー</span>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ★追加：求職者の方へ（Aboutページ内の求職者タブと同内容を、単独ページとして直接開けるようにしたもの） -->
+<div id="pg-about-applicant" class="pg">
+  <div class="shell lp">
+    <div class="lc" style="max-width:560px">
+      <div class="ley">For 求職者</div>
+      <div class="ltt">求職者の方へ</div>
+      <div class="lld">Medical Circleは、エージェントを介さず、医院と直接つながる医療職専門の求人サービスです。登録・検索・応募は、すべて完全無料でご利用いただけます。</div>
+      <div style="display:grid;gap:.7rem;margin-bottom:1.1rem">
+        <div style="padding:.9rem 1rem;border-radius:var(--rlg);background:var(--sf);border:1px solid var(--bd)"><div style="font-size:.78rem;font-weight:700;color:var(--pr);margin-bottom:.35rem">エージェントからの営業電話は一切ありません</div><div style="font-size:.855rem;color:var(--mt);line-height:1.7">Medical Circleに仲介エージェントは存在しません。ご自身が応募したクリニックからのみ、直接メールでご連絡が届く仕組みです。</div></div>
+        <div style="padding:.9rem 1rem;border-radius:var(--rlg);background:var(--sf);border:1px solid var(--bd)"><div style="font-size:.78rem;font-weight:700;color:var(--pr);margin-bottom:.35rem">最短即日、クリニックより直接メールが届きます</div><div style="font-size:.855rem;color:var(--mt);line-height:1.7">条件が合えば、応募先クリニックよりご登録のメールアドレスへ直接案内メールが届きます。</div></div>
+        <div style="padding:.9rem 1rem;border-radius:var(--rlg);background:var(--sf);border:1px solid var(--bd)"><div style="font-size:.78rem;font-weight:700;color:var(--pr);margin-bottom:.35rem">曜日・時間帯を細かく絞って求人を探せます</div><div style="font-size:.855rem;color:var(--mt);line-height:1.7">午前のみ・土曜だけ・週2日からといった細かい条件でも絞り込めます。</div></div>
+        <div style="padding:.9rem 1rem;border-radius:var(--rlg);background:var(--sf);border:1px solid var(--bd)"><div style="font-size:.78rem;font-weight:700;color:var(--pr);margin-bottom:.35rem">何軒応募しても無料です</div><div style="font-size:.855rem;color:var(--mt);line-height:1.7">応募件数に上限はありません。気になる求人には何軒でも、費用の心配なく応募いただけます。</div></div>
+        <div style="background:linear-gradient(135deg,var(--pr),var(--ph));border-radius:var(--rxl);padding:1.2rem 1.4rem;color:#fff"><p style="font-size:.73rem;opacity:.75;margin-bottom:.2rem">求職者は</p><strong style="font-size:1.05rem;font-weight:700;display:block;margin-bottom:.15rem">登録・検索・応募、すべて完全無料</strong><small style="font-size:.7rem;opacity:.7">隠れた費用は一切ありません</small></div>
+      </div>
+      <div style="display:grid;gap:.55rem;margin-bottom:1rem">
+        <button class="btn bp" style="width:100%" data-nav="search">求人を探す（登録不要）</button>
+        <button class="btn bs" style="width:100%" data-nav="applicant-login">無料で登録する</button>
+      </div>
+    </div>
+    <div class="bkw"><button class="btn bg bsm" data-nav="main">← トップに戻る</button></div>
+  </div>
+</div>
+
+<!-- ★追加：クリニックの方へ（Aboutページ内のクリニックタブと同内容を、単独ページとして直接開けるようにしたもの） -->
+<div id="pg-about-clinic" class="pg">
+  <div class="shell lp">
+    <div class="lc" style="max-width:560px">
+      <div class="ley">For クリニック</div>
+      <div class="ltt">クリニックの方へ</div>
+      <div class="lld">Medical Circleは、仲介手数料のかからない、医療職専門の直接採用型求人サービスです。何名採用しても、追加費用は一切かかりません。</div>
+      <div style="display:grid;gap:.7rem;margin-bottom:1.1rem">
+        <div style="padding:.9rem 1rem;border-radius:var(--rlg);background:var(--sf);border:1px solid var(--bd)"><div style="font-size:.78rem;font-weight:700;color:var(--pr);margin-bottom:.35rem">何名採用しても、追加費用ゼロ。</div><div style="font-size:.855rem;color:var(--mt);line-height:1.7">Medical Circleの料金は月額のみ。採用人数に関わらず、成功報酬・紹介手数料は一切かかりません。</div></div>
+        <div style="padding:.9rem 1rem;border-radius:var(--rlg);background:var(--sf);border:1px solid var(--bd)"><div style="font-size:.78rem;font-weight:700;color:var(--pr);margin-bottom:.35rem">掲載はいつでも一時停止・再開できる</div><div style="font-size:.855rem;color:var(--mt);line-height:1.7">採用が充足したら掲載を一時停止、また募集したくなったら再開——その間の月額料金は発生しません。</div></div>
+        <div style="background:linear-gradient(135deg,var(--pr),var(--ph));border-radius:var(--rxl);padding:1.2rem 1.4rem;color:#fff;display:grid;grid-template-columns:1fr 1fr;gap:1rem"><div><p style="font-size:.73rem;opacity:.75;margin-bottom:.2rem">キャンペーン期間中</p><strong style="font-size:1.05rem;font-weight:700;display:block">無料</strong><small style="font-size:.7rem;opacity:.7">〜 2028年12月末まで</small></div><div><p style="font-size:.73rem;opacity:.75;margin-bottom:.2rem">2029年1月より</p><strong style="font-size:1.05rem;font-weight:700;display:block">月額 4,680円</strong><small style="font-size:.7rem;opacity:.7">採用人数に関わらず定額</small></div><div style="grid-column:1/-1;border-top:1px solid rgba(255,255,255,.15);padding-top:.6rem;font-size:.72rem;opacity:.7">仲介手数料は何名採用しても一切かかりません。</div></div>
+      </div>
+      <div style="display:grid;gap:.55rem;margin-bottom:1rem">
+        <button class="btn bp" style="width:100%" data-nav="clinic-login">医院ログイン・新規登録</button>
+        <button class="btn bs" style="width:100%" data-nav="contact">お問い合わせ</button>
+      </div>
+    </div>
+    <div class="bkw"><button class="btn bg bsm" data-nav="main">← トップに戻る</button></div>
   </div>
 </div>
 
