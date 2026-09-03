@@ -32,7 +32,7 @@
   --sh:0 1px 3px rgba(15,10,5,.06);
   --shm:0 8px 28px rgba(15,10,5,.1);
   --shl:0 24px 64px rgba(15,10,5,.15);
-  --rsm:.5rem;--rmd:.875rem;--rlg:1.25rem;--rxl:1.75rem;--rf:9999px;
+  --rsm:.5rem;--rmd:.875rem;--rlg:1.25rem;--rxl:1.75rem;--rf:9999px;--rpl:12px;
   --fb:'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic','DM Sans',sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
 }
@@ -71,14 +71,14 @@ img,svg{display:block;max-width:100%}
 .ic-btn:hover{background:var(--sf2)}
 .wrap{max-width:1280px;margin:0 auto;padding:0 1.25rem}
 .shell{padding-top:60px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;min-height:42px;padding:.65rem 1.2rem;border-radius:var(--rf);font-size:.875rem;font-weight:600;transition:all 150ms var(--ease);white-space:nowrap;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;min-height:42px;padding:.65rem 1.2rem;border-radius:var(--rpl);font-size:.875rem;font-weight:600;transition:all 150ms var(--ease);white-space:nowrap;flex-shrink:0}
 .bp{background:var(--pr);color:#fff}.bp:hover{background:var(--ph)}
 .bs{background:var(--sf2);border:1px solid var(--bd)}.bs:hover{background:var(--sf)}
 .bg{border:1px dashed color-mix(in srgb,var(--tx) 20%,transparent)}.bg:hover{background:var(--sf)}
 .bsm{min-height:34px;padding:.38rem .85rem;font-size:.8rem}
-.tag{display:inline-flex;align-items:center;padding:.28rem .7rem;border-radius:var(--rf);background:var(--sf2);border:1px solid var(--bd);font-size:.75rem;font-weight:600;white-space:nowrap}
+.tag{display:inline-flex;align-items:center;padding:.28rem .7rem;border-radius:var(--rpl);background:var(--sf2);border:1px solid var(--bd);font-size:.75rem;font-weight:600;white-space:nowrap}
 .tp{background:var(--pl);color:var(--pr);border-color:transparent}
-.chip{padding:.32rem .8rem;border-radius:var(--rf);background:var(--sf2);border:1px solid var(--bd);font-size:.78rem;font-weight:500;cursor:pointer;transition:all 130ms}
+.chip{padding:.32rem .8rem;border-radius:var(--rpl);background:var(--sf2);border:1px solid var(--bd);font-size:.78rem;font-weight:500;cursor:pointer;transition:all 130ms}
 .chip:hover{border-color:var(--pr);color:var(--pr)}
 .chip.on{background:var(--pr);color:#fff;border-color:transparent}
 .fi{display:grid;gap:.35rem}
@@ -104,7 +104,7 @@ img,svg{display:block;max-width:100%}
 .msh.open{display:block}
 .min{width:min(960px,100%);margin:0 auto;background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);box-shadow:var(--shl)}
 .mhd{display:flex;justify-content:space-between;align-items:flex-start;padding:1.5rem 1.5rem 0;gap:1rem}
-.mey{display:inline-flex;padding:.3rem .7rem;border-radius:var(--rf);background:var(--pl);color:var(--pr);font-size:.75rem;font-weight:700;margin-bottom:.5rem}
+.mey{display:inline-flex;padding:.3rem .7rem;border-radius:var(--rpl);background:var(--pl);color:var(--pr);font-size:.75rem;font-weight:700;margin-bottom:.5rem}
 .mtt{font-size:1.35rem;font-weight:700;letter-spacing:-.02em}
 .mbd{padding:1.25rem 1.5rem 1.5rem}
 .mcb{display:flex;justify-content:flex-end;padding:.5rem .6rem;position:sticky;top:0;z-index:10;background:transparent}
@@ -128,7 +128,7 @@ img,svg{display:block;max-width:100%}
 .gs{border-radius:var(--rlg);background:linear-gradient(140deg,var(--pl),var(--sf2));border:1px solid var(--bd);display:flex;align-items:flex-end;padding:.65rem;cursor:pointer}
 .gs:first-child{min-height:150px}
 .gs:not(:first-child){min-height:96px}
-.glb{font-size:.7rem;background:rgba(255,255,255,.88);color:#333;border-radius:var(--rf);padding:.18rem .5rem}
+.glb{font-size:.7rem;background:rgba(255,255,255,.88);color:#333;border-radius:var(--rpl);padding:.18rem .5rem}
 .dr{display:grid;grid-template-columns:130px 1fr;gap:.5rem;font-size:.855rem;padding:.35rem 0}
 .dr dt{color:var(--mt)}
 .usl{border-radius:var(--rlg);border:2px dashed var(--bd);background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;cursor:pointer;color:var(--ft);font-size:.75rem;text-align:center;padding:1rem}
@@ -177,7 +177,7 @@ img,svg{display:block;max-width:100%}
  .top-ring .ringline circle{animation:none;stroke-dashoffset:0}
  .top-ring .spark{display:none}
 }
-.top-badge{display:inline-flex;padding:.3rem .8rem;border-radius:var(--rf);background:var(--pl);color:var(--pr);font-size:.73rem;font-weight:700;margin-bottom:1.1rem;position:relative;z-index:1}
+.top-badge{display:inline-flex;padding:.3rem .8rem;border-radius:var(--rpl);background:var(--pl);color:var(--pr);font-size:.73rem;font-weight:700;margin-bottom:1.1rem;position:relative;z-index:1}
 .top-title{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.2;text-align:center;margin-bottom:.6rem;position:relative;z-index:1}
 /* ★追加：語句の途中で1文字だけ行送りされないようにする */
 .top-sub .nb{display:inline-block;white-space:nowrap}
@@ -210,7 +210,7 @@ img,svg{display:block;max-width:100%}
 .jac{display:flex;gap:.4rem;flex-wrap:wrap}
 .lp{padding:4.5rem 1rem 3rem}
 .lc{width:min(440px,100%);margin:0 auto;background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);box-shadow:var(--shl);padding:2rem}
-.ley{display:inline-flex;padding:.32rem .78rem;border-radius:var(--rf);background:var(--pl);color:var(--pr);font-size:.75rem;font-weight:700;margin-bottom:.7rem}
+.ley{display:inline-flex;padding:.32rem .78rem;border-radius:var(--rpl);background:var(--pl);color:var(--pr);font-size:.75rem;font-weight:700;margin-bottom:.7rem}
 .ltt{font-size:1.45rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.35rem}
 .lld{font-size:.855rem;color:var(--mt);margin-bottom:1.4rem}
 .lfi{display:grid;gap:.8rem;margin-bottom:1rem}
@@ -227,7 +227,7 @@ img,svg{display:block;max-width:100%}
 .stl{font-weight:700;font-size:.95rem}
 .cc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);padding:1.2rem;margin-bottom:.8rem}
 .apc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rlg);padding:.95rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.65rem;margin-bottom:.55rem}
-.sb{padding:.22rem .6rem;border-radius:var(--rf);font-size:.7rem;font-weight:700}
+.sb{padding:.22rem .6rem;border-radius:var(--rpl);font-size:.7rem;font-weight:700}
 .sok{background:var(--okb);color:var(--ok)}
 .swn{background:var(--wnb);color:var(--wn)}
 .tc{display:flex;align-items:flex-start;gap:.6rem;padding:.82rem;border-radius:var(--rmd);background:var(--bg);border:1px solid var(--bd);font-size:.8rem;margin-bottom:.7rem}
@@ -267,7 +267,7 @@ img,svg{display:block;max-width:100%}
       <span class="brand-nm">Medical Circle</span>
     </div>
     <div class="tbr">
-      <span id="loginBadge" style="display:none;padding:.28rem .7rem;border-radius:var(--rf);background:var(--pl);color:var(--pr);font-size:.72rem;font-weight:700;line-height:1;align-self:center">ログイン中</span>
+      <span id="loginBadge" style="display:none;padding:.28rem .7rem;border-radius:var(--rpl);background:var(--pl);color:var(--pr);font-size:.72rem;font-weight:700;line-height:1;align-self:center">ログイン中</span>
       <button class="ic-btn" id="themeBtn" title="テーマ">☾</button>
       <button class="ic-btn" id="menuBtn">≡</button>
     </div>
@@ -561,7 +561,7 @@ img,svg{display:block;max-width:100%}
         <div id="dashClinicAddr" style="font-size:.8rem;color:var(--mt);margin-top:.2rem">住所</div>
       </div>
       <div style="display:flex;gap:.65rem;align-items:center;flex-wrap:wrap">
-        <span class="tag" style="background:var(--okb);color:var(--ok);border:none">🎉 キャンペーン適用中</span>
+        <span class="tag" style="background:var(--okb);color:var(--ok);border:none">キャンペーン適用中</span>
         <button class="btn bg bsm" id="applicantLogoutBtn">ログアウト</button>
       </div>
     </div>
@@ -586,7 +586,7 @@ img,svg{display:block;max-width:100%}
         <button class="btn bp bsm" style="width:fit-content" data-nav="clinic-info">クリニック情報を編集</button>
       </div>
       <div style="margin-top:.85rem;border:1.5px dashed var(--bd);border-radius:var(--rlg);padding:.85rem;position:relative;overflow:hidden">
-        <div style="position:absolute;top:.5rem;right:.5rem"><span style="background:var(--al);color:var(--ac);font-size:.68rem;font-weight:700;padding:.18rem .5rem;border-radius:var(--rf)">近日公開</span></div>
+        <div style="position:absolute;top:.5rem;right:.5rem"><span style="background:var(--al);color:var(--ac);font-size:.68rem;font-weight:700;padding:.18rem .5rem;border-radius:var(--rpl)">近日公開</span></div>
         <div style="font-size:.75rem;font-weight:700;color:var(--mt);margin-bottom:.6rem">📊 統計情報</div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;text-align:center;filter:blur(4px);user-select:none">
           <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.55rem"><strong style="display:block;font-size:1.05rem">12</strong><span style="font-size:.7rem;color:var(--mt)">閲覧数（今月）</span></div>
@@ -594,8 +594,22 @@ img,svg{display:block;max-width:100%}
           <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--rmd);padding:.55rem"><strong style="display:block;font-size:1.05rem">2</strong><span style="font-size:.7rem;color:var(--mt)">応募</span></div>
         </div>
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;background:color-mix(in srgb,var(--bg) 60%,transparent);backdrop-filter:blur(2px);border-radius:var(--rlg)">
-          <span style="font-size:1.2rem">🚧</span>
           <span style="font-size:.78rem;font-weight:700;color:var(--mt)">統計機能は近日公開予定です</span>
+        </div>
+      </div>
+      <!-- ★追加：有料オプション（求職者の経歴・応募履歴閲覧／クリニックサイト制作）。いずれも近日公開の準備中機能 -->
+      <div style="display:grid;gap:.6rem;margin-top:.6rem">
+        <div style="border:1.5px dashed var(--bd);border-radius:var(--rlg);padding:.9rem;position:relative">
+          <div style="position:absolute;top:.5rem;right:.5rem"><span style="background:var(--al);color:var(--ac);font-size:.68rem;font-weight:700;padding:.18rem .5rem;border-radius:var(--rpl)">近日公開</span></div>
+          <div style="font-size:.8rem;font-weight:700;margin-bottom:.3rem;padding-right:5.5rem">求職者の経歴・応募履歴を閲覧</div>
+          <div style="font-size:.78rem;color:var(--mt);line-height:1.65;margin-bottom:.55rem">応募者のこれまでの職歴や、他院への応募状況が確認できるようになる、クリニック限定の有料オプションです。</div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--pr)">月額 560円</div>
+        </div>
+        <div style="border:1.5px dashed var(--bd);border-radius:var(--rlg);padding:.9rem;position:relative">
+          <div style="position:absolute;top:.5rem;right:.5rem"><span style="background:var(--al);color:var(--ac);font-size:.68rem;font-weight:700;padding:.18rem .5rem;border-radius:var(--rpl)">近日公開</span></div>
+          <div style="font-size:.8rem;font-weight:700;margin-bottom:.3rem;padding-right:5.5rem">クリニックサイトを制作（写真掲載など）</div>
+          <div style="font-size:.78rem;color:var(--mt);line-height:1.65;margin-bottom:.55rem">院内の写真やスタッフ紹介を掲載した、クリニック専用のWebサイトを制作します。</div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--pr)">7,800円〜</div>
         </div>
       </div>
     </div>
@@ -611,7 +625,7 @@ img,svg{display:block;max-width:100%}
       <div class="nt np" style="font-size:.78rem" id="appliedEmpty">応募者がここに表示されます。</div>
       <div id="appliedItems"></div>
     </div>
-    <div id="pendingList" style="display:none"><div class="nt nwn" style="font-size:.78rem">🚧 保留リスト機能は近日公開予定です。気になる応募者を一時的に保留にして、後からまとめて連絡できるようになります。</div></div>
+    <div id="pendingList" style="display:none"><div class="nt nwn" style="font-size:.78rem">保留リスト機能は近日公開予定です。気になる応募者を一時的に保留にして、後からまとめて連絡できるようになります。</div></div>
     <div id="contactedList" style="display:none"><div class="nt np" style="font-size:.78rem" id="contactedEmpty">案内済みの応募者がここに表示されます。</div><div id="contactedItems"></div></div>
     <div style="padding-bottom:3rem"></div>
     <div style="border-top:1px solid var(--dv);padding-top:1.2rem;margin-bottom:1rem">
@@ -792,9 +806,9 @@ img,svg{display:block;max-width:100%}
         </div>
       </div>
 
-      <div style="display:flex;gap:.35rem;margin-bottom:1.4rem;padding:.3rem;background:var(--bg);border:1px solid var(--bd);border-radius:var(--rf)">
-        <button id="aboutTabApplicant" onclick="switchAboutTab('applicant')" style="flex:1;min-height:36px;border-radius:var(--rf);font-size:.82rem;font-weight:700;background:var(--pr);color:#fff;border:none;cursor:pointer;transition:all 150ms;font-family:var(--fb)">求職者の方へ</button>
-        <button id="aboutTabClinic" onclick="switchAboutTab('clinic')" style="flex:1;min-height:36px;border-radius:var(--rf);font-size:.82rem;font-weight:700;background:transparent;color:var(--mt);border:none;cursor:pointer;transition:all 150ms;font-family:var(--fb)">クリニックの方へ</button>
+      <div style="display:flex;gap:.35rem;margin-bottom:1.4rem;padding:.3rem;background:var(--bg);border:1px solid var(--bd);border-radius:var(--rpl)">
+        <button id="aboutTabApplicant" onclick="switchAboutTab('applicant')" style="flex:1;min-height:36px;border-radius:var(--rpl);font-size:.82rem;font-weight:700;background:var(--pr);color:#fff;border:none;cursor:pointer;transition:all 150ms;font-family:var(--fb)">求職者の方へ</button>
+        <button id="aboutTabClinic" onclick="switchAboutTab('clinic')" style="flex:1;min-height:36px;border-radius:var(--rpl);font-size:.82rem;font-weight:700;background:transparent;color:var(--mt);border:none;cursor:pointer;transition:all 150ms;font-family:var(--fb)">クリニックの方へ</button>
       </div>
       <div id="aboutApplicant">
         <div style="display:grid;gap:.7rem;margin-bottom:1.1rem">
@@ -977,7 +991,7 @@ img,svg{display:block;max-width:100%}
         <div id="cStep2" style="display:none">
           <div class="nt nok" style="margin-bottom:.9rem">✓ 基本情報を保存しました。続けて登録へお進みください。</div>
           <div class="pb">
-            <div class="pt"><div class="camp">🎉 期間限定キャンペーン</div><div class="hl">2027年12月31日までにご登録いただいたクリニック様は<br>2028年12月末まで無料で掲載できます。</div></div>
+            <div class="pt"><div class="camp">期間限定キャンペーン</div><div class="hl">2027年12月31日までにご登録いただいたクリニック様は<br>2028年12月末まで無料で掲載できます。</div></div>
             <div class="pr-rows">
               <div class="pr-row"><dt>〜 2028年12月末</dt><strong>無料</strong></div>
               <div class="pdv"></div>
@@ -1038,7 +1052,7 @@ img,svg{display:block;max-width:100%}
     <div class="mcb"><button class="ic-btn" id="detailClose">✕</button></div>
     <div class="mhd" style="padding-top:.25rem">
       <div><div class="mey" id="dEyebrow"></div><div class="mtt" id="dName">—</div><div style="font-size:.8rem;color:var(--mt);margin-top:.2rem" id="dAddr"></div></div>
-      <span id="dScore" style="padding:.28rem .65rem;border-radius:var(--rf);background:var(--al);color:var(--ac);font-size:.73rem;font-weight:700;align-self:flex-start;white-space:nowrap"></span>
+      <span id="dScore" style="padding:.28rem .65rem;border-radius:var(--rpl);background:var(--al);color:var(--ac);font-size:.73rem;font-weight:700;align-self:flex-start;white-space:nowrap"></span>
     </div>
     <div class="mbd">
       <div style="position:relative;margin-bottom:1.2rem">
@@ -1048,7 +1062,7 @@ img,svg{display:block;max-width:100%}
           <div class="gs" id="gp2" style="min-width:150px;min-height:140px;flex-shrink:0;cursor:pointer"><span class="glb">診療室</span></div>
           <div class="gs" id="gp3" style="min-width:150px;min-height:140px;flex-shrink:0;cursor:pointer"><span class="glb">その他</span></div>
         </div>
-        <div id="galCount" style="position:absolute;bottom:.5rem;right:.5rem;background:rgba(0,0,0,.55);color:#fff;font-size:.7rem;font-weight:700;padding:.2rem .55rem;border-radius:var(--rf);pointer-events:none">1 / 4</div>
+        <div id="galCount" style="position:absolute;bottom:.5rem;right:.5rem;background:rgba(0,0,0,.55);color:#fff;font-size:.7rem;font-weight:700;padding:.2rem .55rem;border-radius:var(--rpl);pointer-events:none">1 / 4</div>
       </div>
       <div style="background:var(--sf);border:1px solid var(--bd);border-radius:var(--rxl);padding:1rem;margin-bottom:1rem">
         <p style="font-size:.75rem;color:var(--mt)">検索・閲覧は登録不要</p>
@@ -1200,13 +1214,13 @@ img,svg{display:block;max-width:100%}
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://js.stripe.com/v3/"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" crossorigin="anonymous"></script>
+<script src="https://js.stripe.com/v3/" crossorigin="anonymous"></script>
 <script>
 // ===== 設定 =====
 // ★ 現在はテストモードのキーです。本番課金を開始する際は
 //    Stripeを本番(Live)モードに切り替えて pk_live_... のキーに差し替えてください。
-var _stripeKey = 'pk_test_51TWulbEyo0WsMSx21pFCieNm4BmGc96rzSedI4apJHz0pc7gtwHWBjLUpK4jJpvWjBV3HLPTilqTxfpk6msIHn1Q00MOIdcwYa';
+var _stripeKey = 'pk_test_51TWulbEyoOWsMSx21pFCieNm4BmGc96rzSedI4apJHzOpc7gtwHWBjLUpK4jJpvWjBV3HlPTi1qTxfpk6msIHn1Q00MOIdcwYa';
 // ★ 本番化時に差し替え: Edge FunctionデプロイURL
 var STRIPE_CHARGE_URL = 'https://fmtboixqqqbvnmteciwx.supabase.co/functions/v1/stripe-charge';
 var NOTIFY_CLINIC_URL = 'https://fmtboixqqqbvnmteciwx.supabase.co/functions/v1/notify-clinic';
@@ -1284,17 +1298,32 @@ function initStripeElement() {
   if (_cardElement) return;
   var mountTarget = document.getElementById('stripe-card-element');
   if (!mountTarget) return;
-  _stripe = Stripe(_stripeKey);
-  var elements = _stripe.elements();
-  _cardElement = elements.create('card', {
-    hidePostalCode: true,
-    style: { base: { fontSize: '16px', fontFamily: 'Hiragino Sans,sans-serif' } }
-  });
-  _cardElement.mount('#stripe-card-element');
-  _cardElement.on('change', function(e) {
-    var el = document.getElementById('stripe-card-errors');
-    if (el) el.textContent = e.error ? e.error.message : '';
-  });
+  // ★修正：Stripe.jsの読み込みに失敗する環境（ネットワーク制限のあるプレビュー環境、
+  // 広告ブロッカー、通信不可の状態など）では window.Stripe が存在しないままここに来る。
+  // 何もせず処理を続けると、カード入力欄が空白のまま「Uncaught Error: Script error.」が
+  // コンソールに出るだけで、利用者には何が起きているか分からない状態になっていた。
+  // 読み込み失敗を検知し、カード欄の位置に分かりやすい案内を表示して、送信ボタン側の
+  // エラーメッセージでも状況が伝わるようにする。
+  if (typeof Stripe !== 'function') {
+    mountTarget.innerHTML = '<span style="font-size:.82rem;color:#c0392b">決済フォームを読み込めませんでした。通信環境をご確認のうえ、ページを再読み込みしてください。</span>';
+    return;
+  }
+  try {
+    _stripe = Stripe(_stripeKey);
+    var elements = _stripe.elements();
+    _cardElement = elements.create('card', {
+      hidePostalCode: true,
+      style: { base: { fontSize: '16px', fontFamily: 'Hiragino Sans,sans-serif' } }
+    });
+    _cardElement.mount('#stripe-card-element');
+    _cardElement.on('change', function(e) {
+      var el = document.getElementById('stripe-card-errors');
+      if (el) el.textContent = e.error ? e.error.message : '';
+    });
+  } catch (err) {
+    mountTarget.innerHTML = '<span style="font-size:.82rem;color:#c0392b">決済フォームを読み込めませんでした。通信環境をご確認のうえ、ページを再読み込みしてください。</span>';
+    _cardElement = null;
+  }
 }
 
 // ===== ダミー求人データ =====
