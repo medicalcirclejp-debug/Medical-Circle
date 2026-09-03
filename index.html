@@ -133,13 +133,13 @@ img,svg{display:block;max-width:100%}
 .dr dt{color:var(--mt)}
 .usl{border-radius:var(--rlg);border:2px dashed var(--bd);background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;cursor:pointer;color:var(--ft);font-size:.75rem;text-align:center;padding:1rem}
 .top-shell{min-height:calc(100dvh - 60px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.25rem 3rem;position:relative}
-.top-glow{position:absolute;top:22%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;border-radius:50%;background:rgba(26,107,111,.11);pointer-events:none;z-index:0}
+.top-glow{position:absolute;top:max(22%,150px);left:50%;transform:translate(-50%,-50%);width:300px;height:300px;border-radius:50%;background:rgba(26,107,111,.11);pointer-events:none;z-index:0}
 
 /* ★夕焼けテーマの時、ヒーロー背景のグロー円もオレンジに */
 [data-theme=dark] .top-glow{background:color-mix(in srgb,var(--pr) 18%,transparent)}
 /* ★追加：ヒーロー中央の円のまわりに6職種の写真をリング状に配置 */
 /* 右上から光が時計回りに一周し、通過した位置に写真が現れて円がつながる */
-.top-ring{position:absolute;top:22%;left:50%;width:0;height:0;pointer-events:none;z-index:0;
+.top-ring{position:absolute;top:max(22%,150px);left:50%;width:0;height:0;pointer-events:none;z-index:0;
  --r:140px;--spark:#FFE7A8;--sparkCore:#FFF8E6}
 .top-ring i{position:absolute;width:104px;height:104px;margin:-52px 0 0 -52px;border-radius:50%;
  left:calc(var(--r) * var(--x));top:calc(var(--r) * var(--y));
@@ -170,7 +170,7 @@ img,svg{display:block;max-width:100%}
 /* 中央のテキストが写真に重なっても読めるよう、背景色のにじみを敷く */
 .top-sub,.top-shell .top-shell-roles{text-shadow:0 0 12px var(--bg),0 0 24px var(--bg)}
 @media(max-width:390px){.top-ring{--r:124px}.top-ring i{width:92px;height:92px;margin:-46px 0 0 -46px}}
-@media(min-width:700px){.top-ring{--r:230px}.top-ring i{width:150px;height:150px;margin:-75px 0 0 -75px}}
+@media(min-width:700px){.top-ring,.top-glow{top:max(22%,265px)}.top-ring{--r:230px}.top-ring i{width:150px;height:150px;margin:-75px 0 0 -75px}}
 /* 動きを減らす設定の端末では、最初から全部表示する */
 @media(prefers-reduced-motion:reduce){
  .top-ring i{animation:none;opacity:.46;transform:none}
